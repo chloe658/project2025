@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8uystwyg16uy"]
+
+[ext_resource type="Texture2D" uid="uid://biwlexmu5mtj7" path="res://Tilesets/house/house_details.png" id="1_qvvtb"]
+[ext_resource type="Script" uid="uid://cajbo3fnykbnw" path="res://scripts/enter_door.gd" id="1_r82iu"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r82iu"]
+texture = ExtResource("1_qvvtb")
+texture_region_size = Vector2i(32, 32)
+2:7/0 = 0
+3:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_coyma"]
+tile_size = Vector2i(32, 32)
+sources/1 = SubResource("TileSetAtlasSource_r82iu")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_373rh"]
+size = Vector2(17, 21)
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(3, -1)
+script = ExtResource("1_r82iu")
+
+[node name="open_door" type="TileMapLayer" parent="."]
+visible = false
+tile_map_data = PackedByteArray(0, 0, 11, 0, 252, 255, 1, 0, 2, 0, 7, 0, 0, 0, 12, 0, 252, 255, 1, 0, 3, 0, 7, 0, 0, 0)
+tile_set = SubResource("TileSet_coyma")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(385.5, -107.5)
+shape = SubResource("RectangleShape2D_373rh")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
