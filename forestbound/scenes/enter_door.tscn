@@ -1,10 +1,12 @@
 [gd_scene load_steps=6 format=3 uid="uid://c8uystwyg16uy"]
 
-[ext_resource type="Texture2D" uid="uid://biwlexmu5mtj7" path="res://Tilesets/house/house_details.png" id="1_qvvtb"]
 [ext_resource type="Script" uid="uid://cajbo3fnykbnw" path="res://scripts/enter_door.gd" id="1_r82iu"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1jyyf"]
+load_path = "res://.godot/imported/house_details.png-b9be34a7f6eeb874a2a195500e905aa1.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r82iu"]
-texture = ExtResource("1_qvvtb")
+texture = SubResource("CompressedTexture2D_1jyyf")
 texture_region_size = Vector2i(32, 32)
 2:7/0 = 0
 3:7/0 = 0
