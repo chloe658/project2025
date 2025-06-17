@@ -1,10 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://ch084htylq31r"]
+[gd_scene load_steps=4 format=3 uid="uid://ch084htylq31r"]
 
-[ext_resource type="Texture2D" uid="uid://p585wrubwfl2" path="res://assets/Items/sword.png" id="1_4gq7n"]
+[ext_resource type="Texture2D" uid="uid://ct0h4lomutqvo" path="res://assets/Items/Mooncap Mushroom.png" id="1_4gq7n"]
+[ext_resource type="Script" uid="uid://dous3iocj6au4" path="res://scripts/item.gd" id="1_s8enn"]
+[ext_resource type="FontFile" uid="uid://eec8xja2jhxc" path="res://assets/UI/font.ttf" id="3_6muww"]
 
 [node name="Item" type="Node2D"]
+z_index = 1
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_s8enn")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 38.0
+offset_bottom = 38.0
+mouse_filter = 2
 texture = ExtResource("1_4gq7n")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 43.0
+offset_bottom = 47.0
+theme_override_fonts/font = ExtResource("3_6muww")
+text = "99"

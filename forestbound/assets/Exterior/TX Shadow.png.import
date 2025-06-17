@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7keq6mmnwo45"
-path="res://.godot/imported/character1 spritesheet.png-9f2489745be36ddaaafdf197f5c7cd06.ctex"
+uid="uid://daduloi63ywxr"
+path="res://.godot/imported/TX Shadow.png-543dbf243665dbf882a3ea107eb476c9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/character1 spritesheet.png"
-dest_files=["res://.godot/imported/character1 spritesheet.png-9f2489745be36ddaaafdf197f5c7cd06.ctex"]
+source_file="res://assets/Exterior/TX Shadow.png"
+dest_files=["res://.godot/imported/TX Shadow.png-543dbf243665dbf882a3ea107eb476c9.ctex"]
 
 [params]
 

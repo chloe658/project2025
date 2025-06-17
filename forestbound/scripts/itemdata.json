@@ -1,0 +1,74 @@
+{
+    "Mooncap Mushroom": {
+        "ItemCatagory": "Resource",
+        "StackSize": 99,
+        "Description": ""	
+    },
+
+    "Firecap Mushroom": {
+        "ItemCatagory": "Resource",
+        "StackSize": 99,
+        "Description": ""	
+    },
+
+    "Lavender Bloom": {
+        "ItemCatagory": "Resource",
+        "StackSize": 99,
+        "Description": ""	
+    },
+    "Ghostmint Leaf": {
+        "ItemCatagory": "Resource",
+        "StackSize": 99,
+        "Description": ""	
+    },
+    "Crystalfly Wing": {
+        "ItemCatagory": "Resource",
+        "StackSize": 99,
+        "Description": ""	
+    },
+    "Cinder Fern Spore": {
+        "ItemCatagory": "Resource",
+        "StackSize": 99,
+        "Description": ""	
+    },
+    "Starroot Bulb": {
+        "ItemCatagory": "Resource",
+        "StackSize": 99,
+        "Description": ""	
+    },
+    "Batberry": {
+        "ItemCatagory": "Resource",
+        "StackSize": 99,
+        "Description": ""	
+    },
+    "Willow Wisps": {
+        "ItemCatagory": "Resource",
+        "StackSize": 99,
+        "Description": ""	
+    },
+    "Thornroot Bark": {
+        "ItemCatagory": "Resource",
+        "StackSize": 99,
+        "Description": ""	
+    },
+    "Oakshade Sap": {
+        "ItemCatagory": "Resource",
+        "StackSize": 99,
+        "Description": ""	
+    },
+    "Flower of Dusk": {
+        "ItemCatagory": "Resource",
+        "StackSize": 99,
+        "Description": ""	
+    },
+    "Sword": {
+        "ItemCatagory": "Sword",
+        "StackSize": 1,
+        "Description": ""	
+    },
+    "Pickaxe": {
+        "ItemCatagory": "Sword",
+        "StackSize": 1,
+        "Description": ""	
+    }
+}

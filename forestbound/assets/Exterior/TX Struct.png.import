@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c06nqpj2d74rn"
-path="res://.godot/imported/npc1 spritesheet.png-8ea0e59f16d93d91439fa56657e43133.ctex"
+uid="uid://busdxo0owr2w0"
+path="res://.godot/imported/TX Struct.png-927adc175163de2d579f5729993405a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/npc1 spritesheet.png"
-dest_files=["res://.godot/imported/npc1 spritesheet.png-8ea0e59f16d93d91439fa56657e43133.ctex"]
+source_file="res://assets/Exterior/TX Struct.png"
+dest_files=["res://.godot/imported/TX Struct.png-927adc175163de2d579f5729993405a6.ctex"]
 
 [params]
 

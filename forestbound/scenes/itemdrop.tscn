@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://0s6gwgqh1yo"]
+
+[ext_resource type="Script" uid="uid://d1h8yb6r6d405" path="res://scripts/itemdrop.gd" id="1_konvx"]
+[ext_resource type="Texture2D" uid="uid://ct0h4lomutqvo" path="res://assets/Items/Mooncap Mushroom.png" id="1_m71n5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_konvx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_m71n5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qhgn8"]
+radius = 8.0
+
+[node name="itemdrop" type="Area2D"]
+script = ExtResource("1_konvx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_konvx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qhgn8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
