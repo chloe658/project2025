@@ -1,13 +1,52 @@
-[gd_scene load_steps=4 format=3 uid="uid://ch084htylq31r"]
+[gd_scene load_steps=4 format=3 uid="uid://bjjjiaefe7h8b"]
 
 [ext_resource type="Texture2D" uid="uid://ct0h4lomutqvo" path="res://assets/Items/Mooncap Mushroom.png" id="1_4gq7n"]
-[ext_resource type="Script" uid="uid://dous3iocj6au4" path="res://scripts/item.gd" id="1_s8enn"]
 [ext_resource type="FontFile" uid="uid://eec8xja2jhxc" path="res://assets/UI/font.ttf" id="3_6muww"]
+
+[sub_resource type="GDScript" id="GDScript_s8enn"]
+script/source = "class_name ItemClass
+extends Node2D
+
+var item_name
+var item_quantity
+
+func _ready():
+	# this is the part that is causing an error because it changes the items to mushrooms
+	item_name = \"Ghostmint Leaf\"
+	item_quantity = 3
+
+
+	$TextureRect.texture = load(\"res://assets/Items/\" + item_name + \".png\")
+	var stack_size = int(JSONdata.item_data[item_name][\"StackSize\"])
+	
+	if stack_size == 1:
+		$Label.visible = false
+	else:
+		$Label.text = str(item_quantity)
+	
+func add_item_quantity(amount_to_add):
+	item_quantity += amount_to_add
+	$Label.text = str(item_quantity)
+
+func decrease_item_quantity(amount_to_remove):
+	item_quantity -= amount_to_remove
+	$Label.text = str(item_quantity)
+
+func set_item(item_name, item_quantity):
+	$TextureRect.texture = load(\"res://assets/Items/\" + item_name + \".png\")
+	
+	var stack_size = int(JSONdata.item_data[item_name][\"StackSize\"])
+	if stack_size == 1:
+		$Label.visible = false
+	else:
+		$Label.visible = true
+		$Label.text = str(item_quantity)
+"
 
 [node name="Item" type="Node2D"]
 z_index = 1
 scale = Vector2(0.5, 0.5)
-script = ExtResource("1_s8enn")
+script = SubResource("GDScript_s8enn")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -2.0

@@ -1,7 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://0s6gwgqh1yo"]
+[gd_scene load_steps=5 format=3 uid="uid://cjkqxef28wo5d"]
 
-[ext_resource type="Script" uid="uid://d1h8yb6r6d405" path="res://scripts/itemdrop.gd" id="1_konvx"]
 [ext_resource type="Texture2D" uid="uid://ct0h4lomutqvo" path="res://assets/Items/Mooncap Mushroom.png" id="1_m71n5"]
+
+[sub_resource type="GDScript" id="GDScript_evw3f"]
+script/source = "extends Area2D
+
+var item_name
+var item_quantity
+
+func _ready():
+	
+	item_name = \"Mooncap Mushroom\"
+	item_quantity = 1
+
+func _on_body_entered(_body: Node2D) -> void:
+	PlayerInventory.add_item(item_name, item_quantity)
+	queue_free()
+"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_konvx"]
 animations = [{
@@ -18,7 +33,7 @@ animations = [{
 radius = 8.0
 
 [node name="itemdrop" type="Area2D"]
-script = ExtResource("1_konvx")
+script = SubResource("GDScript_evw3f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_konvx")

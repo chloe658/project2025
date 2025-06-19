@@ -1,15 +1,137 @@
-[gd_scene load_steps=6 format=3 uid="uid://cw48m51mtu4vi"]
+[gd_scene load_steps=6 format=3 uid="uid://dpwnqg33nd6ex"]
 
-[ext_resource type="Script" uid="uid://bwaexr5raw3om" path="res://scripts/inventory.gd" id="1_53g1v"]
 [ext_resource type="Texture2D" uid="uid://wo1b8al1v3lt" path="res://assets/UI/inventory_background.png" id="1_hj2ta"]
 [ext_resource type="Texture2D" uid="uid://8f6umm4lice3" path="res://assets/UI/inventory_slot.png" id="2_ty45s"]
-[ext_resource type="Script" uid="uid://bef7pkbyr1go7" path="res://scripts/slot.gd" id="3_ty45s"]
+
+[sub_resource type="GDScript" id="GDScript_hj2ta"]
+script/source = "extends Node2D
+
+const SlotClass = preload(\"res://scripts/slot.gd\")
+const ItemClass = preload(\"res://scripts/item.gd\")
+@onready var inventory_slots = $GridContainer
+var holding_item = null
+
+func _ready():
+	var slots = inventory_slots.get_children()
+	for i in range(slots.size()):
+		slots[i].gui_input.connect(func(event):
+			slot_gui_input(event, slots[i]))
+		slots[i].slot_index = i
+	initialize_inventory()
+	
+
+func slot_gui_input(event: InputEvent, slot: SlotClass):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT && event.pressed:
+			if holding_item != null:
+				if !slot.item: # Place holding item to slot if slot is empty
+					PlayerInventory.add_item_to_empty_slot(holding_item, slot)
+					slot.put_into_slot(holding_item)
+					holding_item = null
+				else: # Swap holding item with item in slot
+					if (holding_item as ItemClass).item_name != (slot.item as ItemClass).item_name:
+						if holding_item.item_name != slot.item.item_name:
+							PlayerInventory.remove_item(slot)
+							PlayerInventory.add_item_to_empty_slot(holding_item, slot)
+							var temp_item = slot.item 
+							slot.pick_from_slot()
+							temp_item.global_position = event.global_position
+							slot.put_into_slot(holding_item)
+							holding_item = temp_item
+						else: # Add same items togther
+							var stack_size = int(JSONdata.item_data[slot.item.item_name][\"StackSize\"])
+							var able_to_add = stack_size - slot.item.item_quantity
+							if able_to_add >= holding_item.item_quantity:
+								PlayerInventory.add_item_quantity(slot, holding_item.item_quantity)
+								slot.item.add_item_quantity(holding_item.item_quantity)
+								holding_item.queue_free()
+								holding_item = null
+							else:
+								PlayerInventory.add_item_quantity(slot, able_to_add)
+								slot.item.add_item_quantity(able_to_add)
+								holding_item.decrease_item_quantity(able_to_add)
+			elif slot.item:
+				PlayerInventory.remove_item(slot)
+				holding_item = slot.item
+				slot.pick_from_slot()
+				holding_item.global_position = get_global_mouse_position()
+				
+func _input(event):
+	if event.is_action_pressed(\"open_inventory\"):
+		var inventory = $\".\"
+		inventory.visible = !inventory.visible
+		inventory.initialize_inventory()
+	if holding_item:
+		holding_item.global_position = get_global_mouse_position()
+
+func initialize_inventory():
+	var slots = inventory_slots.get_children()
+	for i in range(slots.size()):
+		if PlayerInventory.inventory.has(i):
+			slots[i].initialize_item(PlayerInventory.inventory[i][0], PlayerInventory.inventory[i][1])
+"
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_53g1v"]
 texture = ExtResource("2_ty45s")
 
+[sub_resource type="GDScript" id="GDScript_ty45s"]
+script/source = "extends Panel
+
+var default_tex = preload(\"res://assets/UI/inventory_slot.png\")
+var empty_tex = preload(\"res://assets/UI/empty_slot.png\")
+
+var default_style: StyleBoxTexture = null
+var empty_style: StyleBoxTexture = null
+
+var ItemClass = preload(\"res://scenes/item.tscn\")
+var item = null
+var slot_index
+
+func _ready():
+	default_style = StyleBoxTexture.new()
+	empty_style = StyleBoxTexture.new()
+	default_style.texture = default_tex
+	empty_style.texture = empty_tex
+	refresh_style()
+
+func refresh_style():
+	if item == null:
+		set(\"custon_styles/panel\", empty_style)
+	else:
+		set(\"custon_styles/panel\", default_style)
+
+func pick_from_slot():
+	remove_child(item)
+	var inventory_node = find_parent(\"inventory\")
+	inventory_node.add_child(item)
+	item = null
+	refresh_style()
+	
+func put_into_slot(new_item):
+		#item = new_item
+		if new_item.get_parent():
+			new_item.get_parent().remove_child(new_item)
+		item = new_item.duplicate(true)
+		item.position = Vector2(0, 0)
+		#var inventory_node = find_parent(\"inventory\")
+		#inventory_node.remove_child(item)
+		if item.get_parent():
+			item.get_parent().remove_child(item)
+		add_child(item)
+		refresh_style()
+
+func initialize_item(item_name, item_quantity):
+	if item == null:
+		item = ItemClass.instantiate()
+		add_child(item)
+		item.set_item(item_name, item_quantity)
+	else:
+		item.set_item(item_name, item_quantity)
+	refresh_style()
+"
+
 [node name="inventory" type="Node2D"]
-script = ExtResource("1_53g1v")
+script = SubResource("GDScript_hj2ta")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = 512.0
@@ -31,142 +153,142 @@ columns = 8
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_53g1v")
-script = ExtResource("3_ty45s")
+script = SubResource("GDScript_ty45s")
 
 [node name="slot2" type="Panel" parent="GridContainer"]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_53g1v")
-script = ExtResource("3_ty45s")
+script = SubResource("GDScript_ty45s")
 
 [node name="slot3" type="Panel" parent="GridContainer"]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_53g1v")
-script = ExtResource("3_ty45s")
+script = SubResource("GDScript_ty45s")
 
 [node name="slot4" type="Panel" parent="GridContainer"]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_53g1v")
-script = ExtResource("3_ty45s")
+script = SubResource("GDScript_ty45s")
 
 [node name="slot5" type="Panel" parent="GridContainer"]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_53g1v")
-script = ExtResource("3_ty45s")
+script = SubResource("GDScript_ty45s")
 
 [node name="slot6" type="Panel" parent="GridContainer"]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_53g1v")
-script = ExtResource("3_ty45s")
+script = SubResource("GDScript_ty45s")
 
 [node name="slot7" type="Panel" parent="GridContainer"]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_53g1v")
-script = ExtResource("3_ty45s")
+script = SubResource("GDScript_ty45s")
 
 [node name="slot8" type="Panel" parent="GridContainer"]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_53g1v")
-script = ExtResource("3_ty45s")
+script = SubResource("GDScript_ty45s")
 
 [node name="slot9" type="Panel" parent="GridContainer"]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_53g1v")
-script = ExtResource("3_ty45s")
+script = SubResource("GDScript_ty45s")
 
 [node name="slot10" type="Panel" parent="GridContainer"]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_53g1v")
-script = ExtResource("3_ty45s")
+script = SubResource("GDScript_ty45s")
 
 [node name="slot11" type="Panel" parent="GridContainer"]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_53g1v")
-script = ExtResource("3_ty45s")
+script = SubResource("GDScript_ty45s")
 
 [node name="slot12" type="Panel" parent="GridContainer"]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_53g1v")
-script = ExtResource("3_ty45s")
+script = SubResource("GDScript_ty45s")
 
 [node name="slot13" type="Panel" parent="GridContainer"]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_53g1v")
-script = ExtResource("3_ty45s")
+script = SubResource("GDScript_ty45s")
 
 [node name="slot14" type="Panel" parent="GridContainer"]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_53g1v")
-script = ExtResource("3_ty45s")
+script = SubResource("GDScript_ty45s")
 
 [node name="slot15" type="Panel" parent="GridContainer"]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_53g1v")
-script = ExtResource("3_ty45s")
+script = SubResource("GDScript_ty45s")
 
 [node name="slot16" type="Panel" parent="GridContainer"]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_53g1v")
-script = ExtResource("3_ty45s")
+script = SubResource("GDScript_ty45s")
 
 [node name="slot17" type="Panel" parent="GridContainer"]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_53g1v")
-script = ExtResource("3_ty45s")
+script = SubResource("GDScript_ty45s")
 
 [node name="slot18" type="Panel" parent="GridContainer"]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_53g1v")
-script = ExtResource("3_ty45s")
+script = SubResource("GDScript_ty45s")
 
 [node name="slot19" type="Panel" parent="GridContainer"]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_53g1v")
-script = ExtResource("3_ty45s")
+script = SubResource("GDScript_ty45s")
 
 [node name="slot20" type="Panel" parent="GridContainer"]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_53g1v")
-script = ExtResource("3_ty45s")
+script = SubResource("GDScript_ty45s")
 
 [node name="slot21" type="Panel" parent="GridContainer"]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_53g1v")
-script = ExtResource("3_ty45s")
+script = SubResource("GDScript_ty45s")
 
 [node name="slot22" type="Panel" parent="GridContainer"]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_53g1v")
-script = ExtResource("3_ty45s")
+script = SubResource("GDScript_ty45s")
 
 [node name="slot23" type="Panel" parent="GridContainer"]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_53g1v")
-script = ExtResource("3_ty45s")
+script = SubResource("GDScript_ty45s")
 
 [node name="slot24" type="Panel" parent="GridContainer"]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_53g1v")
-script = ExtResource("3_ty45s")
+script = SubResource("GDScript_ty45s")
