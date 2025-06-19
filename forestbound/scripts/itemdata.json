@@ -31,11 +31,6 @@
         "StackSize": 99,
         "Description": ""	
     },
-    "Starroot Bulb": {
-        "ItemCatagory": "Resource",
-        "StackSize": 99,
-        "Description": ""	
-    },
     "Batberry": {
         "ItemCatagory": "Resource",
         "StackSize": 99,
@@ -46,12 +41,7 @@
         "StackSize": 99,
         "Description": ""	
     },
-    "Thornroot Bark": {
-        "ItemCatagory": "Resource",
-        "StackSize": 99,
-        "Description": ""	
-    },
-    "Oakshade Sap": {
+    "Oakshade Seed": {
         "ItemCatagory": "Resource",
         "StackSize": 99,
         "Description": ""	

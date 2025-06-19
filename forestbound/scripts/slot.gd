@@ -8,6 +8,7 @@ var empty_style: StyleBoxTexture = null
 
 var ItemClass = preload("res://scenes/item.tscn")
 var item = null
+var slot_index
 
 func _ready():
 	default_style = StyleBoxTexture.new()
@@ -30,10 +31,15 @@ func pick_from_slot():
 	refresh_style()
 	
 func put_into_slot(new_item):
-		item = new_item
+		#item = new_item
+		if new_item.get_parent():
+			new_item.get_parent().remove_child(new_item)
+		item = new_item.duplicate(true)
 		item.position = Vector2(0, 0)
-		var inventory_node = find_parent("inventory")
-		inventory_node.remove_child(item)
+		#var inventory_node = find_parent("inventory")
+		#inventory_node.remove_child(item)
+		if item.get_parent():
+			item.get_parent().remove_child(item)
 		add_child(item)
 		refresh_style()
 
