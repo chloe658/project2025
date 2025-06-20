@@ -1220,29 +1220,31 @@ offset_bottom = 31.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="lavender_bloom" parent="." instance=ExtResource("7_yn4qk")]
+[node name="collectalbes" type="Node" parent="."]
+
+[node name="lavender_bloom" parent="collectalbes" instance=ExtResource("7_yn4qk")]
 position = Vector2(324, -67)
 
-[node name="mooncap_mushroom" parent="." instance=ExtResource("7_cq4yp")]
+[node name="mooncap_mushroom" parent="collectalbes" instance=ExtResource("7_cq4yp")]
 position = Vector2(333, -20)
 
-[node name="lavender_bloom2" parent="." instance=ExtResource("7_yn4qk")]
+[node name="lavender_bloom2" parent="collectalbes" instance=ExtResource("7_yn4qk")]
 position = Vector2(274, -9)
 
-[node name="mooncap_mushroom2" parent="." instance=ExtResource("7_cq4yp")]
+[node name="mooncap_mushroom2" parent="collectalbes" instance=ExtResource("7_cq4yp")]
 position = Vector2(469, -82)
 
-[node name="mooncap_mushroom3" parent="." instance=ExtResource("7_cq4yp")]
+[node name="mooncap_mushroom3" parent="collectalbes" instance=ExtResource("7_cq4yp")]
 position = Vector2(457, -21)
 
-[node name="lavender_bloom3" parent="." instance=ExtResource("7_yn4qk")]
+[node name="lavender_bloom3" parent="collectalbes" instance=ExtResource("7_yn4qk")]
 position = Vector2(348, 13)
 
-[node name="mooncap_mushroom4" parent="." instance=ExtResource("7_cq4yp")]
+[node name="mooncap_mushroom4" parent="collectalbes" instance=ExtResource("7_cq4yp")]
 position = Vector2(303, -72)
 
-[node name="mooncap_mushroom5" parent="." instance=ExtResource("7_cq4yp")]
+[node name="mooncap_mushroom5" parent="collectalbes" instance=ExtResource("7_cq4yp")]
 position = Vector2(355, -69)
 
-[node name="mooncap_mushroom6" parent="." instance=ExtResource("7_cq4yp")]
+[node name="mooncap_mushroom6" parent="collectalbes" instance=ExtResource("7_cq4yp")]
 position = Vector2(432, 12)

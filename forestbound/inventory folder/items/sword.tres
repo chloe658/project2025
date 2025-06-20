@@ -7,4 +7,5 @@
 script = ExtResource("1_rrmsh")
 name = "Sword"
 texture = ExtResource("2_86d17")
+maxAmountPrStack = 1
 metadata/_custom_type_script = "uid://cgfq11jofeno6"
