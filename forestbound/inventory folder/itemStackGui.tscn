@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj1w3j15duiy6"]
+
+[ext_resource type="Script" uid="uid://ddxia8mnkd1fr" path="res://inventory folder/itemStackGui.gd" id="1_ftcb5"]
+[ext_resource type="FontFile" uid="uid://eec8xja2jhxc" path="res://assets/UI/font.ttf" id="1_ocmhl"]
+
+[node name="Panel" type="Panel"]
+script = ExtResource("1_ftcb5")
+
+[node name="item" type="Sprite2D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(12, 13)
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 9.0
+offset_bottom = 10.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ocmhl")
+theme_override_font_sizes/font_size = 16
+text = "99"
+horizontal_alignment = 2

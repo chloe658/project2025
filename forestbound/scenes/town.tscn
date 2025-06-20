@@ -1,10 +1,13 @@
-[gd_scene load_steps=23 format=4 uid="uid://bpdt4to78unoe"]
+[gd_scene load_steps=26 format=4 uid="uid://bpdt4to78unoe"]
 
 [ext_resource type="Texture2D" uid="uid://ddf28s7i0k32p" path="res://assets/Exterior/TX Tileset Wall.png" id="1_t6cq8"]
 [ext_resource type="PackedScene" uid="uid://c8uystwyg16uy" path="res://scenes/enter_door.tscn" id="1_tkreh"]
 [ext_resource type="PackedScene" uid="uid://cq5o4ltsdppav" path="res://scenes/player.tscn" id="1_x5mr4"]
 [ext_resource type="Texture2D" uid="uid://cdeknqrik13t5" path="res://assets/House/exterior.png" id="3_cq4yp"]
 [ext_resource type="Texture2D" uid="uid://csbnsj85o6jbh" path="res://assets/Exterior/plant 2.png" id="3_eruj1"]
+[ext_resource type="PackedScene" uid="uid://cuu5fln6g8uba" path="res://inventory folder/inventory_gui.tscn" id="6_t6cq8"]
+[ext_resource type="PackedScene" uid="uid://cqc8fdugvi5iw" path="res://scenes/collectables/mooncap_mushroom.tscn" id="7_cq4yp"]
+[ext_resource type="PackedScene" uid="uid://hx6dh7g66xny" path="res://scenes/collectables/lavender_bloom.tscn" id="7_yn4qk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cq4yp"]
 texture = ExtResource("1_t6cq8")
@@ -1202,3 +1205,44 @@ limit_top = -352
 limit_right = 616
 limit_bottom = 296
 metadata/_edit_lock_ = true
+
+[node name="InventoryGui" parent="CharacterBody2D" instance=ExtResource("6_t6cq8")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.5
+offset_top = -31.0
+offset_right = 78.5
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="lavender_bloom" parent="." instance=ExtResource("7_yn4qk")]
+position = Vector2(324, -67)
+
+[node name="mooncap_mushroom" parent="." instance=ExtResource("7_cq4yp")]
+position = Vector2(333, -20)
+
+[node name="lavender_bloom2" parent="." instance=ExtResource("7_yn4qk")]
+position = Vector2(274, -9)
+
+[node name="mooncap_mushroom2" parent="." instance=ExtResource("7_cq4yp")]
+position = Vector2(469, -82)
+
+[node name="mooncap_mushroom3" parent="." instance=ExtResource("7_cq4yp")]
+position = Vector2(457, -21)
+
+[node name="lavender_bloom3" parent="." instance=ExtResource("7_yn4qk")]
+position = Vector2(348, 13)
+
+[node name="mooncap_mushroom4" parent="." instance=ExtResource("7_cq4yp")]
+position = Vector2(303, -72)
+
+[node name="mooncap_mushroom5" parent="." instance=ExtResource("7_cq4yp")]
+position = Vector2(355, -69)
+
+[node name="mooncap_mushroom6" parent="." instance=ExtResource("7_cq4yp")]
+position = Vector2(432, 12)

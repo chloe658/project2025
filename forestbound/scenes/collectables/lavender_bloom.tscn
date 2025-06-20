@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://hx6dh7g66xny"]
+
+[ext_resource type="Script" uid="uid://c87mjyfxxo6o2" path="res://scripts/collectable.gd" id="1_avd5l"]
+[ext_resource type="Texture2D" uid="uid://b2omutx8yfbow" path="res://assets/Items/Lavender Bloom.png" id="2_avd5l"]
+[ext_resource type="Resource" uid="uid://bmmj3rqmw1jvg" path="res://inventory folder/items/lavender_bloom.tres" id="2_u0gb7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_un20x"]
+radius = 8.0
+
+[node name="lavender_bloom" type="Area2D"]
+script = ExtResource("1_avd5l")
+itemRes = ExtResource("2_u0gb7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_avd5l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_un20x")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://bi78gpehjc4vk"]
+
+[ext_resource type="Script" uid="uid://cgfq11jofeno6" path="res://inventory folder/inventory_item.gd" id="1_sjvyi"]
+[ext_resource type="Texture2D" uid="uid://ct0h4lomutqvo" path="res://assets/Items/Mooncap Mushroom.png" id="2_11wr7"]
+
+[resource]
+script = ExtResource("1_sjvyi")
+name = "Mooncap Mushroom"
+texture = ExtResource("2_11wr7")
+metadata/_custom_type_script = "uid://cgfq11jofeno6"

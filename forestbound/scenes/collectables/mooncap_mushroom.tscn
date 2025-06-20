@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqc8fdugvi5iw"]
+
+[ext_resource type="Script" uid="uid://c87mjyfxxo6o2" path="res://scripts/collectable.gd" id="1_llfh3"]
+[ext_resource type="Texture2D" uid="uid://ct0h4lomutqvo" path="res://assets/Items/Mooncap Mushroom.png" id="2_dnya4"]
+[ext_resource type="Resource" uid="uid://bi78gpehjc4vk" path="res://inventory folder/items/mooncap_mushroom.tres" id="2_g3r17"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_un20x"]
+radius = 8.0
+
+[node name="mooncap_mushroom" type="Area2D"]
+script = ExtResource("1_llfh3")
+itemRes = ExtResource("2_g3r17")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_dnya4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_un20x")
