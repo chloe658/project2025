@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://cgy5lt42wngtd"]
+
+[ext_resource type="Script" uid="uid://cgfq11jofeno6" path="res://inventory folder/inventory_item.gd" id="1_6non2"]
+[ext_resource type="Texture2D" uid="uid://cw4syo4q7vd6q" path="res://assets/Items/Firecap Mushroom.png" id="2_o1ji4"]
+
+[resource]
+script = ExtResource("1_6non2")
+name = "Firecap Mushroom"
+texture = ExtResource("2_o1ji4")
+maxAmountPrStack = 5
+metadata/_custom_type_script = "uid://cgfq11jofeno6"

@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://b18ain4nxttr7"]
+
+[ext_resource type="Texture2D" uid="uid://wo1b8al1v3lt" path="res://assets/UI/inventory_background.png" id="1_1su0a"]
+[ext_resource type="Script" uid="uid://kluwj8wkoto3" path="res://inventory folder/hotbar.gd" id="2_8uubj"]
+[ext_resource type="PackedScene" uid="uid://dup3llvw82jcv" path="res://inventory folder/hotbar_slot.tscn" id="2_suoru"]
+[ext_resource type="Texture2D" uid="uid://bleduydi2qax3" path="res://assets/UI/hotbar_selector.png" id="4_yhbyl"]
+
+[node name="Hotbar" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+offset_right = 157.0
+offset_bottom = 24.0
+script = ExtResource("2_8uubj")
+
+[node name="background" type="NinePatchRect" parent="."]
+z_index = 1
+custom_minimum_size = Vector2(157, 24)
+layout_mode = 0
+offset_right = 157.0
+offset_bottom = 24.0
+texture = ExtResource("1_1su0a")
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+
+[node name="Container" type="HBoxContainer" parent="background"]
+custom_minimum_size = Vector2(151, 18)
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 154.0
+offset_bottom = 21.0
+theme_override_constants/separation = 1
+
+[node name="HotbarSlot" parent="background/Container" instance=ExtResource("2_suoru")]
+layout_mode = 2
+
+[node name="HotbarSlot2" parent="background/Container" instance=ExtResource("2_suoru")]
+layout_mode = 2
+
+[node name="HotbarSlot3" parent="background/Container" instance=ExtResource("2_suoru")]
+layout_mode = 2
+
+[node name="HotbarSlot4" parent="background/Container" instance=ExtResource("2_suoru")]
+layout_mode = 2
+
+[node name="HotbarSlot5" parent="background/Container" instance=ExtResource("2_suoru")]
+layout_mode = 2
+
+[node name="HotbarSlot6" parent="background/Container" instance=ExtResource("2_suoru")]
+layout_mode = 2
+
+[node name="HotbarSlot7" parent="background/Container" instance=ExtResource("2_suoru")]
+layout_mode = 2
+
+[node name="HotbarSlot8" parent="background/Container" instance=ExtResource("2_suoru")]
+layout_mode = 2
+
+[node name="Selector" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(3, 3)
+texture = ExtResource("4_yhbyl")
+centered = false

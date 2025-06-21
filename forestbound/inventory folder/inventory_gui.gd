@@ -2,8 +2,11 @@ extends Control
 
 @onready var inventory: Inventory = preload("res://inventory folder/player_inventory.tres")
 @onready var ItemStackGuiClass = preload("res://inventory folder/itemStackGui.tscn")
-@onready var slots: Array = $NinePatchRect/GridContainer.get_children()
-@onready var itemInHand: ItemStackGui
+@onready var hotbar_slots: Array = $NinePatchRect/HBoxContainer.get_children()
+@onready var slots: Array = hotbar_slots + $NinePatchRect/GridContainer.get_children()
+
+var itemInHand: ItemStackGui
+#var oldIndex: int = -1
 
 
 func _ready():
@@ -26,7 +29,9 @@ func update():
 	for i in range(min(inventory.slots.size(), slots.size())):
 		var inventorySlot: InventorySlot = inventory.slots[i]
 		
-		if !inventorySlot.item: continue
+		if !inventorySlot.item:
+			slots[i].clear()
+			continue
 		
 		var itemStackGui: ItemStackGui = slots[i].itemStackGui
 		if !itemStackGui:
@@ -56,6 +61,8 @@ func takeItemFromSlot(slot):
 	itemInHand = slot.takeItem()
 	add_child(itemInHand)
 	updateItemInHand()
+	
+	#oldIndex = slot.index
 
 
 func insertItemInSlot(slot):
@@ -63,6 +70,8 @@ func insertItemInSlot(slot):
 	remove_child(item)
 	itemInHand = null
 	slot.insert(item)
+	
+	#oldIndex = -1
 
 
 func swapItems(slot):
@@ -85,6 +94,8 @@ func stackItems(slot):
 		slotItem.inventorySlot.amount = totalAmount
 		remove_child(itemInHand)
 		itemInHand = null
+		#oldIndex = -1
+
 	else: # if holding greater than allowed to add, add some, holder rest
 		slotItem.inventorySlot.amount = maxAmount
 		itemInHand.inventorySlot.amount = totalAmount - maxAmount
@@ -96,8 +107,20 @@ func updateItemInHand():
 	if !itemInHand: return
 	itemInHand.global_position = get_global_mouse_position() - itemInHand.size / 2
 
+"""
+func putItemBack():
+	if oldIndex > 0:
+		var emptySlots = slots.filter(func (s): return s.isEmpty)
+		if emptySlots.is_empty(): return
+		oldIndex = emptySlots[0].index
+	
+	var targetSlot = slots[oldIndex]
+	insertItemInSlot(targetSlot)
+"""
 
 func _input(event):
 	updateItemInHand()
 	if event.is_action_pressed("toggle_inventory"):
+		#if itemInHand:
+			#putItemBack()
 		visible = !visible

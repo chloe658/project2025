@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://b0hu7iy2jsjf"]
+
+[ext_resource type="Script" uid="uid://cgfq11jofeno6" path="res://inventory folder/inventory_item.gd" id="1_32mkx"]
+[ext_resource type="Texture2D" uid="uid://dlxn8o8lqy7ok" path="res://assets/Items/Oakshade Seed.png" id="2_3x2x2"]
+
+[resource]
+script = ExtResource("1_32mkx")
+name = "Oakshade Seed"
+texture = ExtResource("2_3x2x2")
+maxAmountPrStack = 5
+metadata/_custom_type_script = "uid://cgfq11jofeno6"

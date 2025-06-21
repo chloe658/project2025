@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://rgjsbbtgaex6"]
+
+[ext_resource type="Script" uid="uid://cgfq11jofeno6" path="res://inventory folder/inventory_item.gd" id="1_m0bv8"]
+[ext_resource type="Texture2D" uid="uid://c0lf085ubpacv" path="res://assets/Items/Batberry.png" id="2_kuqnm"]
+
+[resource]
+script = ExtResource("1_m0bv8")
+name = "Batberry"
+texture = ExtResource("2_kuqnm")
+maxAmountPrStack = 5
+metadata/_custom_type_script = "uid://cgfq11jofeno6"

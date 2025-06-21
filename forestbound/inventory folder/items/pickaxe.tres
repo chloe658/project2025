@@ -7,4 +7,5 @@
 script = ExtResource("1_e8yn6")
 name = "Pickaxe"
 texture = ExtResource("2_eiyuj")
+maxAmountPrStack = 1
 metadata/_custom_type_script = "uid://cgfq11jofeno6"

@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://bysv7kwan4r3q"]
 
-[ext_resource type="Script" uid="uid://umvbxlxqg4l6" path="res://scripts/npc_1.gd" id="1_ttshn"]
+[ext_resource type="Script" uid="uid://umvbxlxqg4l6" path="res://characters/shopkeeper.gd" id="1_ttshn"]
 [ext_resource type="Texture2D" uid="uid://c06nqpj2d74rn" path="res://assets/Characters/npc1 spritesheet.png" id="2_ttshn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rga5l"]
@@ -191,7 +191,7 @@ b = Vector2(0, 13)
 [sub_resource type="CircleShape2D" id="CircleShape2D_0u0ms"]
 radius = 39.0128
 
-[node name="NPC1" type="CharacterBody2D"]
+[node name="shopkeeper" type="CharacterBody2D"]
 script = ExtResource("1_ttshn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

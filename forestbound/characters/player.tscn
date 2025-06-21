@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://cq5o4ltsdppav"]
 
-[ext_resource type="Script" uid="uid://dhidpe5o1ti6f" path="res://scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://dhidpe5o1ti6f" path="res://characters/player.gd" id="1_3vyb7"]
 [ext_resource type="Resource" uid="uid://d03lbrlwq8scg" path="res://inventory folder/player_inventory.tres" id="2_g2els"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u8vuu"]

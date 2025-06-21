@@ -10,4 +10,4 @@ func _on_player_exited(_body: Node2D) -> void:
 
 func _process(_delta):
 	if player_near == true and Input.is_action_just_pressed("interact"):
-		print("WORKS!!")
+		$"../CharacterBody2D/shopMenu".visible = true

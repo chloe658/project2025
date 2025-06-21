@@ -1,0 +1,162 @@
+[gd_scene load_steps=10 format=3 uid="uid://d0rkvfia76mv8"]
+
+[ext_resource type="Texture2D" uid="uid://wo1b8al1v3lt" path="res://assets/UI/inventory_background.png" id="1_hka7j"]
+[ext_resource type="Script" uid="uid://643vytobptig" path="res://shop folder/shop_menu.gd" id="2_m27t3"]
+[ext_resource type="Texture2D" uid="uid://b8vbeuhdlxurv" path="res://assets/UI/shop_menu_button.png" id="3_bsido"]
+[ext_resource type="Texture2D" uid="uid://gi2bparaa1jd" path="res://assets/UI/coin.png" id="4_iym3l"]
+[ext_resource type="Texture2D" uid="uid://ct0h4lomutqvo" path="res://assets/Items/Mooncap Mushroom.png" id="4_q15t3"]
+[ext_resource type="FontFile" uid="uid://eec8xja2jhxc" path="res://assets/UI/font.ttf" id="5_2nhm7"]
+[ext_resource type="Texture2D" uid="uid://b2omutx8yfbow" path="res://assets/Items/Lavender Bloom.png" id="7_axubn"]
+[ext_resource type="Texture2D" uid="uid://dlxn8o8lqy7ok" path="res://assets/Items/Oakshade Seed.png" id="8_8jsok"]
+[ext_resource type="Texture2D" uid="uid://c0lf085ubpacv" path="res://assets/Items/Batberry.png" id="9_6033v"]
+
+[node name="shopMenu" type="NinePatchRect"]
+offset_right = 130.0
+offset_bottom = 84.0
+texture = ExtResource("1_hka7j")
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+script = ExtResource("2_m27t3")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = -9.0
+offset_right = 65.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 7
+theme_override_constants/v_separation = 2
+
+[node name="button1" type="Button" parent="GridContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(130, 18)
+layout_mode = 2
+
+[node name="background" type="TextureRect" parent="GridContainer/button1"]
+layout_mode = 0
+offset_left = 13.0
+offset_right = 114.0
+offset_bottom = 18.0
+texture = ExtResource("3_bsido")
+
+[node name="item" type="Sprite2D" parent="GridContainer/button1"]
+position = Vector2(26, 9)
+texture = ExtResource("4_q15t3")
+
+[node name="coin" type="Sprite2D" parent="GridContainer/button1"]
+position = Vector2(106, 9)
+texture = ExtResource("4_iym3l")
+
+[node name="price_label" type="Label" parent="GridContainer/button1"]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 1.0
+offset_right = 99.0
+offset_bottom = 14.0
+theme_override_fonts/font = ExtResource("5_2nhm7")
+text = "15
+"
+
+[node name="button2" type="Button" parent="GridContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(130, 18)
+layout_mode = 2
+
+[node name="background" type="TextureRect" parent="GridContainer/button2"]
+layout_mode = 0
+offset_left = 13.0
+offset_right = 114.0
+offset_bottom = 18.0
+texture = ExtResource("3_bsido")
+
+[node name="item" type="Sprite2D" parent="GridContainer/button2"]
+position = Vector2(26, 9)
+texture = ExtResource("7_axubn")
+
+[node name="coin" type="Sprite2D" parent="GridContainer/button2"]
+position = Vector2(106, 9)
+texture = ExtResource("4_iym3l")
+
+[node name="price_label" type="Label" parent="GridContainer/button2"]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 1.0
+offset_right = 99.0
+offset_bottom = 14.0
+theme_override_fonts/font = ExtResource("5_2nhm7")
+text = "20
+"
+
+[node name="button3" type="Button" parent="GridContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(130, 18)
+layout_mode = 2
+
+[node name="background" type="TextureRect" parent="GridContainer/button3"]
+layout_mode = 0
+offset_left = 13.0
+offset_right = 114.0
+offset_bottom = 18.0
+texture = ExtResource("3_bsido")
+
+[node name="item" type="Sprite2D" parent="GridContainer/button3"]
+position = Vector2(26, 9)
+texture = ExtResource("8_8jsok")
+
+[node name="coin" type="Sprite2D" parent="GridContainer/button3"]
+position = Vector2(106, 9)
+texture = ExtResource("4_iym3l")
+
+[node name="price_label" type="Label" parent="GridContainer/button3"]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 1.0
+offset_right = 99.0
+offset_bottom = 14.0
+theme_override_fonts/font = ExtResource("5_2nhm7")
+text = "25
+"
+
+[node name="button4" type="Button" parent="GridContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(130, 18)
+layout_mode = 2
+
+[node name="background" type="TextureRect" parent="GridContainer/button4"]
+layout_mode = 0
+offset_left = 13.0
+offset_right = 114.0
+offset_bottom = 18.0
+texture = ExtResource("3_bsido")
+
+[node name="item" type="Sprite2D" parent="GridContainer/button4"]
+position = Vector2(25, 9)
+texture = ExtResource("9_6033v")
+
+[node name="coin" type="Sprite2D" parent="GridContainer/button4"]
+position = Vector2(106, 9)
+texture = ExtResource("4_iym3l")
+
+[node name="price_label" type="Label" parent="GridContainer/button4"]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 1.0
+offset_right = 99.0
+offset_bottom = 14.0
+theme_override_fonts/font = ExtResource("5_2nhm7")
+text = "30"
+
+[connection signal="pressed" from="GridContainer/button1" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="GridContainer/button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="GridContainer/button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="GridContainer/button4" to="." method="_on_button_4_pressed"]
