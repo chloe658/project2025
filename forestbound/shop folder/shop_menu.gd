@@ -1,6 +1,7 @@
 extends NinePatchRect
 
 @onready var inventory: Inventory = preload("res://inventory folder/player_inventory.tres")
+@onready var CoinCountScene = preload("res://scenes/coins.tscn")
 var item
 var price
 
@@ -15,10 +16,12 @@ func _on_button_1_pressed() -> void:
 	item = mooncap_mushroom
 	buy_item(item, price)
 
+
 func _on_button_2_pressed() -> void:
 	price = 20
 	item = lavender_bloom
 	buy_item(item, price)
+
 
 func _on_button_3_pressed() -> void:
 	price = 25
@@ -31,7 +34,8 @@ func _on_button_4_pressed() -> void:
 	item = batberry
 	buy_item(item, price)
 
-func buy_item(item, price):
-	inventory.insert(item)
-	CoinCount.spend_coins(price)
-	
+
+func buy_item(selected_item, item_price):
+	inventory.insert(selected_item)
+	var coin_count = CoinCountScene.instantiate()
+	coin_count.spend_coins(item_price)

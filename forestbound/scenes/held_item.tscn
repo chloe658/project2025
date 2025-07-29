@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://r73bl7vbq1bt"]
+
+[ext_resource type="Texture2D" uid="uid://p585wrubwfl2" path="res://assets/Items/Sword.png" id="1_jwkp6"]
+[ext_resource type="Script" uid="uid://b8hm8tkpvhtlw" path="res://scripts/held_item.gd" id="1_uvejh"]
+
+[node name="held_item" type="Sprite2D"]
+texture = ExtResource("1_jwkp6")
+script = ExtResource("1_uvejh")
+
+[connection signal="ready" from="." to="." method="_on_ready"]

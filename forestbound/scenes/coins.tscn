@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://daeoye4aquxc8"]
+
+[ext_resource type="Texture2D" uid="uid://wo1b8al1v3lt" path="res://assets/UI/inventory_background.png" id="1_fxnh4"]
+[ext_resource type="Script" uid="uid://bcmnemklxdgil" path="res://scripts/coins.gd" id="1_s1asw"]
+[ext_resource type="FontFile" uid="uid://eec8xja2jhxc" path="res://assets/UI/font.ttf" id="2_s1asw"]
+[ext_resource type="Texture2D" uid="uid://gi2bparaa1jd" path="res://assets/UI/coin.png" id="3_hhy8l"]
+
+[node name="coin_count" type="Node2D"]
+script = ExtResource("1_s1asw")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_right = 40.0
+offset_bottom = 14.0
+texture = ExtResource("1_fxnh4")
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+
+[node name="Label" type="Label" parent="."]
+offset_left = 3.0
+offset_right = 27.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("2_s1asw")
+text = "1500"
+
+[node name="Coin" type="Sprite2D" parent="."]
+position = Vector2(33, 7)
+texture = ExtResource("3_hhy8l")

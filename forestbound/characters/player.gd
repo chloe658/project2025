@@ -55,3 +55,13 @@ func _physics_process(_delta):
 func _on_area_2d_area_entered(area):
 	if area.has_method("collect"):
 		area.collect(inventory)
+
+"""
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print("entered")
+	if body.has_method("take_damage"):
+		if Input.is_action_just_pressed("use_item"):
+			print("action")
+			body.take_damage(7)
+			# deal damage to enemy
+"""

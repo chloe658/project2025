@@ -38,6 +38,8 @@ func insertSlot(index: int, inventorySlot: InventorySlot):
 
 
 func use_item_at_index(index: int) -> void:
+	pass
+"""
 	if index < 0 or index >= slots.size() or !slots[index].item: return
 	var slot = slots[index]
 	if slot.item.maxAmountPrStack == 1: return # dont remove items with a max amount per stack of 1 because they are tools
@@ -47,4 +49,4 @@ func use_item_at_index(index: int) -> void:
 		return
 	
 	remove_at_index(index)
-	
+"""

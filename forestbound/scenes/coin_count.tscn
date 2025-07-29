@@ -1,11 +1,39 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0g4d04wtfftd"]
+[gd_scene load_steps=5 format=3 uid="uid://0fuadvxn6d41"]
 
 [ext_resource type="Texture2D" uid="uid://wo1b8al1v3lt" path="res://assets/UI/inventory_background.png" id="1_jtk4q"]
-[ext_resource type="Script" uid="uid://bv2kdjgy86ecy" path="res://scripts/coin_count.gd" id="2_bhnaw"]
 [ext_resource type="Texture2D" uid="uid://gi2bparaa1jd" path="res://assets/UI/coin.png" id="3_4n31d"]
 [ext_resource type="FontFile" uid="uid://eec8xja2jhxc" path="res://assets/UI/font.ttf" id="4_bhnaw"]
 
-[node name="CoinCount" type="NinePatchRect"]
+[sub_resource type="GDScript" id="GDScript_jtk4q"]
+script/source = "extends Node2D
+
+
+@onready var scene = preload(\"res://scenes/coin_count.tscn\").instantiate()
+@onready var coin_label: Label = scene.get_node(\"Label\")
+var total_coins: int = 1500
+\"\"\"
+func _ready():
+	update_label()
+\"\"\"
+func earn_coins(amount):
+	total_coins += amount
+	update_label()
+
+func spend_coins(amount):
+	total_coins -= amount
+	update_label()
+	print(\"spent\")
+
+func update_label():
+	print(total_coins)
+	coin_label.text = str(total_coins)
+	print(\"updated\")
+"
+
+[node name="CoinCount" type="Node2D"]
+script = SubResource("GDScript_jtk4q")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
 offset_right = 42.0
 offset_bottom = 14.0
 texture = ExtResource("1_jtk4q")
@@ -13,14 +41,12 @@ patch_margin_left = 1
 patch_margin_top = 1
 patch_margin_right = 1
 patch_margin_bottom = 1
-script = ExtResource("2_bhnaw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(35, 7)
 texture = ExtResource("3_4n31d")
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 0
 offset_left = 4.0
 offset_top = -1.0
 offset_right = 28.0

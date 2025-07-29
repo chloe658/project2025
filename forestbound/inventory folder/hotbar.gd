@@ -3,6 +3,7 @@ extends Panel
 @onready var inventory: Inventory = preload("res://inventory folder/player_inventory.tres")
 @onready var slots: Array = $background/Container.get_children()
 @onready var selector: Sprite2D = $Selector
+@onready var held_item = $"../held_item"
 
 var currently_selected: int = 0
 
@@ -19,6 +20,7 @@ func update() -> void:
 func move_selector() -> void:
 	currently_selected = (currently_selected + 1) % slots.size()
 	selector.global_position = slots[currently_selected].global_position
+	held_item.update()
 
 
 func _unhandled_input(event):
