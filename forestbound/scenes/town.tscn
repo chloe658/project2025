@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://bpdt4to78unoe"]
+[gd_scene load_steps=34 format=4 uid="uid://bpdt4to78unoe"]
 
 [ext_resource type="Texture2D" uid="uid://ddf28s7i0k32p" path="res://assets/Exterior/TX Tileset Wall.png" id="1_t6cq8"]
 [ext_resource type="PackedScene" uid="uid://c8uystwyg16uy" path="res://scenes/enter_door.tscn" id="1_tkreh"]
@@ -13,6 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://daeoye4aquxc8" path="res://scenes/coins.tscn" id="8_5q1rr"]
 [ext_resource type="PackedScene" uid="uid://r73bl7vbq1bt" path="res://scenes/held_item.tscn" id="11_icc4n"]
 [ext_resource type="PackedScene" uid="uid://dcb2ihwtl1spy" path="res://dungeon/enter_dungeon_door.tscn" id="11_po04c"]
+[ext_resource type="Texture2D" uid="uid://d0w1ijfmhe7xq" path="res://assets/UI/bars/empty_bar.png" id="12_b00ts"]
+[ext_resource type="Texture2D" uid="uid://d25dtx743csac" path="res://assets/UI/bars/healthfill.png" id="13_i0mj0"]
+[ext_resource type="Script" uid="uid://2jymnsvmrk54" path="res://scenes/healthbar.gd" id="14_b0eaf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cq4yp"]
 texture = ExtResource("1_t6cq8")
@@ -1263,6 +1266,16 @@ position = Vector2(96, -73)
 
 [node name="held_item" parent="CharacterBody2D" instance=ExtResource("11_icc4n")]
 position = Vector2(12, 3)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CharacterBody2D"]
+offset_left = 81.0
+offset_top = 47.0
+offset_right = 141.0
+offset_bottom = 107.0
+value = 100.0
+texture_under = ExtResource("12_b00ts")
+texture_progress = ExtResource("13_i0mj0")
+script = ExtResource("14_b0eaf")
 
 [node name="collectalbes" type="Node" parent="."]
 

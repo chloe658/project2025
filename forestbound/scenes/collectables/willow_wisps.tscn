@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsjkqu46fnsih"]
+
+[ext_resource type="Script" uid="uid://c87mjyfxxo6o2" path="res://scripts/collectable.gd" id="1_0xhlf"]
+[ext_resource type="Texture2D" uid="uid://bq7qru1awjs7a" path="res://assets/Items/Willow Wisps.png" id="1_4isg6"]
+[ext_resource type="Resource" uid="uid://dwhsjen2du2hh" path="res://inventory folder/items/willow_wisps.tres" id="2_22l3c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xh6qh"]
+radius = 8.0
+
+[node name="willow_wisps" type="Area2D"]
+script = ExtResource("1_0xhlf")
+itemRes = ExtResource("2_22l3c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4isg6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xh6qh")

@@ -5,7 +5,8 @@ class_name InventoryItem
 @export var name: String = ""
 @export var texture: Texture2D
 @export var maxAmountPrStack: int = 5
-@export var attack_damage: int = 1
+@export var attack_damage: int = 5
+@export var add_health: int = 5
 
 func use(_player: Player) -> void:
 	pass

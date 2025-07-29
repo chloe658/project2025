@@ -2,19 +2,33 @@ extends CharacterBody2D
 
 class_name Player
 
+signal healthChanged
+
+@export var maxHealth = 100
+@onready var currentHealth: int = maxHealth
+
 const SPEED = 150.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
+@onready var hurtbox = $Area2D
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var inventory_gui = $InventoryGui
+@onready var hurting_cooldown = $Timer
 
 @export var inventory: Inventory
 
+var hurting = false
 
+func _on_ready() -> void:
+	healthChanged.emit()
 
 func _physics_process(_delta):
+	if !hurting:
+		for area in hurtbox.get_overlapping_areas():
+			if area.name == "hitbox":
+				take_damage()
+
 	if inventory_gui.visible == false:
 		# Get the input direction and handle the movement/deceleration.
 		var horizontal_direction = Input.get_axis("move_left", "move_right")
@@ -55,13 +69,13 @@ func _physics_process(_delta):
 func _on_area_2d_area_entered(area):
 	if area.has_method("collect"):
 		area.collect(inventory)
+		
 
-"""
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	print("entered")
-	if body.has_method("take_damage"):
-		if Input.is_action_just_pressed("use_item"):
-			print("action")
-			body.take_damage(7)
-			# deal damage to enemy
-"""
+func take_damage():
+	currentHealth -= 5
+	hurting = true
+	healthChanged.emit()
+	
+	hurting_cooldown.start()
+	await hurting_cooldown.timeout
+	hurting = false

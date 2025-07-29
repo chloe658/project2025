@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://f6uixeni1tp8"]
+[gd_scene load_steps=20 format=4 uid="uid://f6uixeni1tp8"]
 
 [ext_resource type="Texture2D" uid="uid://cjs42apw3j04e" path="res://assets/House/background_black.png" id="1_b7phm"]
 [ext_resource type="PackedScene" uid="uid://cq5o4ltsdppav" path="res://characters/player.tscn" id="1_lqndc"]
@@ -9,6 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://daeoye4aquxc8" path="res://scenes/coins.tscn" id="4_pvi2r"]
 [ext_resource type="PackedScene" uid="uid://r73bl7vbq1bt" path="res://scenes/held_item.tscn" id="5_bcrxs"]
 [ext_resource type="PackedScene" uid="uid://b382gc4kok2al" path="res://characters/enemy.tscn" id="5_re3o4"]
+[ext_resource type="Script" uid="uid://2jymnsvmrk54" path="res://scenes/healthbar.gd" id="9_rsx8u"]
+[ext_resource type="Texture2D" uid="uid://d0w1ijfmhe7xq" path="res://assets/UI/bars/empty_bar.png" id="11_6flfl"]
+[ext_resource type="Texture2D" uid="uid://d25dtx743csac" path="res://assets/UI/bars/healthfill.png" id="12_bn4to"]
+[ext_resource type="PackedScene" uid="uid://bsjkqu46fnsih" path="res://scenes/collectables/willow_wisps.tscn" id="13_bn4to"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6flfl"]
 texture = ExtResource("1_b7phm")
@@ -263,5 +267,32 @@ position = Vector2(96, -73)
 [node name="held_item" parent="CharacterBody2D" instance=ExtResource("5_bcrxs")]
 position = Vector2(12, 3)
 
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CharacterBody2D"]
+offset_left = 81.0
+offset_top = 47.0
+offset_right = 141.0
+offset_bottom = 107.0
+value = 100.0
+texture_under = ExtResource("11_6flfl")
+texture_progress = ExtResource("12_bn4to")
+script = ExtResource("9_rsx8u")
+
 [node name="CharacterBody2D2" parent="." instance=ExtResource("5_re3o4")]
 position = Vector2(293, -40)
+
+[node name="CharacterBody2D2" parent="CharacterBody2D2" instance=ExtResource("5_re3o4")]
+position = Vector2(234, -57)
+
+[node name="CharacterBody2D2" parent="CharacterBody2D2/CharacterBody2D2" instance=ExtResource("5_re3o4")]
+position = Vector2(231, 16)
+
+[node name="collectables" type="Node" parent="."]
+
+[node name="willow_wisps" parent="collectables" instance=ExtResource("13_bn4to")]
+position = Vector2(585, -54)
+
+[node name="willow_wisps2" parent="collectables" instance=ExtResource("13_bn4to")]
+position = Vector2(788, -210)
+
+[node name="willow_wisps3" parent="collectables" instance=ExtResource("13_bn4to")]
+position = Vector2(589, -305)
