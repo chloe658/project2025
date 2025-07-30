@@ -1,0 +1,100 @@
+[gd_scene load_steps=7 format=3 uid="uid://dtq0qr1ulafd7"]
+
+[ext_resource type="Texture2D" uid="uid://7vsyuhjfjtaj" path="res://assets/UI/menu_bg_tile.png" id="1_bqqt6"]
+[ext_resource type="FontFile" uid="uid://eec8xja2jhxc" path="res://assets/UI/font.ttf" id="1_ekxnf"]
+[ext_resource type="Script" uid="uid://sbxexd7owdbn" path="res://scenes/main_menu.gd" id="1_wu84c"]
+[ext_resource type="Texture2D" uid="uid://b8vbeuhdlxurv" path="res://assets/UI/shop_menu_button.png" id="2_bqqt6"]
+
+[sub_resource type="Gradient" id="Gradient_wu84c"]
+offsets = PackedFloat32Array(0.136646, 0.565217)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8ln24"]
+gradient = SubResource("Gradient_wu84c")
+fill = 1
+fill_from = Vector2(0.511111, 0.502222)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 107.0
+offset_top = 52.0
+offset_right = -731.0
+offset_bottom = -415.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wu84c")
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -3.0
+offset_right = 313.0
+offset_bottom = 180.0
+texture = ExtResource("1_bqqt6")
+stretch_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 54.0
+offset_right = 203.0
+offset_bottom = 122.0
+theme_override_constants/separation = 7
+
+[node name="play_button" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_bqqt6")
+
+[node name="Label" type="Label" parent="VBoxContainer/play_button"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 1.0
+offset_right = 61.0
+offset_bottom = 14.0
+theme_override_fonts/font = ExtResource("1_ekxnf")
+text = "Play"
+
+[node name="option_button" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_bqqt6")
+
+[node name="Label" type="Label" parent="VBoxContainer/option_button"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 1.0
+offset_right = 70.0
+offset_bottom = 14.0
+theme_override_fonts/font = ExtResource("1_ekxnf")
+text = "Options"
+
+[node name="quit_button" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_bqqt6")
+
+[node name="Label" type="Label" parent="VBoxContainer/quit_button"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 1.0
+offset_right = 61.0
+offset_bottom = 14.0
+theme_override_fonts/font = ExtResource("1_ekxnf")
+text = "Quit"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(156, 89)
+scale = Vector2(0.5, 0.5)
+zoom = Vector2(4, 4)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(153, 86)
+scale = Vector2(7.375, 4.53125)
+color = Color(0.475829, 0.346756, 0, 1)
+texture = SubResource("GradientTexture2D_8ln24")
+
+[connection signal="pressed" from="VBoxContainer/play_button" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/option_button" to="." method="_on_option_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/quit_button" to="." method="_on_quit_button_pressed"]

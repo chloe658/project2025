@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://f6uixeni1tp8"]
+[gd_scene load_steps=22 format=4 uid="uid://f6uixeni1tp8"]
 
 [ext_resource type="Texture2D" uid="uid://cjs42apw3j04e" path="res://assets/House/background_black.png" id="1_b7phm"]
 [ext_resource type="PackedScene" uid="uid://cq5o4ltsdppav" path="res://characters/player.tscn" id="1_lqndc"]
@@ -212,6 +212,15 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_73341")
 
+[sub_resource type="Gradient" id="Gradient_wu84c"]
+offsets = PackedFloat32Array(0.136646, 0.565217)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bn4to"]
+gradient = SubResource("Gradient_wu84c")
+fill = 1
+fill_from = Vector2(0.511111, 0.502222)
+
 [node name="dungeon_room" type="Node2D"]
 
 [node name="TileMapLayer3" type="TileMapLayer" parent="."]
@@ -280,19 +289,19 @@ script = ExtResource("9_rsx8u")
 [node name="CharacterBody2D2" parent="." instance=ExtResource("5_re3o4")]
 position = Vector2(293, -40)
 
-[node name="CharacterBody2D2" parent="CharacterBody2D2" instance=ExtResource("5_re3o4")]
-position = Vector2(234, -57)
+[node name="CharacterBody2D3" parent="." instance=ExtResource("5_re3o4")]
+position = Vector2(527, -97)
 
-[node name="CharacterBody2D2" parent="CharacterBody2D2/CharacterBody2D2" instance=ExtResource("5_re3o4")]
-position = Vector2(231, 16)
+[node name="CharacterBody2D4" parent="." instance=ExtResource("5_re3o4")]
+position = Vector2(655, -79)
 
 [node name="collectables" type="Node" parent="."]
 
 [node name="willow_wisps" parent="collectables" instance=ExtResource("13_bn4to")]
-position = Vector2(585, -54)
+position = Vector2(764, -68)
 
-[node name="willow_wisps2" parent="collectables" instance=ExtResource("13_bn4to")]
-position = Vector2(788, -210)
-
-[node name="willow_wisps3" parent="collectables" instance=ExtResource("13_bn4to")]
-position = Vector2(589, -305)
+[node name="PointLight2D" type="PointLight2D" parent="collectables/willow_wisps"]
+position = Vector2(-2, 0)
+scale = Vector2(1.39062, 1.32813)
+color = Color(0.475829, 0.346756, 0, 1)
+texture = SubResource("GradientTexture2D_bn4to")

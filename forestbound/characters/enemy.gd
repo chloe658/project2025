@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 @onready var hotbar = $"../CharacterBody2D/hotbar"
-@onready var health = 100
 @onready var held_item = $"../CharacterBody2D/held_item"
+var health = 100
 
 var attack_damage: int
 var player_in_range = false

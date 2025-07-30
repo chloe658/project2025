@@ -9,4 +9,5 @@ name = "Batberry"
 texture = ExtResource("2_kuqnm")
 maxAmountPrStack = 5
 attack_damage = 1
+add_health = 5
 metadata/_custom_type_script = "uid://cgfq11jofeno6"

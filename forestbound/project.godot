@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Forestbound"
-run/main_scene="uid://bpdt4to78unoe"
+run/main_scene="uid://dtq0qr1ulafd7"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
