@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8fn8h7xqrgmf"
-path="res://.godot/imported/energyfill_top.png-86247e6427a4d4f129a5f4afccec711d.ctex"
+uid="uid://tcahhv5wltfx"
+path="res://.godot/imported/chest_icon.png-032a4412dc2921baf55d1bf587726709.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/UI/bars/energyfill_top.png"
-dest_files=["res://.godot/imported/energyfill_top.png-86247e6427a4d4f129a5f4afccec711d.ctex"]
+source_file="res://assets/Items/chest_icon.png"
+dest_files=["res://.godot/imported/chest_icon.png-032a4412dc2921baf55d1bf587726709.ctex"]
 
 [params]
 

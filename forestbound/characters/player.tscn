@@ -1,7 +1,16 @@
-[gd_scene load_steps=22 format=3 uid="uid://cq5o4ltsdppav"]
+[gd_scene load_steps=31 format=3 uid="uid://cq5o4ltsdppav"]
 
 [ext_resource type="Script" uid="uid://dhidpe5o1ti6f" path="res://characters/player.gd" id="1_3vyb7"]
 [ext_resource type="Resource" uid="uid://d03lbrlwq8scg" path="res://inventory folder/player_inventory.tres" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://sajieugvtma3" path="res://assets/UI/health_bar.png" id="3_j31ep"]
+[ext_resource type="Texture2D" uid="uid://d25dtx743csac" path="res://assets/UI/healthfill.png" id="4_6t23p"]
+[ext_resource type="Script" uid="uid://2jymnsvmrk54" path="res://scripts/healthbar.gd" id="5_n8jd0"]
+[ext_resource type="Texture2D" uid="uid://5151v1sf8i40" path="res://assets/UI/energy_bar.png" id="6_q605b"]
+[ext_resource type="Texture2D" uid="uid://cgsuv8uj3q2y2" path="res://assets/UI/energyfill.png" id="7_eho78"]
+[ext_resource type="PackedScene" uid="uid://cuu5fln6g8uba" path="res://inventory folder/inventory_gui.tscn" id="8_eho78"]
+[ext_resource type="PackedScene" uid="uid://b18ain4nxttr7" path="res://inventory folder/hotbar.tscn" id="9_8sqrr"]
+[ext_resource type="PackedScene" uid="uid://daeoye4aquxc8" path="res://scenes/coins.tscn" id="10_6rrl0"]
+[ext_resource type="PackedScene" uid="uid://r73bl7vbq1bt" path="res://scenes/held_item.tscn" id="11_eus45"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u8vuu"]
 load_path = "res://.godot/imported/character1 spritesheet.png-1533b5fcad54565574ab925f8a739bee.ctex"
@@ -216,6 +225,68 @@ shape = SubResource("CapsuleShape2D_g2els")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="health_bar" type="TextureProgressBar" parent="."]
+offset_left = 97.0
+offset_top = 21.0
+offset_right = 147.0
+offset_bottom = 81.0
+value = 100.0
+fill_mode = 3
+texture_under = ExtResource("3_j31ep")
+texture_progress = ExtResource("4_6t23p")
+texture_progress_offset = Vector2(-13, -6)
+script = ExtResource("5_n8jd0")
+
+[node name="energy_bar" type="TextureProgressBar" parent="."]
+visible = false
+offset_left = 103.0
+offset_top = 15.0
+offset_right = 153.0
+offset_bottom = 75.0
+value = 100.0
+fill_mode = 3
+texture_under = ExtResource("6_q605b")
+texture_progress = ExtResource("7_eho78")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(0.5, 0.5)
+zoom = Vector2(4, 4)
+metadata/_edit_lock_ = true
+
+[node name="InventoryGui" parent="." instance=ExtResource("8_eho78")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.5
+offset_top = -31.0
+offset_right = 78.5
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="hotbar" parent="." instance=ExtResource("9_8sqrr")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -78.5
+offset_top = 49.0
+offset_right = 78.5
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="coin_count" parent="." instance=ExtResource("10_6rrl0")]
+position = Vector2(96, -73)
+
+[node name="held_item" parent="." instance=ExtResource("11_eus45")]
+position = Vector2(12, 3)
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

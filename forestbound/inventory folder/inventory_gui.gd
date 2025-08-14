@@ -5,15 +5,18 @@ extends Control
 @onready var hotbar_slots: Array = $NinePatchRect/HBoxContainer.get_children()
 @onready var slots: Array = hotbar_slots + $NinePatchRect/GridContainer.get_children()
 
+
+@onready var inv_btn = $HBoxContainer/inventory_button/TextureRect
+@onready var quest_btn = $HBoxContainer/quest_button/TextureRect
+@onready var quit_btn = $HBoxContainer/quit_button/TextureRect
+
 var itemInHand: ItemStackGui
 #var oldIndex: int = -1
-
 
 func _ready():
 	connectSlots()
 	inventory.updated.connect(update)
 	update()
-
 
 func connectSlots():
 	for i in range(slots.size()):
@@ -23,7 +26,6 @@ func connectSlots():
 		var callable = Callable(onSlotClicked)
 		callable = callable.bind(slot)
 		slot.pressed.connect(callable)
-
 
 func update():
 	for i in range(min(inventory.slots.size(), slots.size())):
@@ -41,7 +43,6 @@ func update():
 		itemStackGui.inventorySlot = inventorySlot
 		itemStackGui.update()
 
-
 func onSlotClicked(slot):
 	if slot.isEmpty():
 		if !itemInHand: return
@@ -56,14 +57,12 @@ func onSlotClicked(slot):
 		return
 	swapItems(slot)
 
-
 func takeItemFromSlot(slot):
 	itemInHand = slot.takeItem()
 	add_child(itemInHand)
 	updateItemInHand()
 	
 	#oldIndex = slot.index
-
 
 func insertItemInSlot(slot):
 	var item = itemInHand
@@ -73,14 +72,12 @@ func insertItemInSlot(slot):
 	
 	#oldIndex = -1
 
-
 func swapItems(slot):
 	var tempItem = slot.takeItem()
 	insertItemInSlot(slot)
 	itemInHand = tempItem
 	add_child(itemInHand)
 	updateItemInHand()
-
 
 func stackItems(slot):
 	var slotItem: ItemStackGui = slot.itemStackGui
@@ -124,3 +121,16 @@ func _input(event):
 		#if itemInHand:
 			#putItemBack()
 		visible = !visible
+
+func _on_inventory_button_pressed() -> void:
+	inv_btn.texture = load("res://assets/UI/selected_tab.png")
+	quest_btn.texture = load("res://assets/UI/tab.png")
+	
+
+func _on_quest_button_pressed() -> void:
+	inv_btn.texture = load("res://assets/UI/tab.png")
+	quest_btn.texture = load("res://assets/UI/selected_tab.png")
+	print("done")
+
+func _on_quit_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

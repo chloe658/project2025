@@ -1,4 +1,24 @@
 extends Node
 
-@export var CoinCount = 1500
-@export var Health = 100
+var CoinCount = 1500
+var currentHealth = 100
+signal healthChanged
+signal coinChanged
+var hurting = false
+
+func take_damage():
+	print("taking damage")
+	currentHealth -= 5
+	print(currentHealth)
+	hurting = true
+	healthChanged.emit()
+	hurting = false
+
+func earn_coins(amount):
+	CoinCount += amount
+	coinChanged.emit()
+
+func spend_coins(amount):
+	CoinCount -= amount
+	coinChanged.emit()
+	print("spent")

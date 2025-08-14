@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0w1ijfmhe7xq"
-path="res://.godot/imported/empty_bar.png-7a7d2ea4881890aa886eac8043cbf907.ctex"
+uid="uid://b7ldv4yp2s5g5"
+path="res://.godot/imported/quest_icon.png-bccbf1c58413ffd2dfcc50cc71a0066e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/UI/bars/empty_bar.png"
-dest_files=["res://.godot/imported/empty_bar.png-7a7d2ea4881890aa886eac8043cbf907.ctex"]
+source_file="res://assets/Items/quest_icon.png"
+dest_files=["res://.godot/imported/quest_icon.png-bccbf1c58413ffd2dfcc50cc71a0066e.ctex"]
 
 [params]
 

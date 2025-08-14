@@ -5,7 +5,8 @@ class_name Player
 signal healthChanged
 
 @export var maxHealth = 100
-@onready var currentHealth: int = maxHealth
+#@onready var currentHealth: int = maxHealth
+@onready var total_coins: int = 1500
 
 const SPEED = 150.0
 
@@ -27,7 +28,8 @@ func _physics_process(_delta):
 	if !hurting:
 		for area in hurtbox.get_overlapping_areas():
 			if area.name == "hitbox":
-				take_damage()
+				Globle.take_damage()
+				hurting = false
 
 	if inventory_gui.visible == false:
 		# Get the input direction and handle the movement/deceleration.
@@ -70,12 +72,14 @@ func _on_area_2d_area_entered(area):
 	if area.has_method("collect"):
 		area.collect(inventory)
 		
-
+"""
 func take_damage():
-	currentHealth -= 5
+	Globle.Health -= 5
+	print(Globle.Health)
 	hurting = true
 	healthChanged.emit()
 	
 	hurting_cooldown.start()
 	await hurting_cooldown.timeout
 	hurting = false
+"""

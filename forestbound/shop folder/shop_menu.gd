@@ -38,4 +38,7 @@ func _on_button_4_pressed() -> void:
 func buy_item(selected_item, item_price):
 	inventory.insert(selected_item)
 	var coin_count = CoinCountScene.instantiate()
-	coin_count.spend_coins(item_price)
+	Globle.spend_coins(item_price)
+
+func _on_quit_button_pressed() -> void:
+	visible = false

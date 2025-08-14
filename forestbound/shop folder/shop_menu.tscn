@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0rkvfia76mv8"]
+[gd_scene load_steps=12 format=3 uid="uid://d0rkvfia76mv8"]
 
 [ext_resource type="Texture2D" uid="uid://wo1b8al1v3lt" path="res://assets/UI/inventory_background.png" id="1_hka7j"]
 [ext_resource type="Script" uid="uid://643vytobptig" path="res://shop folder/shop_menu.gd" id="2_m27t3"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://b2omutx8yfbow" path="res://assets/Items/Lavender Bloom.png" id="7_axubn"]
 [ext_resource type="Texture2D" uid="uid://dlxn8o8lqy7ok" path="res://assets/Items/Oakshade Seed.png" id="8_8jsok"]
 [ext_resource type="Texture2D" uid="uid://c0lf085ubpacv" path="res://assets/Items/Batberry.png" id="9_6033v"]
+[ext_resource type="Texture2D" uid="uid://dvupfklv4135k" path="res://assets/UI/tab.png" id="10_8jsok"]
+[ext_resource type="Texture2D" uid="uid://ctd53h7w0ia1n" path="res://assets/Items/quit_icon.png" id="11_6033v"]
 
 [node name="shopMenu" type="NinePatchRect"]
 offset_right = 130.0
@@ -156,7 +158,30 @@ offset_bottom = 14.0
 theme_override_fonts/font = ExtResource("5_2nhm7")
 text = "30"
 
+[node name="quit_button" type="Button" parent="."]
+custom_minimum_size = Vector2(18, 0)
+layout_mode = 0
+offset_left = 109.0
+offset_top = -18.0
+offset_right = 127.0
+offset_bottom = 1.0
+focus_mode = 0
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="quit_button"]
+layout_mode = 0
+offset_right = 18.0
+offset_bottom = 19.0
+texture = ExtResource("10_8jsok")
+stretch_mode = 2
+
+[node name="QuitIcon" type="Sprite2D" parent="quit_button"]
+position = Vector2(9, 11)
+texture = ExtResource("11_6033v")
+
+[connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="GridContainer/button1" to="." method="_on_button_1_pressed"]
 [connection signal="pressed" from="GridContainer/button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="GridContainer/button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="GridContainer/button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="quit_button" to="." method="_on_quit_button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b382gc4kok2al"]
+[gd_scene load_steps=22 format=3 uid="uid://b382gc4kok2al"]
 
 [ext_resource type="Script" uid="uid://dld052qhw80dd" path="res://characters/enemy.gd" id="1_nhupr"]
 [ext_resource type="Texture2D" uid="uid://cwf4gniyqd0tx" path="res://assets/Characters/enemy1 spritesheet.png" id="1_wa0eo"]
@@ -185,11 +185,14 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wa0eo"]
-radius = 41.0488
+radius = 20.8806
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_1ohc2"]
 a = Vector2(-10, 13)
 b = Vector2(0, 13)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nhupr"]
+radius = 48.3735
 
 [node name="EnemyBody2D" type="CharacterBody2D"]
 script = ExtResource("1_nhupr")
@@ -209,6 +212,14 @@ shape = SubResource("CircleShape2D_wa0eo")
 position = Vector2(5, 2)
 shape = SubResource("SegmentShape2D_1ohc2")
 
+[node name="sightbox" type="Area2D" parent="."]
+position = Vector2(0, -5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sightbox"]
+position = Vector2(0, 9)
+shape = SubResource("CircleShape2D_nhupr")
+
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]
+[connection signal="area_entered" from="sightbox" to="." method="_on_sightbox_area_entered"]

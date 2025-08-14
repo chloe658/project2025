@@ -16,6 +16,7 @@ patch_margin_left = 1
 patch_margin_top = 1
 patch_margin_right = 1
 patch_margin_bottom = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="."]
 offset_left = 3.0
@@ -23,6 +24,7 @@ offset_right = 27.0
 offset_bottom = 13.0
 theme_override_fonts/font = ExtResource("2_s1asw")
 text = "1500"
+metadata/_edit_use_anchors_ = true
 
 [node name="Coin" type="Sprite2D" parent="."]
 position = Vector2(33, 7)

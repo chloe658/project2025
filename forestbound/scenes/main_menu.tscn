@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://7vsyuhjfjtaj" path="res://assets/UI/menu_bg_tile.png" id="1_bqqt6"]
 [ext_resource type="FontFile" uid="uid://eec8xja2jhxc" path="res://assets/UI/font.ttf" id="1_ekxnf"]
-[ext_resource type="Script" uid="uid://sbxexd7owdbn" path="res://scenes/main_menu.gd" id="1_wu84c"]
+[ext_resource type="Script" uid="uid://sbxexd7owdbn" path="res://scripts/main_menu.gd" id="1_wu84c"]
 [ext_resource type="Texture2D" uid="uid://b8vbeuhdlxurv" path="res://assets/UI/shop_menu_button.png" id="2_bqqt6"]
 
 [sub_resource type="Gradient" id="Gradient_wu84c"]
@@ -38,10 +38,10 @@ stretch_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 102.0
-offset_top = 54.0
-offset_right = 203.0
-offset_bottom = 122.0
+offset_left = 103.0
+offset_top = 61.0
+offset_right = 204.0
+offset_bottom = 129.0
 theme_override_constants/separation = 7
 
 [node name="play_button" type="TextureButton" parent="VBoxContainer"]
