@@ -2,6 +2,7 @@ extends Resource
 
 class_name Inventory
 signal updated
+signal use_item
 
 @export var slots: Array[InventorySlot]
 
@@ -39,7 +40,10 @@ func insertSlot(index: int, inventorySlot: InventorySlot):
 
 func use_item_at_index(index: int) -> void:
 	if index < 0 or index >= slots.size() or !slots[index].item: return
+	
 	var slot = slots[index]
+	use_item.emit(slot.item)
+	
 	if slot.item.maxAmountPrStack == 1: return # dont remove items with a max amount per stack of 1 because they are tools
 	if slot.amount > 1:
 		slot.amount -= 1

@@ -232,16 +232,16 @@ tile_map_data = PackedByteArray("AAAGAAEAAQANAAEAAAAHAAEAAQAOAAEAAAAIAAEAAQAMAAE
 tile_set = SubResource("TileSet_dc2jm")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_lqndc")]
-position = Vector2(180, -19)
+position = Vector2(175, 10)
 
 [node name="CharacterBody2D2" parent="." instance=ExtResource("5_re3o4")]
-position = Vector2(293, -40)
+position = Vector2(365, -88)
 
 [node name="CharacterBody2D3" parent="." instance=ExtResource("5_re3o4")]
-position = Vector2(527, -97)
+position = Vector2(463, -291)
 
 [node name="CharacterBody2D4" parent="." instance=ExtResource("5_re3o4")]
-position = Vector2(655, -79)
+position = Vector2(649, -151)
 
 [node name="collectables" type="Node" parent="."]
 

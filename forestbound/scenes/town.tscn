@@ -1,5 +1,6 @@
-[gd_scene load_steps=29 format=4 uid="uid://bpdt4to78unoe"]
+[gd_scene load_steps=30 format=4 uid="uid://bpdt4to78unoe"]
 
+[ext_resource type="Script" uid="uid://cxidrxhftw0b1" path="res://scripts/town.gd" id="1_5q1rr"]
 [ext_resource type="Texture2D" uid="uid://ddf28s7i0k32p" path="res://assets/Exterior/TX Tileset Wall.png" id="1_t6cq8"]
 [ext_resource type="PackedScene" uid="uid://c8uystwyg16uy" path="res://scenes/enter_door.tscn" id="1_tkreh"]
 [ext_resource type="Texture2D" uid="uid://cjs42apw3j04e" path="res://assets/House/background_black.png" id="1_u4arb"]
@@ -1184,6 +1185,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_yn4qk")
 
 [node name="town" type="Node2D"]
+script = ExtResource("1_5q1rr")
 
 [node name="TileMap" type="TileMap" parent="."]
 format = 2
@@ -1255,3 +1257,11 @@ position = Vector2(355, -69)
 
 [node name="mooncap_mushroom6" parent="collectalbes" instance=ExtResource("7_cq4yp")]
 position = Vector2(432, 12)
+
+[node name="dungeon_respawn" type="Marker2D" parent="."]
+position = Vector2(-31, -260)
+
+[node name="house_respawn" type="Marker2D" parent="."]
+position = Vector2(400, -88)
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]

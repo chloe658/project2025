@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://bi78gpehjc4vk"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bi78gpehjc4vk"]
 
-[ext_resource type="Script" uid="uid://cgfq11jofeno6" path="res://inventory folder/inventory_item.gd" id="1_sjvyi"]
+[ext_resource type="Script" uid="uid://cnygc7ugwl23e" path="res://inventory folder/health_item.gd" id="1_toa4t"]
 [ext_resource type="Texture2D" uid="uid://ct0h4lomutqvo" path="res://assets/Items/Mooncap Mushroom.png" id="2_11wr7"]
 
 [resource]
-script = ExtResource("1_sjvyi")
+script = ExtResource("1_toa4t")
+health_increase = 5
 name = "Mooncap Mushroom"
 texture = ExtResource("2_11wr7")
 maxAmountPrStack = 5

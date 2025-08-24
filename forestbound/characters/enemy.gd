@@ -1,44 +1,41 @@
 extends CharacterBody2D
+class_name Enemy
 
-@onready var hotbar = $"../CharacterBody2D/hotbar"
-@onready var held_item = $"../CharacterBody2D/held_item"
+@export var speed = 20
+@export var limit = 0.5
+
+@onready var animations = $AnimatedSprite2D
 @onready var player = $"../CharacterBody2D"
 @onready var health_bar = $health_bar
 
 var max_health = 100
 var health = 100
-var speed = 100
-var follow_player = false
-
-var attack_damage: int
 var player_in_range = false
 
+var startPosition
+var endPosition
+
+
+func _ready():
+	startPosition = position
+	endPosition = startPosition + Vector2(3*16, 0)
+
+
+func _process(_delta) -> void:
+	if player_in_range == true:
+		if Input.is_action_just_pressed("use_item"):
+			var attack_damage = Globle.attack_damage
+			take_damage(attack_damage)
+
+
 func take_damage(damage):
-	health -= damage
+	health -= int(damage)
 	health_bar.value = health * 100 / max_health
 	if health < 1:
 		# play death animation
 		queue_free()
-	print(health)
+		$FollowMovementC.disable()
 
-
-func _process(_delta) -> void:
-	if follow_player == true:
-		var direction = (player.position - position).normalized()
-		velocity = direction * speed
-		look_at(player.position)
-		move_and_slide()
-
-	
-	if player_in_range == true:
-		if Input.is_action_just_pressed("use_item"):
-			if held_item.texture.resource_path == "res://assets/Items/Sword.png":
-				attack_damage = 10
-				# if the player is holding sword deal 10 damage
-				# change this to the attack damage property of item
-			else:
-				attack_damage = 5
-			take_damage(attack_damage)
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.name == "CharacterBody2D":
@@ -48,9 +45,3 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 func _on_hitbox_body_exited(body: Node2D) -> void:
 	if body.name == "CharacterBody2D":
 		player_in_range = false
-
-
-func _on_sightbox_area_entered(body: Node2D) -> void:
-	if body.name == "CharacterBody2D":
-		follow_player = true
-		print("Follow player")

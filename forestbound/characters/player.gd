@@ -1,36 +1,30 @@
-extends CharacterBody2D
-
-class_name Player
+class_name Player extends CharacterBody2D
 
 signal healthChanged
 
 @export var maxHealth = 100
-#@onready var currentHealth: int = maxHealth
-@onready var total_coins: int = 1500
+@export var knockbackPower: int = 500
+@export var speed: int = 150
+@export var inventory: Inventory
 
-const SPEED = 150.0
-
-# Get the gravity from the project settings to be synced with RigidBody nodes
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var hurtbox = $Area2D
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var inventory_gui = $InventoryGui
-@onready var hurting_cooldown = $Timer
+@onready var effects = $Effects
+@onready var hurtTimer = $hurtTimer
 
-@export var inventory: Inventory
+# Get the gravity from the project settings to be synced with RigidBody nodes
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var isHurt: bool = false
+var enemyCollisions = []
 
-var hurting = false
 
 func _on_ready() -> void:
 	healthChanged.emit()
+	inventory.use_item.connect(use_item)
+	effects.play("RESET")
 
 func _physics_process(_delta):
-	if !hurting:
-		for area in hurtbox.get_overlapping_areas():
-			if area.name == "hitbox":
-				Globle.take_damage()
-				hurting = false
-
 	if inventory_gui.visible == false:
 		# Get the input direction and handle the movement/deceleration.
 		var horizontal_direction = Input.get_axis("move_left", "move_right")
@@ -51,35 +45,74 @@ func _physics_process(_delta):
 		
 		# Move player
 		if horizontal_direction:
-			velocity.x = horizontal_direction * SPEED
+			velocity.x = horizontal_direction * speed
 		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.x = move_toward(velocity.x, 0, speed)
 
 		if vertical_direction:
-			velocity.y = vertical_direction * SPEED
+			velocity.y = vertical_direction * speed
 		else:
-			velocity.y = move_toward(velocity.y, 0, SPEED)
+			velocity.y = move_toward(velocity.y, 0, speed)
 		
 		move_and_slide()
+		#handleCollision()
+		if !isHurt:
+			for enemyArea in enemyCollisions:
+				hurtByEnemy(enemyArea)
 	"""
 	else:
 		get_tree().paused = true
 		tutorial at ~10 minutes #1
 	"""
 
+"""
+func handleCollision():
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+"""
 
 func _on_area_2d_area_entered(area):
 	if area.has_method("collect"):
 		area.collect(inventory)
-		
-"""
-func take_damage():
-	Globle.Health -= 5
-	print(Globle.Health)
-	hurting = true
-	healthChanged.emit()
 	
-	hurting_cooldown.start()
-	await hurting_cooldown.timeout
-	hurting = false
-"""
+	if area.name == "hitbox":
+		enemyCollisions.append(area)
+		
+
+func increase_health(amount):
+	Globle.increase_health(amount)
+
+func use_item(item: InventoryItem) -> void:
+	item.use(self)
+
+func attack_enemy(amount):
+	Globle.attack_damage = amount
+
+func die():
+	#play death animation
+	get_tree().change_scene_to_file("res://scenes/town.tscn")
+	Globle.transition = get_parent().name
+	Globle.currentHealth = Globle.maxHealth
+
+func knockback(enemyVelocity):
+	var knockbackDirection = (enemyVelocity - velocity).normalized() * knockbackPower
+	velocity = knockbackDirection
+	move_and_slide()
+
+
+func _on_area_2d_area_exited(area: Area2D) -> void:
+	enemyCollisions.erase(area)
+
+
+func hurtByEnemy(area):
+	Globle.take_damage()
+	if Globle.currentHealth <= 0:
+		die()
+	isHurt = true
+	knockback(area.get_parent().velocity)
+	effects.play("hurtBlink")
+	hurtTimer.start()
+	await hurtTimer.timeout
+	effects.play("RESET")
+	isHurt = false

@@ -1,9 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://b382gc4kok2al"]
+[gd_scene load_steps=25 format=3 uid="uid://b382gc4kok2al"]
 
 [ext_resource type="Script" uid="uid://dld052qhw80dd" path="res://characters/enemy.gd" id="1_nhupr"]
 [ext_resource type="Texture2D" uid="uid://cwf4gniyqd0tx" path="res://assets/Characters/enemy1 spritesheet.png" id="1_wa0eo"]
 [ext_resource type="Texture2D" uid="uid://bavbtyvmsxfan" path="res://assets/UI/tiny_healthbar.png" id="3_ggbst"]
 [ext_resource type="Texture2D" uid="uid://db4gpu3jgtbvf" path="res://assets/UI/tiny_healthfill.png" id="4_toq4n"]
+[ext_resource type="Script" uid="uid://cc8uqtdxl4iwc" path="res://inventory folder/follow_movement.gd" id="5_toq4n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_55xej"]
 atlas = ExtResource("1_wa0eo")
@@ -132,7 +133,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_down",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -149,7 +150,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_left",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -166,7 +167,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_right",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -183,44 +184,38 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_up",
-"speed": 5.0
+"speed": 3.0
 }]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_wa0eo"]
-radius = 20.8806
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_1ohc2"]
 a = Vector2(-10, 13)
 b = Vector2(0, 13)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_nhupr"]
-radius = 48.3735
+[sub_resource type="CircleShape2D" id="CircleShape2D_wa0eo"]
+radius = 20.8806
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_toq4n"]
+radius = 48.0
 
 [node name="EnemyBody2D" type="CharacterBody2D"]
+z_index = 1
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_nhupr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_m6k2t")
 animation = &"idle"
-frame_progress = 0.209906
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5, 2)
+shape = SubResource("SegmentShape2D_1ohc2")
 
 [node name="hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_wa0eo")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(5, 2)
-shape = SubResource("SegmentShape2D_1ohc2")
-
-[node name="sightbox" type="Area2D" parent="."]
-position = Vector2(0, -5)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="sightbox"]
-position = Vector2(0, 9)
-shape = SubResource("CircleShape2D_nhupr")
-debug_color = Color(9.62615e-07, 0.60058, 0.696651, 0.42)
 
 [node name="health_bar" type="TextureProgressBar" parent="."]
 visible = false
@@ -237,7 +232,18 @@ stretch_margin_bottom = 1
 texture_under = ExtResource("3_ggbst")
 texture_progress = ExtResource("4_toq4n")
 
+[node name="FollowMovementC" type="Node" parent="."]
+script = ExtResource("5_toq4n")
+
+[node name="FollowArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FollowArea"]
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_toq4n")
+
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]
-[connection signal="area_entered" from="sightbox" to="." method="_on_sightbox_area_entered"]
+[connection signal="body_entered" from="FollowArea" to="FollowMovementC" method="_on_follow_area_body_entered"]
+[connection signal="body_exited" from="FollowArea" to="FollowMovementC" method="_on_follow_area_body_exited"]
