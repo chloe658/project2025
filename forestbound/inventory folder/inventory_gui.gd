@@ -4,8 +4,6 @@ extends Control
 @onready var ItemStackGuiClass = preload("res://inventory folder/itemStackGui.tscn")
 @onready var hotbar_slots: Array = $NinePatchRect/HBoxContainer.get_children()
 @onready var slots: Array = hotbar_slots + $NinePatchRect/GridContainer.get_children()
-
-
 @onready var inv_btn = $HBoxContainer/inventory_button/TextureRect
 @onready var quest_btn = $HBoxContainer/quest_button/TextureRect
 @onready var quit_btn = $HBoxContainer/quit_button/TextureRect
@@ -125,12 +123,14 @@ func _input(event):
 func _on_inventory_button_pressed() -> void:
 	inv_btn.texture = load("res://assets/UI/selected_tab.png")
 	quest_btn.texture = load("res://assets/UI/tab.png")
-	
+	$NinePatchRect.visible = true
+	$NinePatchRect_Quest.visible = false
 
 func _on_quest_button_pressed() -> void:
 	inv_btn.texture = load("res://assets/UI/tab.png")
 	quest_btn.texture = load("res://assets/UI/selected_tab.png")
-	print("done")
+	$NinePatchRect.visible = false
+	$NinePatchRect_Quest.visible = true
 
 func _on_quit_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

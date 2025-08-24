@@ -1,7 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://b382gc4kok2al"]
+[gd_scene load_steps=24 format=3 uid="uid://b382gc4kok2al"]
 
 [ext_resource type="Script" uid="uid://dld052qhw80dd" path="res://characters/enemy.gd" id="1_nhupr"]
 [ext_resource type="Texture2D" uid="uid://cwf4gniyqd0tx" path="res://assets/Characters/enemy1 spritesheet.png" id="1_wa0eo"]
+[ext_resource type="Texture2D" uid="uid://bavbtyvmsxfan" path="res://assets/UI/tiny_healthbar.png" id="3_ggbst"]
+[ext_resource type="Texture2D" uid="uid://db4gpu3jgtbvf" path="res://assets/UI/tiny_healthfill.png" id="4_toq4n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_55xej"]
 atlas = ExtResource("1_wa0eo")
@@ -218,6 +220,22 @@ position = Vector2(0, -5)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sightbox"]
 position = Vector2(0, 9)
 shape = SubResource("CircleShape2D_nhupr")
+debug_color = Color(9.62615e-07, 0.60058, 0.696651, 0.42)
+
+[node name="health_bar" type="TextureProgressBar" parent="."]
+visible = false
+offset_left = -21.0
+offset_top = -47.0
+offset_right = 29.0
+offset_bottom = 13.0
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 1
+stretch_margin_top = 1
+stretch_margin_right = 1
+stretch_margin_bottom = 1
+texture_under = ExtResource("3_ggbst")
+texture_progress = ExtResource("4_toq4n")
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

@@ -3,6 +3,9 @@ extends CharacterBody2D
 @onready var hotbar = $"../CharacterBody2D/hotbar"
 @onready var held_item = $"../CharacterBody2D/held_item"
 @onready var player = $"../CharacterBody2D"
+@onready var health_bar = $health_bar
+
+var max_health = 100
 var health = 100
 var speed = 100
 var follow_player = false
@@ -12,9 +15,11 @@ var player_in_range = false
 
 func take_damage(damage):
 	health -= damage
+	health_bar.value = health * 100 / max_health
 	if health < 1:
 		# play death animation
 		queue_free()
+	print(health)
 
 
 func _process(_delta) -> void:

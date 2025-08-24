@@ -1,12 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://cuu5fln6g8uba"]
+[gd_scene load_steps=11 format=3 uid="uid://cuu5fln6g8uba"]
 
 [ext_resource type="Script" uid="uid://dcnqwy02mvqyh" path="res://inventory folder/inventory_gui.gd" id="1_jof3i"]
 [ext_resource type="Texture2D" uid="uid://wo1b8al1v3lt" path="res://assets/UI/inventory_background.png" id="1_t08cw"]
 [ext_resource type="PackedScene" uid="uid://dgh7c46vkx381" path="res://inventory folder/slot_gui.tscn" id="2_p3a34"]
+[ext_resource type="Texture2D" uid="uid://bx5oytixf2bcj" path="res://assets/UI/quest_UI_btn.png" id="3_jua13"]
 [ext_resource type="Texture2D" uid="uid://dvupfklv4135k" path="res://assets/UI/tab.png" id="4_lc4nc"]
 [ext_resource type="Texture2D" uid="uid://bt2tb4i88daj7" path="res://assets/UI/selected_tab.png" id="4_mpr1u"]
 [ext_resource type="Texture2D" uid="uid://tcahhv5wltfx" path="res://assets/Items/chest_icon.png" id="5_mpr1u"]
 [ext_resource type="Texture2D" uid="uid://b7ldv4yp2s5g5" path="res://assets/Items/quest_icon.png" id="6_blw53"]
+[ext_resource type="FontFile" uid="uid://eec8xja2jhxc" path="res://assets/UI/font.ttf" id="6_f678m"]
 [ext_resource type="Texture2D" uid="uid://ctd53h7w0ia1n" path="res://assets/Items/quit_icon.png" id="7_jua13"]
 
 [node name="InventoryGui" type="Control"]
@@ -17,6 +19,97 @@ anchors_preset = 0
 offset_right = 157.0
 offset_bottom = 62.0
 script = ExtResource("1_jof3i")
+
+[node name="NinePatchRect_Quest" type="NinePatchRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 157.0
+offset_bottom = 66.0
+texture = ExtResource("1_t08cw")
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="NinePatchRect_Quest"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 154.0
+offset_bottom = 59.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect_Quest/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 2
+
+[node name="TextureButton" type="TextureButton" parent="NinePatchRect_Quest/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("3_jua13")
+
+[node name="Label" type="Label" parent="NinePatchRect_Quest/ScrollContainer/VBoxContainer/TextureButton"]
+layout_mode = 0
+offset_left = 3.0
+offset_right = 88.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("6_f678m")
+text = "Explore Dungeon"
+
+[node name="TextureButton2" type="TextureButton" parent="NinePatchRect_Quest/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("3_jua13")
+
+[node name="Label" type="Label" parent="NinePatchRect_Quest/ScrollContainer/VBoxContainer/TextureButton2"]
+layout_mode = 0
+offset_left = 3.0
+offset_right = 68.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("6_f678m")
+text = "Talk to NPCs"
+
+[node name="TextureButton3" type="TextureButton" parent="NinePatchRect_Quest/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("3_jua13")
+
+[node name="Label" type="Label" parent="NinePatchRect_Quest/ScrollContainer/VBoxContainer/TextureButton3"]
+layout_mode = 0
+offset_left = 3.0
+offset_right = 103.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("6_f678m")
+text = "Collect Ingredients"
+
+[node name="TextureButton4" type="TextureButton" parent="NinePatchRect_Quest/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("3_jua13")
+
+[node name="Label" type="Label" parent="NinePatchRect_Quest/ScrollContainer/VBoxContainer/TextureButton4"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 1.0
+offset_right = 62.0
+offset_bottom = 14.0
+theme_override_fonts/font = ExtResource("6_f678m")
+text = "Find Secret"
+
+[node name="TextureButton5" type="TextureButton" parent="NinePatchRect_Quest/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("3_jua13")
+
+[node name="Label" type="Label" parent="NinePatchRect_Quest/ScrollContainer/VBoxContainer/TextureButton5"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 1.0
+offset_right = 62.0
+offset_bottom = 14.0
+theme_override_fonts/font = ExtResource("6_f678m")
+text = "Find Lost Cat"
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 custom_minimum_size = Vector2(157, 66)

@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b66dkc5lodirj"]
-
-[ext_resource type="Script" uid="uid://d3mrr8cumxb43" path="res://scripts/globle.gd" id="1_08ptn"]
-
-[node name="Node2D" type="Node2D"]
-script = ExtResource("1_08ptn")
-
-[node name="hurting_cooldown" type="Timer" parent="."]
-wait_time = 0.5

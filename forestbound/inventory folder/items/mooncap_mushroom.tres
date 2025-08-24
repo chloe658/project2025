@@ -7,4 +7,7 @@
 script = ExtResource("1_sjvyi")
 name = "Mooncap Mushroom"
 texture = ExtResource("2_11wr7")
+maxAmountPrStack = 5
+attack_damage = 0
+add_health = 5
 metadata/_custom_type_script = "uid://cgfq11jofeno6"

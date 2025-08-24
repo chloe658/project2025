@@ -7,9 +7,9 @@ signal coinChanged
 var hurting = false
 
 func take_damage():
-	print("taking damage")
+	#print("taking damage")
 	currentHealth -= 5
-	print(currentHealth)
+	#print(currentHealth)
 	hurting = true
 	healthChanged.emit()
 	hurting = false
@@ -21,4 +21,3 @@ func earn_coins(amount):
 func spend_coins(amount):
 	CoinCount -= amount
 	coinChanged.emit()
-	print("spent")
