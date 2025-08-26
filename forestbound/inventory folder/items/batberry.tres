@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://rgjsbbtgaex6"]
+[gd_resource type="Resource" script_class="HealthItem" load_steps=3 format=3 uid="uid://rgjsbbtgaex6"]
 
 [ext_resource type="Script" uid="uid://cnygc7ugwl23e" path="res://inventory folder/health_item.gd" id="1_0ar6o"]
 [ext_resource type="Texture2D" uid="uid://c0lf085ubpacv" path="res://assets/Items/Batberry.png" id="2_kuqnm"]
@@ -9,6 +9,4 @@ health_increase = 20
 name = "Batberry"
 texture = ExtResource("2_kuqnm")
 maxAmountPrStack = 5
-attack_damage = 0
-add_health = 20
 metadata/_custom_type_script = "uid://cgfq11jofeno6"

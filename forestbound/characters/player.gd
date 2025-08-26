@@ -12,6 +12,7 @@ signal healthChanged
 @onready var inventory_gui = $InventoryGui
 @onready var effects = $Effects
 @onready var hurtTimer = $hurtTimer
+@onready var dialogue_box = $dialogue_box
 
 # Get the gravity from the project settings to be synced with RigidBody nodes
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -82,9 +83,11 @@ func _on_area_2d_area_entered(area):
 
 func increase_health(amount):
 	Globle.increase_health(amount)
+	print("increase health")
 
 func use_item(item: InventoryItem) -> void:
 	item.use(self)
+	print("item.use(self)")
 
 func attack_enemy(amount):
 	Globle.attack_damage = amount
@@ -116,3 +119,6 @@ func hurtByEnemy(area):
 	await hurtTimer.timeout
 	effects.play("RESET")
 	isHurt = false
+
+func show_dialogue():
+	dialogue_box.visible = true

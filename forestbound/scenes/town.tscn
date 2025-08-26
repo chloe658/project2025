@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://bpdt4to78unoe"]
+[gd_scene load_steps=33 format=4 uid="uid://bpdt4to78unoe"]
 
 [ext_resource type="Script" uid="uid://cxidrxhftw0b1" path="res://scripts/town.gd" id="1_5q1rr"]
 [ext_resource type="Texture2D" uid="uid://ddf28s7i0k32p" path="res://assets/Exterior/TX Tileset Wall.png" id="1_t6cq8"]
@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://cqc8fdugvi5iw" path="res://scenes/collectables/mooncap_mushroom.tscn" id="7_cq4yp"]
 [ext_resource type="PackedScene" uid="uid://hx6dh7g66xny" path="res://scenes/collectables/lavender_bloom.tscn" id="7_yn4qk"]
 [ext_resource type="PackedScene" uid="uid://dcb2ihwtl1spy" path="res://dungeon/enter_dungeon_door.tscn" id="11_po04c"]
+[ext_resource type="PackedScene" uid="uid://dcngyx8b6cpp5" path="res://characters/traveler.tscn" id="11_u4arb"]
+[ext_resource type="PackedScene" uid="uid://daakse2usmo78" path="res://characters/wanderer.tscn" id="12_u4arb"]
+[ext_resource type="PackedScene" uid="uid://d307677el5jdp" path="res://characters/collecter.tscn" id="13_icc4n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v3ani"]
 texture = ExtResource("1_u4arb")
@@ -1227,7 +1230,7 @@ position = Vector2(401, -113)
 scale = Vector2(1, 0.978341)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_x5mr4")]
-position = Vector2(381, -41)
+position = Vector2(-28, 226)
 
 [node name="collectalbes" type="Node" parent="."]
 
@@ -1263,5 +1266,14 @@ position = Vector2(-31, -260)
 
 [node name="house_respawn" type="Marker2D" parent="."]
 position = Vector2(400, -88)
+
+[node name="npc2" parent="." instance=ExtResource("11_u4arb")]
+position = Vector2(-176, 238)
+
+[node name="wanderer" parent="." instance=ExtResource("12_u4arb")]
+position = Vector2(-105, 174)
+
+[node name="collecter" parent="." instance=ExtResource("13_icc4n")]
+position = Vector2(-167, 178)
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]

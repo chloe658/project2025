@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3 uid="uid://dcngyx8b6cpp5"]
+
+[ext_resource type="Texture2D" uid="uid://diwfoy5owyaxj" path="res://assets/Characters/npc2 spritesheet.png" id="1_4fqok"]
+[ext_resource type="Script" uid="uid://vvhxhei0wpoq" path="res://characters/traveler.gd" id="2_xxnfw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4a1m2"]
+atlas = ExtResource("1_4fqok")
+region = Rect2(0, 128, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jf2c"]
+atlas = ExtResource("1_4fqok")
+region = Rect2(16, 128, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pki2b"]
+atlas = ExtResource("1_4fqok")
+region = Rect2(32, 128, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6a7jj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4a1m2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jf2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pki2b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jf2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4a1m2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4a1m2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4a1m2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4a1m2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4a1m2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4a1m2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4a1m2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4a1m2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4a1m2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4a1m2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4a1m2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0jf2c"]
+radius = 39.0128
+
+[node name="traveler" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_6a7jj")
+animation = &"idle"
+frame_progress = 0.999493
+script = ExtResource("2_xxnfw")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_0jf2c")
+
+[connection signal="body_entered" from="Area2D" to="." method="on_player_near"]
+[connection signal="body_exited" from="Area2D" to="." method="on_player_exited"]

@@ -1,0 +1,89 @@
+[gd_scene load_steps=9 format=3 uid="uid://d307677el5jdp"]
+
+[ext_resource type="Texture2D" uid="uid://7vkdkylkj70k" path="res://assets/Characters/npc4 spritesheet.png" id="1_mql4x"]
+[ext_resource type="Script" uid="uid://bpugoqykr8tse" path="res://characters/collecter.gd" id="2_3c77k"]
+[ext_resource type="Texture2D" uid="uid://d25dtx743csac" path="res://assets/UI/healthfill.png" id="3_0eqqr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3c77k"]
+atlas = ExtResource("1_mql4x")
+region = Rect2(0, 128, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0eqqr"]
+atlas = ExtResource("1_mql4x")
+region = Rect2(16, 128, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nnyy"]
+atlas = ExtResource("1_mql4x")
+region = Rect2(32, 128, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_22ju8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c77k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0eqqr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6nnyy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0eqqr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c77k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c77k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c77k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c77k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c77k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c77k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c77k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c77k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c77k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c77k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c77k")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_22ju8"]
+radius = 39.0128
+
+[node name="collecter" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_22ju8")
+animation = &"idle"
+frame_progress = 0.796381
+script = ExtResource("2_3c77k")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_22ju8")
+
+[node name="Healthfill" type="Sprite2D" parent="."]
+position = Vector2(-1, -4)
+texture = ExtResource("3_0eqqr")

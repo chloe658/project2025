@@ -1,0 +1,91 @@
+[gd_scene load_steps=9 format=3 uid="uid://daakse2usmo78"]
+
+[ext_resource type="Texture2D" uid="uid://bm0d0ucxoda5g" path="res://assets/Characters/npc3 spritesheet.png" id="1_1x1gv"]
+[ext_resource type="Script" uid="uid://vvhxhei0wpoq" path="res://characters/traveler.gd" id="2_075li"]
+[ext_resource type="Texture2D" uid="uid://gi2bparaa1jd" path="res://assets/UI/coin.png" id="3_075li"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yk8p1"]
+atlas = ExtResource("1_1x1gv")
+region = Rect2(0, 128, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufif8"]
+atlas = ExtResource("1_1x1gv")
+region = Rect2(16, 128, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xynh"]
+atlas = ExtResource("1_1x1gv")
+region = Rect2(32, 128, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_76q2p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yk8p1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufif8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xynh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufif8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yk8p1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yk8p1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yk8p1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yk8p1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yk8p1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yk8p1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yk8p1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yk8p1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yk8p1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yk8p1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yk8p1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1x1gv"]
+radius = 39.0128
+
+[node name="wanderer" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_76q2p")
+frame_progress = 0.318495
+script = ExtResource("2_075li")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_1x1gv")
+
+[node name="Coin" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
+texture = ExtResource("3_075li")
+
+[connection signal="body_entered" from="Area2D" to="." method="on_player_near"]
+[connection signal="body_exited" from="Area2D" to="." method="on_player_exited"]

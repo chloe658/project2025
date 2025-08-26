@@ -5,3 +5,4 @@ class_name HealthItem extends InventoryItem
 
 func use(player: Player) -> void:
 	player.increase_health(health_increase)
+	print("increase player health")
