@@ -5,6 +5,7 @@ extends Panel
 @onready var selector: Sprite2D = $Selector
 @onready var held_item = $"../held_item"
 
+
 var currently_selected: int = 0
 
 func _ready():
@@ -15,12 +16,14 @@ func update() -> void:
 	for i in range(slots.size()):
 		var inventory_slot: InventorySlot = inventory.slots[i]
 		slots[i].update_to_slot(inventory_slot)
+		slots[currently_selected].get_held_slot(inventory_slot)
 
 
 func move_selector() -> void:
 	currently_selected = (currently_selected + 1) % slots.size()
 	selector.global_position = slots[currently_selected].global_position
 	held_item.update()
+	update()
 
 
 func _unhandled_input(event):

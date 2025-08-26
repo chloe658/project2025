@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://8t87keq6edh0"]
+
+[ext_resource type="Script" uid="uid://cgfq11jofeno6" path="res://inventory folder/inventory_item.gd" id="1_1tfv6"]
+[ext_resource type="Texture2D" uid="uid://ceahhduocmyj7" path="res://assets/Items/Cinder Fern Spore.png" id="2_51oku"]
+
+[resource]
+script = ExtResource("1_1tfv6")
+name = "Cinder Fern Spore"
+texture = ExtResource("2_51oku")
+maxAmountPrStack = 5
+metadata/_custom_type_script = "uid://cgfq11jofeno6"

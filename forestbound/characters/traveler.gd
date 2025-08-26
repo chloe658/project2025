@@ -5,19 +5,23 @@ var player_near = false
 @onready var player = $"../CharacterBody2D"
 @onready var dialogue_box = $"../CharacterBody2D/dialogue_box"
 @onready var label = $"../CharacterBody2D/dialogue_box/Label"
+@onready var inventory: Inventory = preload("res://inventory folder/player_inventory.tres")
 
 var index = 0
 
 var dialogue_traveler = [
 	"",
-	"Traveler: Heh… You’ve got that curious look in your eyes. Want to know the secrets of this town, do ya? Well… secrets ain’t free. Slip me a few coins, and maybe I'll tell you...",
-	"Traveler: Hah! You actually paid up? Didn’t think you had the guts… or the coin. Truth is, I don’t know much worth telling. But… I did find this little oddity years ago, poking around some ruins. Strange thing, never seen it’s like again. Maybe it’ll be of use to you…",
+	"Traveler: Heh… You’ve got that curious look in your eyes. Want to know the secrets of this town, do ya?",
+	"Traveler: Well… secrets ain’t free. Slip me a few coins, and maybe I'll tell you...",
+	"Traveler: Hah! You actually paid up? Didn’t think you had the guts… or the coin. Truth is, I don’t know much worth telling.",
+	"Traveler: I did find this little oddity years ago, poking around some ruins. Strange thing, never seen it’s like again. Maybe it’ll be of use to you…",
 	"Traveler: Careful with it. Shines real pretty… but sometimes the prettiest lights hide the darkest paths."
 ]
 
 var dialogue_wanderer = [
 	"",
-	"Wanderer: You… you’re really heading into the dungeon? Hah… I marched in once, fire in my veins, certain I’d carve my legend into those walls. But the shadows stripped it away, until I crawled out barely alive. Now, even the air out here chills my blood.",
+	"Wanderer: You… you’re really heading into the dungeon? Hah… I marched in once, fire in my veins, certain I’d carve my legend into those walls.",
+	"Wanderer: But the shadows stripped it away, until I crawled out barely alive. Now, even the air out here chills my blood.",
 	"Wanderer: If you return, may your spirit burn brighter than mine ever did. Someone ought to claim victory over that place… it just won’t be me.",
 	"Wanderer: But mark me—gold weighs nothing if you don’t live to carry it out."
 ]
@@ -53,8 +57,14 @@ func change_text():
 		# So that game does not crash and problem can be found.
 		print("Character name not found")
 		print(character_name)
+	if !Globle.traveler_quest_complete and character_name == "npc2":
+		if index == 2:
+			Globle.spend_coins(100)
+		if index == 4:
+			inventory.insert(load("res://inventory folder/items/willow_wisps.tres"))
+			Globle.traveler_quest_complete = true
+	
 	index += 1
 	if index > len(current_character_dialogue) - 1:
-		# if player 
 		index = 0
 	label.text = current_character_dialogue[index]

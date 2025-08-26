@@ -1274,6 +1274,6 @@ position = Vector2(-176, 238)
 position = Vector2(-105, 174)
 
 [node name="collecter" parent="." instance=ExtResource("13_icc4n")]
-position = Vector2(-167, 178)
+position = Vector2(107, 208)
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]

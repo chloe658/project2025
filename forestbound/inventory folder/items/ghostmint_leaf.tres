@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://bip5yies4hhqe"]
+
+[ext_resource type="Script" uid="uid://cgfq11jofeno6" path="res://inventory folder/inventory_item.gd" id="1_p7pm7"]
+[ext_resource type="Texture2D" uid="uid://c1qlqkukna53f" path="res://assets/Items/Ghostmint Leaf.png" id="2_na8oe"]
+
+[resource]
+script = ExtResource("1_p7pm7")
+name = "Ghostmint Leaf"
+texture = ExtResource("2_na8oe")
+maxAmountPrStack = 5
+metadata/_custom_type_script = "uid://cgfq11jofeno6"

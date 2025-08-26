@@ -8,7 +8,11 @@ signal healthChanged
 signal coinChanged
 var hurting = false
 
+var held_item = ""
+
 var transition
+var collector_quest_complete = false
+var traveler_quest_complete = false
 
 func take_damage():
 	currentHealth -= 5

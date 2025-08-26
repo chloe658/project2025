@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://la1ombceo6ht"]
+
+[ext_resource type="Script" uid="uid://cgfq11jofeno6" path="res://inventory folder/inventory_item.gd" id="1_1msik"]
+[ext_resource type="Texture2D" uid="uid://bx8b2psam1vyc" path="res://assets/Items/Crystalfly Wing.png" id="2_xbxkk"]
+
+[resource]
+script = ExtResource("1_1msik")
+name = "Crystalfly Wing"
+texture = ExtResource("2_xbxkk")
+maxAmountPrStack = 5
+metadata/_custom_type_script = "uid://cgfq11jofeno6"

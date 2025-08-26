@@ -119,6 +119,3 @@ func hurtByEnemy(area):
 	await hurtTimer.timeout
 	effects.play("RESET")
 	isHurt = false
-
-func show_dialogue():
-	dialogue_box.visible = true
