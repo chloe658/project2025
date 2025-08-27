@@ -7,6 +7,7 @@ extends Control
 @onready var inv_btn = $HBoxContainer/inventory_button/TextureRect
 @onready var quest_btn = $HBoxContainer/quest_button/TextureRect
 @onready var quit_btn = $HBoxContainer/quit_button/TextureRect
+@onready var options_btn = $HBoxContainer/options_button/TextureRect
 
 var itemInHand: ItemStackGui
 #var oldIndex: int = -1
@@ -126,14 +127,27 @@ func _input(event):
 func _on_inventory_button_pressed() -> void:
 	inv_btn.texture = load("res://assets/UI/selected_tab.png")
 	quest_btn.texture = load("res://assets/UI/tab.png")
+	options_btn.texture = load("res://assets/UI/tab.png")
 	$NinePatchRect.visible = true
 	$NinePatchRect_Quest.visible = false
+	$NinePatchRect_Options.visible = false
 
 func _on_quest_button_pressed() -> void:
 	inv_btn.texture = load("res://assets/UI/tab.png")
 	quest_btn.texture = load("res://assets/UI/selected_tab.png")
+	options_btn.texture = load("res://assets/UI/tab.png")
 	$NinePatchRect.visible = false
 	$NinePatchRect_Quest.visible = true
+	$NinePatchRect_Options.visible = false
+
+func _on_option_button_pressed() -> void:
+	inv_btn.texture = load("res://assets/UI/tab.png")
+	quest_btn.texture = load("res://assets/UI/tab.png")
+	options_btn.texture = load("res://assets/UI/selected_tab.png")
+	$NinePatchRect.visible = false
+	$NinePatchRect_Quest.visible = false
+	$NinePatchRect_Options.visible = true
+
 
 func _on_quit_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

@@ -58,6 +58,7 @@ theme_override_fonts/font = ExtResource("1_ekxnf")
 text = "Play"
 
 [node name="option_button" type="TextureButton" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 texture_normal = ExtResource("2_bqqt6")
 

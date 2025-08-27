@@ -30,7 +30,8 @@ var dialogue_wanderer = [
 	"Wanderer: But mark me—gold weighs nothing if you don’t live to carry it out.",
 	""
 ]
-
+func on_ready():
+	$"."
 
 func on_player_near(body: Node2D) -> void:
 	if body is Player:
