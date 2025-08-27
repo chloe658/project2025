@@ -10,8 +10,8 @@ var player_near = false
 
 
 var index = 0
-var current_quest_complete = false
 var quest_complete = false
+var current_quest_complete = false
 var item_index = 0
 
 
@@ -42,73 +42,41 @@ func on_player_exited(body: Node2D) -> void:
 		player_near = false
 
 func _process(_delta):
-	if player_near == true and Input.is_action_just_pressed("interact"):
-		if index == 6:
-			dialogue_box.visible = !dialogue_box.visible
+	if Globle.next_dialogue == true and player_near: # controls index
+		Globle.next_dialogue = false
+		if index == 5 and !Globle.collector_quest_complete:
+			inventory.insert(load("res://inventory folder/items/willow_wisps.tres"))
 			Globle.collector_quest_complete = true
-		elif index > 3:
-			dialogue_box.visible = true
-			index += 1
-		else:
-			dialogue_box.visible = !dialogue_box.visible
-			collect_item()
-		label.text = dialogue_collecter[index]
-			
-			
-	"""
-		if !quest_complete:
-			dialogue_box.visible = !dialogue_box.visible
-			collect_item()
-		if Globle.collector_quest_complete:
-			dialogue_box.visible = !dialogue_box.visible
-			update_index()
-		if quest_complete:
-			dialogue_box.visible = true
-			update_index()
-	
 		
-
-func update_index():
-	if index > 6:
-		index += 1
+		if index == 7:
+			Globle.collector_quest_complete = true
+			print("quest complete")
+		if index == len(dialogue_collecter) - 1:
+			dialogue_box.visible = false
+		if index > 2 and index < 6:
+			index += 1
+			label.text = dialogue_collecter[index]
+		if index <= 2:
+			collect_item()
 		label.text = dialogue_collecter[index]
-	else:
-		Globle.collector_quest_complete = true
-"""
+	if player_near and Input.is_action_just_pressed("interact"): #controls visability
+		if index == 7:
+			dialogue_box.visible = !dialogue_box.visible
+		else:
+			dialogue_box.visible = true
+		label.text = dialogue_collecter[index]
+
 
 func collect_item():
 	if Globle.held_item == items[item_index]:
-		inventory.use_item_at_index(hotbar.currently_selected)
 		current_quest_complete = true
+		inventory.use_item_at_index(hotbar.currently_selected)
 		index += 1 
 		if item_index < 2:
 			item_index += 1
-		else: 
-			quest_complete = true
-			inventory.insert(load("res://inventory folder/items/willow_wisps.tres"))
-			index += 1
-			print("quest complete")
-
-"""
-
-func update_index():
-	
-	if Globle.collector_quest_complete:
-		#repeat first and last line if quest is complete
-		if index == 0:
-			index = 8
-		if index == 8:
-			index = 0
-		return
-	if index != 1 or index != 2 or index != 3 or current_quest_complete:
-		print("conditions met")
-		index += 1
-		label.text = dialogue_collecter[index]
-		if current_quest_complete:
-			item_index += 1
+			return
+		quest_complete = true
+		print(index)
+	else:
 		current_quest_complete = false
-		
-		if index == 8:
-			Globle.collector_quest_complete = true
-	print(Globle.collector_quest_complete)
-"""
+		dialogue_box.visible = false

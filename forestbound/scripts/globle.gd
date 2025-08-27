@@ -7,6 +7,7 @@ var attack_damage = 1
 signal healthChanged
 signal coinChanged
 var hurting = false
+var next_dialogue = false
 
 var held_item = ""
 

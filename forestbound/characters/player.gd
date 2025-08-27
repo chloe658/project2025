@@ -119,3 +119,7 @@ func hurtByEnemy(area):
 	await hurtTimer.timeout
 	effects.play("RESET")
 	isHurt = false
+
+
+func _on_next_pressed() -> void:
+	Globle.next_dialogue = true

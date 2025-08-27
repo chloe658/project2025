@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cq5o4ltsdppav"]
+[gd_scene load_steps=37 format=3 uid="uid://cq5o4ltsdppav"]
 
 [ext_resource type="Script" uid="uid://dhidpe5o1ti6f" path="res://characters/player.gd" id="1_3vyb7"]
 [ext_resource type="Resource" uid="uid://d03lbrlwq8scg" path="res://inventory folder/player_inventory.tres" id="2_g2els"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://r73bl7vbq1bt" path="res://scenes/held_item.tscn" id="11_eus45"]
 [ext_resource type="Texture2D" uid="uid://b8vbeuhdlxurv" path="res://assets/UI/shop_menu_button.png" id="12_6rrl0"]
 [ext_resource type="FontFile" uid="uid://51sh8vau5yw2" path="res://assets/UI/6px-normal.ttf" id="13_6rrl0"]
+[ext_resource type="Texture2D" uid="uid://dico6mp50cpkh" path="res://assets/UI/forward.png" id="14_eus45"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u8vuu"]
 load_path = "res://.godot/imported/character1 spritesheet.png-1533b5fcad54565574ab925f8a739bee.ctex"
@@ -370,6 +371,15 @@ theme_override_fonts/font = ExtResource("13_6rrl0")
 theme_override_font_sizes/font_size = 8
 autowrap_mode = 3
 
+[node name="TextureButton" type="TextureButton" parent="dialogue_box"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 47.0
+offset_right = 155.0
+offset_bottom = 58.0
+texture_normal = ExtResource("14_eus45")
+
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="pressed" from="dialogue_box/TextureButton" to="." method="_on_next_pressed"]
