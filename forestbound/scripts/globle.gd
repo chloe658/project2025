@@ -12,8 +12,14 @@ var next_dialogue = false
 var held_item = ""
 
 var transition
-var collector_quest_complete = false
-var traveler_quest_complete = false
+
+
+# Quests
+var explore_dungeon = false
+var collector_quest_complete = false # "Collect Ingredients"
+var traveler_quest_complete = false # "Find Secret"
+var free_curse = false
+
 
 func take_damage():
 	currentHealth -= 5

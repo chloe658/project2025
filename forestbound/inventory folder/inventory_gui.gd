@@ -16,6 +16,9 @@ func _ready():
 	inventory.updated.connect(update)
 	update()
 
+func _process(_delta):
+	update_buttons()
+
 func connectSlots():
 	for i in range(slots.size()):
 		var slot = slots[i]
@@ -134,3 +137,14 @@ func _on_quest_button_pressed() -> void:
 
 func _on_quit_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+func update_buttons():
+	if Globle.explore_dungeon:
+		$NinePatchRect_Quest/ScrollContainer/VBoxContainer/explore_dungeon/TickIcon.visible = true
+	if Globle.collector_quest_complete: # "Collect Ingredients"
+		$NinePatchRect_Quest/ScrollContainer/VBoxContainer/collect_ingredients/TickIcon.visible = true
+	if Globle.traveler_quest_complete: # "Find Secret"
+		$NinePatchRect_Quest/ScrollContainer/VBoxContainer/find_secret/TickIcon.visible = true
+	if Globle.free_curse:
+		$NinePatchRect_Quest/ScrollContainer/VBoxContainer/free_curse/TickIcon.visible = true
+		# not assigned yet

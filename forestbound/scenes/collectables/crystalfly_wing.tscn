@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1d67x3eb8g0u"]
+
+[ext_resource type="Script" uid="uid://c87mjyfxxo6o2" path="res://scripts/collectable.gd" id="1_hrc6t"]
+[ext_resource type="Resource" uid="uid://la1ombceo6ht" path="res://inventory folder/items/crystalfly_wing.tres" id="2_hrc6t"]
+[ext_resource type="Texture2D" uid="uid://bx8b2psam1vyc" path="res://assets/Items/Crystalfly Wing.png" id="3_hrc6t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_un20x"]
+radius = 8.0
+
+[node name="crystalfly_wing" type="Area2D"]
+script = ExtResource("1_hrc6t")
+itemRes = ExtResource("2_hrc6t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_hrc6t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_un20x")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,11 +1,8 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=31 format=3 uid="uid://d03lbrlwq8scg"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=28 format=3 uid="uid://d03lbrlwq8scg"]
 
 [ext_resource type="Script" uid="uid://clkjxmu4dfx3b" path="res://inventory folder/inventorySlot.gd" id="2_dvf1x"]
-[ext_resource type="Resource" uid="uid://bip5yies4hhqe" path="res://inventory folder/items/ghostmint_leaf.tres" id="4_26qei"]
 [ext_resource type="Resource" uid="uid://jybt7af0gjn0" path="res://inventory folder/items/sword.tres" id="4_m46fv"]
 [ext_resource type="Script" uid="uid://ded4sx2ieevpf" path="res://inventory folder/inventory.gd" id="5_7ljbs"]
-[ext_resource type="Resource" uid="uid://8t87keq6edh0" path="res://inventory folder/items/cinder_fern_spore.tres" id="5_26qei"]
-[ext_resource type="Resource" uid="uid://la1ombceo6ht" path="res://inventory folder/items/crystalfly_wing.tres" id="6_26qei"]
 
 [sub_resource type="Resource" id="Resource_nfhxn"]
 script = ExtResource("2_dvf1x")
@@ -25,20 +22,17 @@ metadata/_custom_type_script = "uid://clkjxmu4dfx3b"
 
 [sub_resource type="Resource" id="Resource_26qei"]
 script = ExtResource("2_dvf1x")
-item = ExtResource("4_26qei")
-amount = 1
+amount = 0
 metadata/_custom_type_script = "uid://clkjxmu4dfx3b"
 
 [sub_resource type="Resource" id="Resource_eh41o"]
 script = ExtResource("2_dvf1x")
-item = ExtResource("5_26qei")
-amount = 1
+amount = 0
 metadata/_custom_type_script = "uid://clkjxmu4dfx3b"
 
 [sub_resource type="Resource" id="Resource_6w2gy"]
 script = ExtResource("2_dvf1x")
-item = ExtResource("6_26qei")
-amount = 1
+amount = 0
 metadata/_custom_type_script = "uid://clkjxmu4dfx3b"
 
 [sub_resource type="Resource" id="Resource_7ljbs"]

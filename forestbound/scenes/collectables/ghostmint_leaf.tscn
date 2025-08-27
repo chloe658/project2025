@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://cy464epibw6bd"]
+
+[ext_resource type="Script" uid="uid://c87mjyfxxo6o2" path="res://scripts/collectable.gd" id="1_xhhf0"]
+[ext_resource type="Resource" uid="uid://bip5yies4hhqe" path="res://inventory folder/items/ghostmint_leaf.tres" id="2_xhhf0"]
+[ext_resource type="Texture2D" uid="uid://c1qlqkukna53f" path="res://assets/Items/Ghostmint Leaf.png" id="3_xhhf0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_un20x"]
+radius = 8.0
+
+[node name="ghostmint_leaf" type="Area2D"]
+script = ExtResource("1_xhhf0")
+itemRes = ExtResource("2_xhhf0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_xhhf0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_un20x")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

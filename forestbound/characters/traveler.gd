@@ -62,7 +62,7 @@ func _process(_delta):
 			dialogue_box.visible = true
 
 func get_current_character():
-	if character_name == "npc2":
+	if character_name == "traveler":
 		current_character_dialogue = dialogue_traveler
 	elif character_name == "wanderer":
 		current_character_dialogue = dialogue_wanderer
@@ -73,7 +73,7 @@ func get_current_character():
 
 func change_text():
 	get_current_character()
-	if !Globle.traveler_quest_complete and character_name == "npc2":
+	if !Globle.traveler_quest_complete and character_name == "traveler":
 		if index == 1:
 			Globle.spend_coins(100)
 		if index == 3:
@@ -81,6 +81,7 @@ func change_text():
 			inventory.insert(load("res://inventory folder/items/willow_wisps.tres"))
 			print(index)
 			Globle.traveler_quest_complete = true
+			print("traveler_quest_complete")
 	
 	if index < len(current_character_dialogue) - 1:
 		index += 1

@@ -47,9 +47,11 @@ func _process(_delta):
 		if index == 5 and !Globle.collector_quest_complete:
 			inventory.insert(load("res://inventory folder/items/willow_wisps.tres"))
 			Globle.collector_quest_complete = true
+			print("collector_quest_complete 1")
 		
 		if index == 7:
 			Globle.collector_quest_complete = true
+			print("collector_quest_complete 2")
 			print("quest complete")
 		if index == len(dialogue_collecter) - 1:
 			dialogue_box.visible = false

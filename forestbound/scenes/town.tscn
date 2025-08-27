@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://bpdt4to78unoe"]
+[gd_scene load_steps=36 format=4 uid="uid://bpdt4to78unoe"]
 
 [ext_resource type="Script" uid="uid://cxidrxhftw0b1" path="res://scripts/town.gd" id="1_5q1rr"]
 [ext_resource type="Texture2D" uid="uid://ddf28s7i0k32p" path="res://assets/Exterior/TX Tileset Wall.png" id="1_t6cq8"]
@@ -9,10 +9,13 @@
 [ext_resource type="Texture2D" uid="uid://csbnsj85o6jbh" path="res://assets/Exterior/plant 2.png" id="3_eruj1"]
 [ext_resource type="PackedScene" uid="uid://cqc8fdugvi5iw" path="res://scenes/collectables/mooncap_mushroom.tscn" id="7_cq4yp"]
 [ext_resource type="PackedScene" uid="uid://hx6dh7g66xny" path="res://scenes/collectables/lavender_bloom.tscn" id="7_yn4qk"]
+[ext_resource type="PackedScene" uid="uid://2rx7xsglrki7" path="res://scenes/collectables/cinder_fern_spore.tscn" id="11_b00ts"]
 [ext_resource type="PackedScene" uid="uid://dcb2ihwtl1spy" path="res://dungeon/enter_dungeon_door.tscn" id="11_po04c"]
 [ext_resource type="PackedScene" uid="uid://dcngyx8b6cpp5" path="res://characters/traveler.tscn" id="11_u4arb"]
+[ext_resource type="PackedScene" uid="uid://b1d67x3eb8g0u" path="res://scenes/collectables/crystalfly_wing.tscn" id="12_i0mj0"]
 [ext_resource type="PackedScene" uid="uid://daakse2usmo78" path="res://characters/wanderer.tscn" id="12_u4arb"]
 [ext_resource type="PackedScene" uid="uid://d307677el5jdp" path="res://characters/collecter.tscn" id="13_icc4n"]
+[ext_resource type="PackedScene" uid="uid://cy464epibw6bd" path="res://scenes/collectables/ghostmint_leaf.tscn" id="13_ie20d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v3ani"]
 texture = ExtResource("1_u4arb")
@@ -1261,19 +1264,28 @@ position = Vector2(355, -69)
 [node name="mooncap_mushroom6" parent="collectalbes" instance=ExtResource("7_cq4yp")]
 position = Vector2(432, 12)
 
+[node name="cinder_fern_spore" parent="collectalbes" instance=ExtResource("11_b00ts")]
+position = Vector2(-190, -190)
+
+[node name="crystalfly_wing" parent="collectalbes" instance=ExtResource("12_i0mj0")]
+position = Vector2(-194, 257)
+
+[node name="ghostmint_leaf" parent="collectalbes" instance=ExtResource("13_ie20d")]
+position = Vector2(563, -200)
+
 [node name="dungeon_respawn" type="Marker2D" parent="."]
 position = Vector2(-31, -260)
 
 [node name="house_respawn" type="Marker2D" parent="."]
 position = Vector2(400, -88)
 
-[node name="npc2" parent="." instance=ExtResource("11_u4arb")]
-position = Vector2(-176, 238)
+[node name="traveler" parent="." instance=ExtResource("11_u4arb")]
+position = Vector2(-159, 62)
 
 [node name="wanderer" parent="." instance=ExtResource("12_u4arb")]
 position = Vector2(-105, 174)
 
 [node name="collecter" parent="." instance=ExtResource("13_icc4n")]
-position = Vector2(107, 208)
+position = Vector2(550, 228)
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
