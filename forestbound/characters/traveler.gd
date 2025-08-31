@@ -8,12 +8,16 @@ var player_near = false
 @onready var inventory: Inventory = preload("res://inventory folder/player_inventory.tres")
 
 var index = 0
+const BRIBE = 1499
+var paid_traveler = false
 
 var current_character_dialogue = []
 @onready var character_name = self.name
 
+#problem: after quest complete and dialogue is ended, coin dialogue plays
+#problem: if globle quest complete first dialogue + coin dialogue plays
+
 var dialogue_traveler = [
-	#"",
 	"Traveler: Heh… You’ve got that curious look in your eyes. Want to know the secrets of this town, do ya?",
 	"Traveler: Well… secrets ain’t free. Slip me a few coins, and maybe I'll tell you...",
 	"Traveler: Hah! You actually paid up? Didn’t think you had the guts… or the coin. Truth is, I don’t know much worth telling.",
@@ -22,16 +26,24 @@ var dialogue_traveler = [
 	""
 ]
 
+var traveler_quest_dialogue = [
+	"Bring coin, then we’ll talk.",
+	"empty",
+]
+
+var traveler_complete_dialogue = [
+	"Traveler: Heh, don’t look at me like that. I already gave you more than you deserved—now get lost.",
+	"empty"
+]
+
 var dialogue_wanderer = [
-	#"",
 	"Wanderer: You… you’re really heading into the dungeon? Hah… I marched in once, fire in my veins, certain I’d carve my legend into those walls.",
 	"Wanderer: But the shadows stripped it away, until I crawled out barely alive. Now, even the air out here chills my blood.",
 	"Wanderer: If you return, may your spirit burn brighter than mine ever did. Someone ought to claim victory over that place… it just won’t be me.",
 	"Wanderer: But mark me—gold weighs nothing if you don’t live to carry it out.",
 	""
 ]
-func on_ready():
-	$"."
+
 
 func on_player_near(body: Node2D) -> void:
 	if body is Player:
@@ -44,6 +56,7 @@ func on_player_exited(body: Node2D) -> void:
 
 
 func _process(_delta):
+	self.play("idle")
 	if player_near == true and Input.is_action_just_pressed("interact"): #controls visability
 		if dialogue_box.visible == false:
 			index = 0 #when first opening the box, set index to 0
@@ -51,14 +64,19 @@ func _process(_delta):
 		get_current_character()
 		label.text = current_character_dialogue[index]
 		if Globle.traveler_quest_complete:
-			index = 0 #when opening for the second time the index will be the last dialogue
+			index = 0 #when opening for the second time the index will be the last dialogue so now it will be the first
 			label.text = current_character_dialogue[index]
 	if player_near == true and Globle.next_dialogue == true:
-		change_text()
+		get_current_character()
+		if character_name == "traveler":
+			change_text_traveler()
+		if character_name == "wanderer":
+			change_text_wanderer()
 		Globle.next_dialogue = false
 		if label.text == "":
+			# or label.text == "empty":
+			# if at end of dialogue, make dialogue box invisible
 			dialogue_box.visible = false
-			#index = 0
 		else:
 			dialogue_box.visible = true
 
@@ -72,18 +90,35 @@ func get_current_character():
 		print("Character name not found")
 		print(character_name)
 
-func change_text():
-	get_current_character()
-	if !Globle.traveler_quest_complete and character_name == "traveler":
+func change_text_traveler():
+	if !Globle.traveler_quest_complete:
+		# only take coins and give item if the player has not completed the quest before
 		if index == 1:
-			Globle.spend_coins(100)
-		if index == 3:
-			# this part of the code nver runs
+			if Globle.CoinCount >= BRIBE:
+				Globle.spend_coins(BRIBE)
+				paid_traveler = true
+			else: 
+				if label.text != traveler_quest_dialogue[0]:
+					label.text = traveler_quest_dialogue[0]
+				else: label.text = traveler_quest_dialogue[1]
+				return
+				
+		if index == 3 and paid_traveler:
 			inventory.insert(load("res://inventory folder/items/willow_wisps.tres"))
-			print(index)
 			Globle.traveler_quest_complete = true
-			print("traveler_quest_complete")
+			print("quest complete")
+	if index < len(current_character_dialogue) - 1:
+		index += 1
+	else:
+		dialogue_box.visible = false
+		index = 0
+	if Globle.traveler_quest_complete:
+		pass
+		print("quest complete code running")
+
+	label.text = current_character_dialogue[index]
 	
+func change_text_wanderer():
 	if index < len(current_character_dialogue) - 1:
 		index += 1
 	else: 

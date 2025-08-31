@@ -13,6 +13,7 @@ signal healthChanged
 @onready var effects = $Effects
 @onready var hurtTimer = $hurtTimer
 @onready var dialogue_box = $dialogue_box
+@onready var held_item = $held_item
 
 # Get the gravity from the project settings to be synced with RigidBody nodes
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -34,15 +35,24 @@ func _physics_process(_delta):
 		# Play aminations
 		if vertical_direction == 0 and horizontal_direction == 0:
 			animated_sprite_2d.play("idle")
+			held_item.position = Vector2(11, 4)
+			held_item.flip_h = false
 		else:
 			if horizontal_direction > 0:
 				animated_sprite_2d.play("walk_right")
+				held_item.flip_h = false
+				held_item.position = Vector2(4, 3)
 			elif horizontal_direction < 0:
 				animated_sprite_2d.play("walk_left")
+				held_item.position = Vector2(-4, 3)
+				held_item.flip_h = true
 			elif vertical_direction > 0:
 				animated_sprite_2d.play("walk_down")
+				held_item.flip_h = false
 			elif vertical_direction < 0:
 				animated_sprite_2d.play("walk_up")
+				held_item.flip_h = true
+				held_item.position = Vector2(-11, 4)
 		
 		# Move player
 		if horizontal_direction:
@@ -86,10 +96,12 @@ func increase_health(amount):
 	print("increase health")
 
 func use_item(item: InventoryItem) -> void:
+	if not item.can_be_used(self): return
 	item.use(self)
-	print("item.use(self)")
+	inventory.remove_last_used_item()
 
 func attack_enemy(amount):
+	print("attack")
 	Globle.attack_damage = amount
 
 func die():

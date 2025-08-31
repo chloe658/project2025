@@ -7,5 +7,5 @@
 script = ExtResource("1_1msik")
 name = "Crystalfly Wing"
 texture = ExtResource("2_xbxkk")
-maxAmountPrStack = 5
+maxAmountPrStack = 13
 metadata/_custom_type_script = "uid://cgfq11jofeno6"

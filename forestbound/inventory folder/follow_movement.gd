@@ -32,7 +32,7 @@ func update_velocity():
 	var new_velocity = direction.normalized() * speed
 	parent.velocity = new_velocity
 
-func _physics_process(delta) -> void:
+func _physics_process(_delta) -> void:
 	update_velocity()
 	parent.move_and_slide()
 	updateAnimation()

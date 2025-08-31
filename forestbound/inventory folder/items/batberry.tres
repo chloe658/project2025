@@ -8,5 +8,5 @@ script = ExtResource("1_0ar6o")
 health_increase = 20
 name = "Batberry"
 texture = ExtResource("2_kuqnm")
-maxAmountPrStack = 5
+maxAmountPrStack = 13
 metadata/_custom_type_script = "uid://cgfq11jofeno6"

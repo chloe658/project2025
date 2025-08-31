@@ -7,9 +7,11 @@ class_name Enemy
 @onready var animations = $AnimatedSprite2D
 @onready var player = $"../CharacterBody2D"
 @onready var health_bar = $health_bar
+@onready var effects = $Effects
+@onready var hurtTimer = $hurtTimer
 
 var max_health = 100
-var health = 100
+var health = 50
 var player_in_range = false
 
 var startPosition
@@ -19,6 +21,7 @@ var endPosition
 func _ready():
 	startPosition = position
 	endPosition = startPosition + Vector2(3*16, 0)
+	effects.play("RESET")
 
 
 func _process(_delta) -> void:
@@ -29,17 +32,22 @@ func _process(_delta) -> void:
 
 
 func take_damage(damage):
+	effects.play("hurtBlink")
 	health -= int(damage)
-	health_bar.value = health * 100 / max_health
+	print(health)
+	health_bar.value = float(health) * 100 / max_health
 	if health < 1:
 		# play death animation
 		queue_free()
 		$FollowMovementC.disable()
+	await hurtTimer.timeout
+	effects.play("RESET")
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	if body.name == "CharacterBody2D":
+	if body is Player:
 		player_in_range = true
+		print("in range")
 
 
 func _on_hitbox_body_exited(body: Node2D) -> void:

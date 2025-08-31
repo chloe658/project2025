@@ -11,6 +11,7 @@ var currently_selected: int = 0
 func _ready():
 	update()
 	inventory.updated.connect(update)
+		
 
 func update() -> void:
 	for i in range(slots.size()):
@@ -22,7 +23,7 @@ func update() -> void:
 func move_selector() -> void:
 	currently_selected = (currently_selected + 1) % slots.size()
 	selector.global_position = slots[currently_selected].global_position
-	held_item.update()
+	held_item.update(currently_selected)
 	update()
 
 

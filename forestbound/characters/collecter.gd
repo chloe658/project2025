@@ -42,17 +42,12 @@ func on_player_exited(body: Node2D) -> void:
 		player_near = false
 
 func _process(_delta):
+	self.play("idle")
 	if Globle.next_dialogue == true and player_near: # controls index
 		Globle.next_dialogue = false
 		if index == 5 and !Globle.collector_quest_complete:
 			inventory.insert(load("res://inventory folder/items/willow_wisps.tres"))
 			Globle.collector_quest_complete = true
-			print("collector_quest_complete 1")
-		
-		if index == 7:
-			Globle.collector_quest_complete = true
-			print("collector_quest_complete 2")
-			print("quest complete")
 		if index == len(dialogue_collecter) - 1:
 			dialogue_box.visible = false
 		if index > 2 and index < 6:
@@ -78,7 +73,6 @@ func collect_item():
 			item_index += 1
 			return
 		quest_complete = true
-		print(index)
 	else:
 		current_quest_complete = false
 		dialogue_box.visible = false

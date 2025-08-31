@@ -1,13 +1,9 @@
-extends Sprite2D
+extends Area2D
 
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_body_entered(body: Node2D) -> void:
 	if body.name == "CharacterBody2D":
-		visible = true
-		$Timer.start()
+		call_deferred("change_scene")
 
-func _on_tree_exited() -> void:
-	visible = false
-
-func _on_timer_timeout() -> void:
+func change_scene():
 	get_tree().change_scene_to_file("res://scenes/house_interior.tscn")

@@ -7,5 +7,5 @@
 script = ExtResource("1_p7pm7")
 name = "Ghostmint Leaf"
 texture = ExtResource("2_na8oe")
-maxAmountPrStack = 5
+maxAmountPrStack = 13
 metadata/_custom_type_script = "uid://cgfq11jofeno6"

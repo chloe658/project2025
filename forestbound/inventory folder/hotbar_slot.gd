@@ -14,7 +14,7 @@ func update_to_slot(slot: InventorySlot) -> void:
 		return
 	item_stack_gui.inventorySlot = slot
 	item_stack_gui.update()
-	item_stack_gui.visible = true
+	item_stack_gui.visible = true 
 	
 
 func get_held_slot(_slot: InventorySlot) -> void:

@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=28 format=3 uid="uid://d03lbrlwq8scg"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=29 format=3 uid="uid://d03lbrlwq8scg"]
 
 [ext_resource type="Script" uid="uid://clkjxmu4dfx3b" path="res://inventory folder/inventorySlot.gd" id="2_dvf1x"]
+[ext_resource type="Resource" uid="uid://bip5yies4hhqe" path="res://inventory folder/items/ghostmint_leaf.tres" id="4_8ycme"]
 [ext_resource type="Resource" uid="uid://jybt7af0gjn0" path="res://inventory folder/items/sword.tres" id="4_m46fv"]
 [ext_resource type="Script" uid="uid://ded4sx2ieevpf" path="res://inventory folder/inventory.gd" id="5_7ljbs"]
 
@@ -22,7 +23,8 @@ metadata/_custom_type_script = "uid://clkjxmu4dfx3b"
 
 [sub_resource type="Resource" id="Resource_26qei"]
 script = ExtResource("2_dvf1x")
-amount = 0
+item = ExtResource("4_8ycme")
+amount = 1
 metadata/_custom_type_script = "uid://clkjxmu4dfx3b"
 
 [sub_resource type="Resource" id="Resource_eh41o"]
