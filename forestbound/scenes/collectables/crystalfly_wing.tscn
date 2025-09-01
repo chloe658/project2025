@@ -8,6 +8,7 @@
 radius = 8.0
 
 [node name="crystalfly_wing" type="Area2D"]
+z_index = 2
 script = ExtResource("1_hrc6t")
 itemRes = ExtResource("2_hrc6t")
 

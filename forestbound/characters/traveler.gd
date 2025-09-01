@@ -8,15 +8,13 @@ var player_near = false
 @onready var inventory: Inventory = preload("res://inventory folder/player_inventory.tres")
 
 var index = 0
-const BRIBE = 1499
+const BRIBE = 1000
 var paid_traveler = false
 var final_dialogue_bool = false
 
 var current_character_dialogue = []
 @onready var character_name = self.name
 
-#problem: after quest complete and dialogue is ended, coin dialogue plays
-#problem: if globle quest complete first dialogue + coin dialogue plays
 
 var dialogue_traveler = [
 	"Traveler: Heh… You’ve got that curious look in your eyes. Want to know the secrets of this town, do ya?",
@@ -102,10 +100,6 @@ func get_current_character():
 		else:
 			current_character_dialogue = final_dialogue
 			final_dialogue_bool = true
-	else:
-		# So that game does not crash and problem can be found.
-		print("Character name not found")
-		print(character_name)
 
 func change_text_traveler():
 	if !Globle.traveler_quest_complete:
@@ -123,7 +117,6 @@ func change_text_traveler():
 		if index == 3 and paid_traveler:
 			inventory.insert(load("res://inventory folder/items/willow_wisps.tres"))
 			Globle.traveler_quest_complete = true
-			print("quest complete")
 	if index < len(current_character_dialogue) - 1:
 		index += 1
 	else:
@@ -131,7 +124,6 @@ func change_text_traveler():
 		index = 0
 	if Globle.traveler_quest_complete:
 		pass
-		print("quest complete code running")
 
 	label.text = current_character_dialogue[index]
 	

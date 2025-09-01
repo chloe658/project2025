@@ -17,6 +17,7 @@ fill = 1
 fill_from = Vector2(0.511111, 0.502222)
 
 [node name="willow_wisps" type="Area2D"]
+z_index = 2
 script = ExtResource("1_0xhlf")
 itemRes = ExtResource("2_22l3c")
 

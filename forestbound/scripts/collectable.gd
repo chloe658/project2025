@@ -14,6 +14,7 @@ func _process(_delta):
 
 
 func collect(inventory: Inventory):
+	if !visible: return
 	if self.name == "willow_wisps":
 		emit_signal("collected")
 	

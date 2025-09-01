@@ -27,7 +27,21 @@ func _on_ready() -> void:
 	effects.play("RESET")
 
 func _physics_process(_delta):
-	if inventory_gui.visible == false:
+	"""
+	if !Globle.held_item == "sword":
+		held_item.visible = false
+	else: 
+		held_item.visible == true
+	"""
+	
+	if Input.is_action_just_pressed("escape"):
+		if inventory_gui.visible == true:
+			inventory_gui.visible = false
+		if get_tree().current_scene.name == "house_interior":
+			$shopMenu.visible = false
+	if inventory_gui.visible == false and dialogue_box.visible == false:
+		if get_tree().current_scene.name == "house_interior":
+			if $shopMenu.visible == true: return
 		# Get the input direction and handle the movement/deceleration.
 		var horizontal_direction = Input.get_axis("move_left", "move_right")
 		var vertical_direction = Input.get_axis("move_up", "move_down")
@@ -93,7 +107,6 @@ func _on_area_2d_area_entered(area):
 
 func increase_health(amount):
 	Globle.increase_health(amount)
-	print("increase health")
 
 func use_item(item: InventoryItem) -> void:
 	if not item.can_be_used(self): return
@@ -101,7 +114,6 @@ func use_item(item: InventoryItem) -> void:
 	inventory.remove_last_used_item()
 
 func attack_enemy(amount):
-	print("attack")
 	Globle.attack_damage = amount
 
 func die():

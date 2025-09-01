@@ -8,6 +8,7 @@
 radius = 8.0
 
 [node name="ghostmint_leaf" type="Area2D"]
+z_index = 2
 script = ExtResource("1_xhhf0")
 itemRes = ExtResource("2_xhhf0")
 

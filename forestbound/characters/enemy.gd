@@ -34,7 +34,6 @@ func _process(_delta) -> void:
 func take_damage(damage):
 	effects.play("hurtBlink")
 	health -= int(damage)
-	print(health)
 	health_bar.value = float(health) * 100 / max_health
 	if health < 1:
 		# play death animation
@@ -47,7 +46,6 @@ func take_damage(damage):
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body is Player:
 		player_in_range = true
-		print("in range")
 
 
 func _on_hitbox_body_exited(body: Node2D) -> void:

@@ -2,7 +2,7 @@ extends Node
 
 var CoinCount = 1500
 var maxHealth = 100
-var currentHealth = 80
+var currentHealth = 100
 var attack_damage = 1
 var held_item = ""
 var transition

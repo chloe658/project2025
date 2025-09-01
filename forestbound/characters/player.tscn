@@ -247,6 +247,8 @@ _data = {
 }
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+z_index = 1
+y_sort_enabled = true
 script = ExtResource("1_3vyb7")
 inventory = ExtResource("2_g2els")
 

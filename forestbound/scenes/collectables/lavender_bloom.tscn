@@ -8,6 +8,7 @@
 radius = 8.0
 
 [node name="lavender_bloom" type="Area2D"]
+z_index = 2
 script = ExtResource("1_avd5l")
 itemRes = ExtResource("2_u0gb7")
 

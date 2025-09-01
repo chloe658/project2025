@@ -111,10 +111,13 @@ texture = ExtResource("2_6po8i")
 8:0/0 = 0
 0:4/size_in_atlas = Vector2i(2, 4)
 0:4/0 = 0
+0:4/0/y_sort_origin = 20
 2:4/size_in_atlas = Vector2i(2, 2)
 2:4/0 = 0
+2:4/0/y_sort_origin = 10
 2:7/size_in_atlas = Vector2i(2, 3)
 2:7/0 = 0
+2:7/0/y_sort_origin = 20
 0:8/size_in_atlas = Vector2i(2, 2)
 0:8/0 = 0
 0:10/size_in_atlas = Vector2i(2, 2)
@@ -129,12 +132,16 @@ texture = ExtResource("2_6po8i")
 8:9/0 = 0
 4:7/size_in_atlas = Vector2i(4, 3)
 4:7/0 = 0
+4:7/0/y_sort_origin = 20
 4:4/size_in_atlas = Vector2i(2, 2)
 4:4/0 = 0
+4:4/0/y_sort_origin = 8
 6:4/size_in_atlas = Vector2i(2, 2)
 6:4/0 = 0
+6:4/0/y_sort_origin = 15
 8:5/size_in_atlas = Vector2i(4, 3)
 8:5/0 = 0
+8:5/0/y_sort_origin = 20
 0:23/size_in_atlas = Vector2i(1, 2)
 0:23/0 = 0
 1:23/size_in_atlas = Vector2i(1, 2)
@@ -238,8 +245,10 @@ tile_map_data = PackedByteArray("AAACAAAAAAAKAAAAAAACAAIAAAAKAAAAAAACAAQAAAAQAAI
 tile_set = SubResource("TileSet_uvxv6")
 
 [node name="furniture" type="TileMapLayer" parent="."]
+z_index = 1
+y_sort_enabled = true
 position = Vector2(36, -134)
-tile_map_data = PackedByteArray("AAAAAAUAAQAEAAcAAAD6/wgAAQAGABEAAAD6/wkAAQAGABIAAAD6/woAAQAGABMAAAD6/wsAAQAGABQAAAD6/wwAAQAGABUAAAD7/wgAAQAHABEAAAD7/wkAAQAHABIAAAD7/woAAQAHABMAAAD7/wsAAQAHABQAAAD7/wwAAQAHABUAAAD8/wgAAQAIABEAAAD8/wkAAQAIABIAAAD8/woAAQAIABMAAAD8/wsAAQAIABQAAAD8/wwAAQAIABUAAAD9/wgAAQAJABEAAAD9/wkAAQAJABIAAAD9/woAAQAJABMAAAD9/wsAAQAJABQAAAD9/wwAAQAJABUAAAD+/wgAAQAKABEAAAD+/wkAAQAKABIAAAD+/woAAQAKABMAAAD+/wsAAQAKABQAAAD+/wwAAQAKABUAAAD//wgAAQALABEAAAD//wkAAQALABIAAAD//woAAQALABMAAAD//wsAAQALABQAAAD//wwAAQALABUAAAABAAkAAQAGAAIAAAABAAsAAQAGAAQAAAA=")
+tile_map_data = PackedByteArray("AAD6/wgAAQAGABEAAAD6/wkAAQAGABIAAAD6/woAAQAGABMAAAD6/wsAAQAGABQAAAD6/wwAAQAGABUAAAD7/wgAAQAHABEAAAD7/wkAAQAHABIAAAD7/woAAQAHABMAAAD7/wsAAQAHABQAAAD7/wwAAQAHABUAAAD8/wgAAQAIABEAAAD8/wkAAQAIABIAAAD8/woAAQAIABMAAAD8/wsAAQAIABQAAAD8/wwAAQAIABUAAAD9/wgAAQAJABEAAAD9/wkAAQAJABIAAAD9/woAAQAJABMAAAD9/wsAAQAJABQAAAD9/wwAAQAJABUAAAD+/wgAAQAKABEAAAD+/wkAAQAKABIAAAD+/woAAQAKABMAAAD+/wsAAQAKABQAAAD+/wwAAQAKABUAAAD//wgAAQALABEAAAD//wkAAQALABIAAAD//woAAQALABMAAAD//wsAAQALABQAAAD//wwAAQALABUAAAABAAkAAQAGAAIAAAABAAsAAQAGAAQAAAAAAAUAAQAAAAQAAAA=")
 tile_set = SubResource("TileSet_uggl2")
 
 [node name="NPC1" parent="." instance=ExtResource("5_uvxv6")]
@@ -250,6 +259,7 @@ position = Vector2(24, 66)
 
 [node name="shopMenu" parent="CharacterBody2D" instance=ExtResource("5_il3h6")]
 visible = false
+z_index = 4
 offset_left = -65.0
 offset_top = -49.0
 offset_right = 65.0

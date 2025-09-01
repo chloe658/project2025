@@ -16,13 +16,12 @@ func update_to_slot(slot: InventorySlot) -> void:
 	item_stack_gui.inventorySlot = slot
 	item_stack_gui.update()
 	item_stack_gui.visible = true 
-	
+
 
 func get_held_slot(_slot: InventorySlot) -> void:
 	var held_item_slot: InventorySlot = inventory.slots[hotbar.currently_selected]
 	if held_item_slot.item:
 		Globle.held_item = held_item_slot.item.name
-		print(Globle.held_item)
 		held_item_updated.emit()
 	else:
 		Globle.held_item = ""

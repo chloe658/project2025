@@ -7,5 +7,4 @@ func _ready():
 	update()
 
 func update():
-	#print("value changed")
 	value = Globle.currentHealth * 100 / player.maxHealth

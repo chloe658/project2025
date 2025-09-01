@@ -767,21 +767,21 @@ position = Vector2(367, 72)
 sprite_frames = SubResource("SpriteFrames_rtjvq")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.218566
+frame_progress = 0.481517
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="wisps"]
 position = Vector2(320, 93)
 sprite_frames = SubResource("SpriteFrames_rtjvq")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.423766
+frame_progress = 0.686717
 
 [node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="wisps"]
 position = Vector2(417, 92)
 sprite_frames = SubResource("SpriteFrames_rtjvq")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.597064
+frame_progress = 0.860012
 
 [node name="wisps_jar" type="AnimatedSprite2D" parent="."]
 position = Vector2(368, 142)

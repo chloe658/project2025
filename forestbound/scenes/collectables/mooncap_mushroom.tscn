@@ -8,6 +8,7 @@
 radius = 8.0
 
 [node name="mooncap_mushroom" type="Area2D"]
+z_index = 2
 script = ExtResource("1_llfh3")
 itemRes = ExtResource("2_g3r17")
 
