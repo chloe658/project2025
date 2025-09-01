@@ -8,12 +8,12 @@ var endPosition
 
 func _ready():
 	var endPoint
-	if name == "player":
-		endPoint = Vector2(10*16, 0)
-	if name == "elder":
+	if get_parent().name == "closing_scene1":
+		endPoint = Vector2(0, 0)
+	if get_parent().name == "opening_scene1":
 		endPoint = Vector2(0, 5*16)
 	startPosition = position
-	endPosition = startPosition + endPoint #move 10 pixels to the right
+	endPosition = startPosition + endPoint
 
 func updateVelocity():
 	var moveDirection = endPosition - position
@@ -24,12 +24,6 @@ func updateVelocity():
 
 func updateAnimation():
 	var animationString = "idle"
-	"""
-	if velocity.x > 0:
-		animationString = "walk_right"
-	elif velocity.x < 0:
-		animationString = "walk_left"
-	"""
 	if velocity.y < 0:
 		animationString = "walk_up"
 	elif velocity.y > 0:

@@ -18,17 +18,33 @@ var dialogue_elder = [
 	"Ill take you to the village.",
 	""
 	]
+var dialogue_ending = [
+	"The End.",
+	""
+]
 
 func change_text():
-	if index < len(dialogue_elder) - 2:
-		index += 1
-		label.text = dialogue_elder[index]
-	else:
-		trigger_dialogue = false
-		dialogue_complete = true
-		dialogue_box.visible = false
-		$Efffects.play("fade")
-		$Timer.start()
+	var current
+	if get_tree().current_scene.name == "opening_scene1":
+		if index < len(dialogue_elder) - 2:
+			index += 1
+			label.text = dialogue_elder[index]
+		else:
+			trigger_dialogue = false
+			dialogue_complete = true
+			dialogue_box.visible = false
+			$Efffects.play("fade")
+			$Timer.start()
+	if get_tree().current_scene.name == "closing_scene1":
+		if index < len(dialogue_ending) - 2:
+			index += 1
+			label.text = dialogue_ending[index]
+		else:
+			trigger_dialogue = false
+			dialogue_complete = true
+			dialogue_box.visible = false
+			$Efffects.play("fade")
+			$Timer.start()
 
 func _on_texture_button_pressed() -> void:
 	change_text()

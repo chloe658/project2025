@@ -6,10 +6,6 @@ var held_item_texture
 
 func on_ready():
 	var slots = hotbar.slots
-	for slot in slots:
-		pass
-		#print(slot.get_child("Panel").get_child("item"))
-		#print(slot.item.name)
 
 func update(index):
 	"""
