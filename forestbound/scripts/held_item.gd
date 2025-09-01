@@ -12,9 +12,13 @@ func on_ready():
 		#print(slot.item.name)
 
 func update(index):
-	# atm does not update uses or moves an item
-	#print("updated")
-	print(Globle.held_item)
+	"""
+	if Globle.held_item != "Sword":
+		visible = false
+	else:
+		visible = true
+	"""
+	#update happens one index behind
 	var slot = hotbar.slots[index]
 	held_item_texture = slot.get_node("CenterContainer/Panel/item").texture
 	texture = held_item_texture

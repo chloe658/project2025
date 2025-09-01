@@ -3,6 +3,7 @@ extends Button
 @onready var background_sprite: Sprite2D = $background
 @onready var item_stack_gui: ItemStackGui = $CenterContainer/Panel
 @onready var hotbar = $"../../.."
+signal held_item_updated
 
 
 @onready var inventory: Inventory = preload("res://inventory folder/player_inventory.tres")
@@ -21,5 +22,7 @@ func get_held_slot(_slot: InventorySlot) -> void:
 	var held_item_slot: InventorySlot = inventory.slots[hotbar.currently_selected]
 	if held_item_slot.item:
 		Globle.held_item = held_item_slot.item.name
+		print(Globle.held_item)
+		held_item_updated.emit()
 	else:
 		Globle.held_item = ""

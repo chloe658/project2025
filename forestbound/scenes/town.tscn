@@ -329,7 +329,7 @@ position = Vector2(417, -120)
 scale = Vector2(1, 0.978341)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_x5mr4")]
-position = Vector2(17, -239)
+position = Vector2(413, -58)
 
 [node name="dungeon_respawn" type="Marker2D" parent="."]
 position = Vector2(28, -273)

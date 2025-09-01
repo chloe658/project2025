@@ -1,0 +1,43 @@
+extends Node2D
+
+@onready var player = $player
+@onready var elder = $elder
+@onready var dialogue_box = $dialogue_box
+@onready var label = $dialogue_box/Label
+
+var trigger_dialogue = false
+var dialogue_complete = false
+var index = 0
+
+
+var dialogue_elder = [
+	"Who goes there? ...Ah—wait. It's you.",
+	"We’ve been expecting you.",
+	"For a moment, I thought you were… someone else. Like the last time.",
+	"Those poor souls still linger in the wisps. Be glad you are not among them… yet.",
+	"Ill take you to the village.",
+	""
+	]
+
+func change_text():
+	if index < len(dialogue_elder) - 2:
+		index += 1
+		label.text = dialogue_elder[index]
+	else:
+		trigger_dialogue = false
+		dialogue_complete = true
+		dialogue_box.visible = false
+		$Efffects.play("fade")
+		$Timer.start()
+
+func _on_texture_button_pressed() -> void:
+	change_text()
+
+
+func _process(_delta):
+	if trigger_dialogue == true:
+		dialogue_box.visible = true
+
+
+func _on_timer_timeout() -> void:
+	get_tree().change_scene_to_file("res://scenes/town.tscn")
