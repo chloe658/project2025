@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=4 uid="uid://de8l23ii7y0qa"]
+[gd_scene load_steps=74 format=4 uid="uid://de8l23ii7y0qa"]
 
 [ext_resource type="Script" uid="uid://phj8hae15q4q" path="res://cutscenes/closing_scene_1.gd" id="1_lvvt2"]
 [ext_resource type="Texture2D" uid="uid://dn880g012irhh" path="res://assets/Cutscenes/dark_grass.png" id="2_lvvt2"]
@@ -659,6 +659,15 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_0xhlf"]
+offsets = PackedFloat32Array(0.136646, 0.565217)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lvvt2"]
+gradient = SubResource("Gradient_0xhlf")
+fill = 1
+fill_from = Vector2(0.511111, 0.502222)
+
 [node name="closing_scene1" type="Node2D"]
 script = ExtResource("1_lvvt2")
 
@@ -758,26 +767,32 @@ position = Vector2(367, 72)
 sprite_frames = SubResource("SpriteFrames_rtjvq")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.126301
+frame_progress = 0.218566
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="wisps"]
 position = Vector2(320, 93)
 sprite_frames = SubResource("SpriteFrames_rtjvq")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.331499
+frame_progress = 0.423766
 
 [node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="wisps"]
 position = Vector2(417, 92)
 sprite_frames = SubResource("SpriteFrames_rtjvq")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.5048
+frame_progress = 0.597064
 
 [node name="wisps_jar" type="AnimatedSprite2D" parent="."]
 position = Vector2(368, 142)
 sprite_frames = SubResource("SpriteFrames_k05v0")
 animation = &"release_wisps"
+
+[node name="PointLight2D" type="PointLight2D" parent="wisps_jar"]
+position = Vector2(-1, 7)
+scale = Vector2(1.39062, 1.32813)
+color = Color(0.475829, 0.346756, 0, 1)
+texture = SubResource("GradientTexture2D_lvvt2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(368, 128)

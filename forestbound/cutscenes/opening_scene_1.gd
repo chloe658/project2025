@@ -24,7 +24,6 @@ var dialogue_ending = [
 ]
 
 func change_text():
-	var current
 	if get_tree().current_scene.name == "opening_scene1":
 		if index < len(dialogue_elder) - 2:
 			index += 1

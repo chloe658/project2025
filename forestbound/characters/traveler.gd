@@ -10,6 +10,7 @@ var player_near = false
 var index = 0
 const BRIBE = 1499
 var paid_traveler = false
+var final_dialogue_bool = false
 
 var current_character_dialogue = []
 @onready var character_name = self.name
@@ -43,6 +44,16 @@ var dialogue_wanderer = [
 	"Wanderer: But mark me—gold weighs nothing if you don’t live to carry it out.",
 	""
 ]
+var dialogue_elder = [
+	"Elder: This town is old… older than the stones beneath our feet. Whispers cling to its corners, hidden truths waiting for brave ears.",
+	"Elder: The villagers guard their truths like locked chests. Some with shame, others with fear.",
+	"Elder: Go. Speak with them. Piece them together, and you will find the secret that binds this place.",
+	""
+]
+
+var final_dialogue = [
+	"bye",
+]
 
 
 func on_player_near(body: Node2D) -> void:
@@ -70,8 +81,8 @@ func _process(_delta):
 		get_current_character()
 		if character_name == "traveler":
 			change_text_traveler()
-		if character_name == "wanderer":
-			change_text_wanderer()
+		else:
+			change_text_other()
 		Globle.next_dialogue = false
 		if label.text == "":
 			# or label.text == "empty":
@@ -85,6 +96,12 @@ func get_current_character():
 		current_character_dialogue = dialogue_traveler
 	elif character_name == "wanderer":
 		current_character_dialogue = dialogue_wanderer
+	elif character_name == "elder":
+		if Globle.explore_dungeon == false or Globle.collector_quest_complete == false or Globle.traveler_quest_complete == false:
+			current_character_dialogue = dialogue_elder
+		else:
+			current_character_dialogue = final_dialogue
+			final_dialogue_bool = true
 	else:
 		# So that game does not crash and problem can be found.
 		print("Character name not found")
@@ -118,10 +135,13 @@ func change_text_traveler():
 
 	label.text = current_character_dialogue[index]
 	
-func change_text_wanderer():
+func change_text_other():
 	if index < len(current_character_dialogue) - 1:
 		index += 1
-	else: 
-		dialogue_box.visible = false
-		index = 0
+	else:
+		if !final_dialogue:
+			dialogue_box.visible = false
+			index = 0
+		else:
+			get_tree().change_scene_to_file("res://cutscenes/closing_scene_1.tscn")
 	label.text = current_character_dialogue[index]

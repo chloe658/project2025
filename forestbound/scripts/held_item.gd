@@ -2,10 +2,6 @@ extends Sprite2D
 
 @onready var hotbar = $"../hotbar"
 var held_item_texture
-#var index = hotbar.currently_selected
-
-func on_ready():
-	var slots = hotbar.slots
 
 func update(index):
 	"""

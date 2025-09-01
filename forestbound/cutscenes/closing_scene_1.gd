@@ -10,15 +10,14 @@ func _ready():
 
 
 func _on_jar_timer_timeout() -> void:
+	$wisps_jar/PointLight2D.queue_free()
 	wisps.visible = true
 	$pause_timer.start()
-	print("cooldown started")
 
 
 func _on_pause_timer_timeout() -> void:
 	$Efffects.play("fade")
 	$effects_timer.start()
-	print("effect timer started")
 
 
 func _on_effects_timer_timeout() -> void:
