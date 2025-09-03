@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=4 uid="uid://de8l23ii7y0qa"]
+[gd_scene load_steps=77 format=4 uid="uid://de8l23ii7y0qa"]
 
 [ext_resource type="Script" uid="uid://phj8hae15q4q" path="res://cutscenes/closing_scene_1.gd" id="1_lvvt2"]
 [ext_resource type="Texture2D" uid="uid://dn880g012irhh" path="res://assets/Cutscenes/dark_grass.png" id="2_lvvt2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ca0cptirgc1en" path="res://assets/Cutscenes/dark_plants.png" id="3_bwcfi"]
 [ext_resource type="Texture2D" uid="uid://csbnsj85o6jbh" path="res://assets/Exterior/plant 2.png" id="4_7ie0s"]
 [ext_resource type="Texture2D" uid="uid://bx5oytixf2bcj" path="res://assets/UI/quest_UI_btn.png" id="6_7ie0s"]
+[ext_resource type="Script" uid="uid://bie0mk01l6wq" path="res://cutscenes/cutscene_player.gd" id="6_rtjvq"]
 [ext_resource type="Texture2D" uid="uid://cgjvrpn4l5xm6" path="res://assets/Characters/npc5 spritesheet.png" id="7_7nx8p"]
 [ext_resource type="FontFile" uid="uid://eec8xja2jhxc" path="res://assets/UI/font.ttf" id="8_rtjvq"]
 [ext_resource type="Texture2D" uid="uid://b8vbeuhdlxurv" path="res://assets/UI/shop_menu_button.png" id="8_tlk25"]
@@ -699,6 +700,7 @@ color = Color(0, 0, 0, 0)
 
 [node name="player" type="CharacterBody2D" parent="."]
 position = Vector2(107, 33)
+script = ExtResource("6_rtjvq")
 
 [node name="PointLight2D" type="PointLight2D" parent="player"]
 visible = false

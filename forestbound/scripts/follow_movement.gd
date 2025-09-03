@@ -1,12 +1,6 @@
+"""The follow component script is reusuable for enemies or similar."""
+
 class_name FollowMovementC extends Node
-
-#https://www.youtube.com/watch?v=kNFd6-CfQjo 15:30 tutorial
-
-#enemyn will get stuck on walls.
-# 1. when following the player, after a time limit or not being in the players area it will return
-# 2. if the enemny is not on the players screen, teleport it back to the start position.
-# 3. if enemn is out of sight but start posotion isnt, using visibility notifier to only tp when not visible.
-# 4. pathfinding with markers (advanced)
 
 @export var speed = 20
 @export var overshoot_limit: int = 2

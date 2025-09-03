@@ -23,8 +23,9 @@ func updateVelocity():
 	if moveDirection.length() < limit:
 		position = endPosition
 		moveDirection = Vector2(0, 0)
-		if opening_scene.dialogue_complete == false: #only make box visible the first time
-			opening_scene.trigger_dialogue = true
+		if get_parent().name == "opening_scene1":
+			if opening_scene.dialogue_complete == false: #only make box visible the first time
+				opening_scene.trigger_dialogue = true
 	velocity = moveDirection.normalized() * speed
 
 func updateAnimation():

@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://c0k2dncia5tfg" path="res://cutscenes/opening_scene_1.gd" id="1_imtac"]
 [ext_resource type="Texture2D" uid="uid://ca0cptirgc1en" path="res://assets/Cutscenes/dark_plants.png" id="2_imtac"]
 [ext_resource type="Texture2D" uid="uid://csbnsj85o6jbh" path="res://assets/Exterior/plant 2.png" id="3_7rbpx"]
-[ext_resource type="Script" uid="uid://bie0mk01l6wq" path="res://cutscenes/player.gd" id="5_xmtfc"]
+[ext_resource type="Script" uid="uid://bie0mk01l6wq" path="res://cutscenes/cutscene_player.gd" id="5_xmtfc"]
 [ext_resource type="Texture2D" uid="uid://b8vbeuhdlxurv" path="res://assets/UI/shop_menu_button.png" id="6_ap74f"]
 [ext_resource type="Script" uid="uid://w7k1v8x6u5l8" path="res://cutscenes/elder.gd" id="6_kwc5i"]
 [ext_resource type="Texture2D" uid="uid://cgjvrpn4l5xm6" path="res://assets/Characters/npc5 spritesheet.png" id="6_xmtfc"]

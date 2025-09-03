@@ -1,3 +1,4 @@
+"""The globle script holds varibles for quest and other features that should only be repeated once or need to be used throughout the project."""
 extends Node
 
 var CoinCount = 1500
@@ -23,6 +24,7 @@ var traveler_quest_complete = false # "Find Secret"
 var free_curse = false
 
 var finished_first_cutscene = false
+var finished_last_cutscene = false
 
 signal healthChanged
 signal coinChanged

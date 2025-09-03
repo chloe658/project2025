@@ -7,6 +7,7 @@ var player_near = false
 @onready var label = $"../CharacterBody2D/dialogue_box/Label"
 @onready var inventory: Inventory = preload("res://inventory folder/player_inventory.tres")
 @onready var hotbar = $"../CharacterBody2D/hotbar"
+@onready var InventoryGui = $"../CharacterBody2D/InventoryGui"
 
 
 var index = 0
@@ -68,6 +69,7 @@ func collect_item():
 	# will need to fix this
 	if Globle.held_item == items[item_index]:
 		current_quest_complete = true
+		InventoryGui.remove_all_instances_of_item(items[item_index])
 		inventory.use_item_at_index(hotbar.currently_selected)
 		index += 1 
 		if item_index < 2:

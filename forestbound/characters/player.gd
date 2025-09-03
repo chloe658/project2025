@@ -35,7 +35,6 @@ func _physics_process(_delta):
 	move_and_slide()
 	handleInput()
 	updateAnimation()
-	#handleCollision()
 	if !isHurt:
 		for enemyArea in enemyCollisions:
 			hurtByEnemy(enemyArea)
@@ -52,6 +51,7 @@ func handleInput():
 			isAttacking = false
 		else:
 			print(currently_holding)
+			#currently player is always holdig a sword.
 		
 	if Input.is_action_just_pressed("escape"):
 		if inventory_gui.visible == true:
@@ -96,19 +96,7 @@ func updateAnimation():
 			velocity.y = vertical_direction * speed
 		else:
 			velocity.y = move_toward(velocity.y, 0, speed)
-		
-	"""
-	else:
-		get_tree().paused = true
-		tutorial at ~10 minutes #1
-	"""
 
-"""
-func handleCollision():
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		var collider = collision.get_collider()
-"""
 
 func _on_area_2d_area_entered(area):
 	if area.has_method("collect"):

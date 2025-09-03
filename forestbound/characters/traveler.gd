@@ -93,7 +93,7 @@ func get_current_character():
 	elif character_name == "wanderer":
 		current_character_dialogue = dialogue_wanderer
 	elif character_name == "elder":
-		if Globle.explore_dungeon == false or Globle.collector_quest_complete == false or Globle.traveler_quest_complete == false:
+		if Globle.explore_dungeon == false or Globle.collector_quest_complete == false or Globle.traveler_quest_complete == false or Globle.finished_last_cutscene == true:
 			current_character_dialogue = dialogue_elder
 		else:
 			current_character_dialogue = final_dialogue

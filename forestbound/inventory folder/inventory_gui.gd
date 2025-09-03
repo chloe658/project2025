@@ -48,8 +48,17 @@ func update():
 		itemStackGui.update()
 
 		if Globle.free_curse == true:
-			if itemStackGui.inventorySlot.item.name == "Willow Wisps":
-				inventory.removeSlot(slots[i].itemStackGui.inventorySlot)
+			remove_all_instances_of_item("Willow Wisps")
+
+
+func remove_all_instances_of_item(item_name):
+	for i in range(min(inventory.slots.size(), slots.size())):
+		var itemStackGui: ItemStackGui = slots[i].itemStackGui
+		if itemStackGui == null: continue
+		if itemStackGui.inventorySlot and itemStackGui.inventorySlot.item.name == item_name:
+			inventory.removeSlot(slots[i].itemStackGui.inventorySlot)
+		
+	
 
 func onSlotClicked(slot):
 	if slot.isEmpty():

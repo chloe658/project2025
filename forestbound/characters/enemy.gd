@@ -40,7 +40,6 @@ func take_damage(damage):
 		queue_free()
 		$FollowMovementC.disable()
 	hurtTimer.start()
-	print(health)
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
