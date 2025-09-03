@@ -19,7 +19,9 @@ var collected_crystalfly_wing = false
 var explore_dungeon = false
 var collector_quest_complete = false # "Collect Ingredients"
 var traveler_quest_complete = false # "Find Secret"
-var free_curse = false # this is never assigned to true
+var free_curse = false
+
+var finished_first_cutscene = false
 
 signal healthChanged
 signal coinChanged

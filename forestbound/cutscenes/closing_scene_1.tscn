@@ -1,11 +1,13 @@
-[gd_scene load_steps=74 format=4 uid="uid://de8l23ii7y0qa"]
+[gd_scene load_steps=76 format=4 uid="uid://de8l23ii7y0qa"]
 
 [ext_resource type="Script" uid="uid://phj8hae15q4q" path="res://cutscenes/closing_scene_1.gd" id="1_lvvt2"]
 [ext_resource type="Texture2D" uid="uid://dn880g012irhh" path="res://assets/Cutscenes/dark_grass.png" id="2_lvvt2"]
 [ext_resource type="Texture2D" uid="uid://b6qmjrld1gadb" path="res://assets/Cutscenes/gravestones.png" id="3_7yecr"]
 [ext_resource type="Texture2D" uid="uid://ca0cptirgc1en" path="res://assets/Cutscenes/dark_plants.png" id="3_bwcfi"]
 [ext_resource type="Texture2D" uid="uid://csbnsj85o6jbh" path="res://assets/Exterior/plant 2.png" id="4_7ie0s"]
+[ext_resource type="Texture2D" uid="uid://bx5oytixf2bcj" path="res://assets/UI/quest_UI_btn.png" id="6_7ie0s"]
 [ext_resource type="Texture2D" uid="uid://cgjvrpn4l5xm6" path="res://assets/Characters/npc5 spritesheet.png" id="7_7nx8p"]
+[ext_resource type="FontFile" uid="uid://eec8xja2jhxc" path="res://assets/UI/font.ttf" id="8_rtjvq"]
 [ext_resource type="Texture2D" uid="uid://b8vbeuhdlxurv" path="res://assets/UI/shop_menu_button.png" id="8_tlk25"]
 [ext_resource type="Texture2D" uid="uid://c3unpobjmixoy" path="res://assets/Cutscenes/wisp_sprite.png" id="9_gqr42"]
 [ext_resource type="FontFile" uid="uid://51sh8vau5yw2" path="res://assets/UI/6px-normal.ttf" id="9_oepfs"]
@@ -688,6 +690,13 @@ tile_set = SubResource("TileSet_gqr42")
 tile_map_data = PackedByteArray("AAAIAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAARAAEAAAAAAAAAAAAMAAAAAAAFAAAAAAAWAAAAAAAFAAAAAAABAAIAAAADAAYAAAAOAAIAAAADAAYAAAATAAIAAAADAAYAAAAVAAIAAAADAAYAAAAKAAIAAAADAAYAAAADAAIAAAABAAYAAAALAAMAAAABAAwAAAAJAAQAAAAAAAwAAAAPAAQAAAAAAAwAAAA=")
 tile_set = SubResource("TileSet_07846")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 5
+offset_top = -72.0
+offset_right = 800.0
+offset_bottom = 240.0
+color = Color(0, 0, 0, 0)
+
 [node name="player" type="CharacterBody2D" parent="."]
 position = Vector2(107, 33)
 
@@ -707,6 +716,36 @@ animation = &"idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
 position = Vector2(204, 135)
 shape = SubResource("CapsuleShape2D_imtac")
+
+[node name="skip_btn" type="Button" parent="player"]
+offset_left = 360.0
+offset_top = 154.0
+offset_right = 400.0
+offset_bottom = 170.0
+focus_mode = 0
+flat = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="player/skip_btn"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 17.0
+texture = ExtResource("6_7ie0s")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="Forward" type="Sprite2D" parent="player/skip_btn"]
+position = Vector2(32, 8)
+texture = ExtResource("10_vk8d6")
+
+[node name="Label" type="Label" parent="player/skip_btn"]
+layout_mode = 0
+offset_left = 4.0
+offset_right = 24.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("8_rtjvq")
+text = "Skip"
 
 [node name="elder" type="CharacterBody2D" parent="."]
 position = Vector2(24, 140)
@@ -809,12 +848,7 @@ one_shot = true
 [node name="pause_timer" type="Timer" parent="."]
 wait_time = 5.0
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_top = -72.0
-offset_right = 800.0
-offset_bottom = 240.0
-color = Color(0, 0, 0, 0)
-
+[connection signal="pressed" from="player/skip_btn" to="." method="_on_skip_btn_pressed"]
 [connection signal="pressed" from="dialogue_box/TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="timeout" from="effects_timer" to="." method="_on_effects_timer_timeout"]
 [connection signal="timeout" from="jar_timer" to="." method="_on_jar_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=4 uid="uid://c0kig6acgqgqe"]
+[gd_scene load_steps=58 format=4 uid="uid://c0kig6acgqgqe"]
 
 [ext_resource type="Texture2D" uid="uid://dn880g012irhh" path="res://assets/Cutscenes/dark_grass.png" id="1_cbmy7"]
 [ext_resource type="Script" uid="uid://c0k2dncia5tfg" path="res://cutscenes/opening_scene_1.gd" id="1_imtac"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://cgjvrpn4l5xm6" path="res://assets/Characters/npc5 spritesheet.png" id="6_xmtfc"]
 [ext_resource type="FontFile" uid="uid://51sh8vau5yw2" path="res://assets/UI/6px-normal.ttf" id="7_07846"]
 [ext_resource type="Texture2D" uid="uid://dico6mp50cpkh" path="res://assets/UI/forward.png" id="8_qsmwq"]
+[ext_resource type="Texture2D" uid="uid://bx5oytixf2bcj" path="res://assets/UI/quest_UI_btn.png" id="11_qsmwq"]
+[ext_resource type="FontFile" uid="uid://eec8xja2jhxc" path="res://assets/UI/font.ttf" id="12_76yb0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xmtfc"]
 texture = ExtResource("1_cbmy7")
@@ -501,21 +503,6 @@ animations = [{
 "speed": 3.0
 }]
 
-[sub_resource type="Animation" id="Animation_ap74f"]
-resource_name = "fade"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_07846"]
 length = 0.001
 tracks/0/type = "value"
@@ -529,6 +516,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ap74f"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qsmwq"]
@@ -551,6 +553,13 @@ tile_set = SubResource("TileSet_4hf80")
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAIAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAARAAEAAAAAAAAAAAAMAAAAAAAFAAAAAAAWAAAAAAAFAAAAAAABAAIAAAADAAYAAAALAAMAAAADAAYAAAAOAAIAAAADAAYAAAATAAIAAAADAAYAAAAVAAIAAAADAAYAAAAKAAIAAAADAAYAAAADAAIAAAABAAYAAAA=")
 tile_set = SubResource("TileSet_07846")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 5
+offset_top = -72.0
+offset_right = 800.0
+offset_bottom = 240.0
+color = Color(0, 0, 0, 0)
 
 [node name="player" type="CharacterBody2D" parent="."]
 position = Vector2(67, 0)
@@ -579,6 +588,36 @@ animation = &"walk_right"
 position = Vector2(204, 135)
 shape = SubResource("CapsuleShape2D_imtac")
 
+[node name="skip_btn" type="Button" parent="player"]
+offset_left = 304.0
+offset_top = 190.0
+offset_right = 344.0
+offset_bottom = 206.0
+focus_mode = 0
+flat = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="player/skip_btn"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 17.0
+texture = ExtResource("11_qsmwq")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="Forward" type="Sprite2D" parent="player/skip_btn"]
+position = Vector2(32, 8)
+texture = ExtResource("8_qsmwq")
+
+[node name="Label" type="Label" parent="player/skip_btn"]
+layout_mode = 0
+offset_left = 4.0
+offset_right = 24.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_76yb0")
+text = "Skip"
+
 [node name="elder" type="CharacterBody2D" parent="."]
 position = Vector2(-1, 24)
 script = ExtResource("6_kwc5i")
@@ -592,12 +631,6 @@ frame_progress = 0.852048
 [node name="CollisionShape2D" type="CollisionShape2D" parent="elder"]
 position = Vector2(408, 27)
 shape = SubResource("CapsuleShape2D_imtac")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_top = -72.0
-offset_right = 800.0
-offset_bottom = 240.0
-color = Color(0, 0, 0, 0)
 
 [node name="Efffects" type="AnimationPlayer" parent="."]
 libraries = {
@@ -639,5 +672,6 @@ offset_right = 155.0
 offset_bottom = 46.0
 texture_normal = ExtResource("8_qsmwq")
 
+[connection signal="pressed" from="player/skip_btn" to="." method="_on_skip_btn_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="dialogue_box/TextureButton" to="." method="_on_texture_button_pressed"]

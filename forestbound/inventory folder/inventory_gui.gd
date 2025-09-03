@@ -10,7 +10,7 @@ extends Control
 @onready var options_btn = $HBoxContainer/options_button/TextureRect
 
 var itemInHand: ItemStackGui
-#var oldIndex: int = -1
+var oldIndex: int = -1
 
 func _ready():
 	connectSlots()
@@ -29,6 +29,7 @@ func connectSlots():
 		callable = callable.bind(slot)
 		slot.pressed.connect(callable)
 
+
 func update():
 	for i in range(min(inventory.slots.size(), slots.size())):
 		var inventorySlot: InventorySlot = inventory.slots[i]
@@ -45,6 +46,10 @@ func update():
 		itemStackGui.inventorySlot = inventorySlot
 		itemStackGui.update()
 
+		if Globle.free_curse == true:
+			if itemStackGui.inventorySlot.item.name == "Willow Wisps":
+				inventory.removeSlot(slots[i].itemStackGui.inventorySlot)
+
 func onSlotClicked(slot):
 	if slot.isEmpty():
 		if !itemInHand: return
@@ -59,12 +64,14 @@ func onSlotClicked(slot):
 		return
 	swapItems(slot)
 
+
 func takeItemFromSlot(slot):
 	itemInHand = slot.takeItem()
 	add_child(itemInHand)
 	updateItemInHand()
 	
-	#oldIndex = slot.index
+	oldIndex = slot.index
+
 
 func insertItemInSlot(slot):
 	var item = itemInHand
@@ -72,7 +79,8 @@ func insertItemInSlot(slot):
 	itemInHand = null
 	slot.insert(item)
 	
-	#oldIndex = -1
+	oldIndex = -1
+
 
 func swapItems(slot):
 	var tempItem = slot.takeItem()
@@ -80,6 +88,7 @@ func swapItems(slot):
 	itemInHand = tempItem
 	add_child(itemInHand)
 	updateItemInHand()
+
 
 func stackItems(slot):
 	var slotItem: ItemStackGui = slot.itemStackGui
@@ -93,7 +102,7 @@ func stackItems(slot):
 		slotItem.inventorySlot.amount = totalAmount
 		remove_child(itemInHand)
 		itemInHand = null
-		#oldIndex = -1
+		oldIndex = -1
 
 	else: # if holding greater than allowed to add, add some, holder rest
 		slotItem.inventorySlot.amount = maxAmount
@@ -102,11 +111,12 @@ func stackItems(slot):
 	slotItem.update()
 	if itemInHand: itemInHand.update()
 
+
 func updateItemInHand():
 	if !itemInHand: return
 	itemInHand.global_position = get_global_mouse_position() - itemInHand.size / 2
 
-"""
+
 func putItemBack():
 	if oldIndex > 0:
 		var emptySlots = slots.filter(func (s): return s.isEmpty)
@@ -115,14 +125,15 @@ func putItemBack():
 	
 	var targetSlot = slots[oldIndex]
 	insertItemInSlot(targetSlot)
-"""
+
 
 func _input(event):
 	updateItemInHand()
 	if event.is_action_pressed("toggle_inventory"):
-		#if itemInHand:
-			#putItemBack()
+		if itemInHand:
+			putItemBack()
 		visible = !visible
+
 
 func _on_inventory_button_pressed() -> void:
 	inv_btn.texture = load("res://assets/UI/selected_tab.png")
@@ -132,6 +143,7 @@ func _on_inventory_button_pressed() -> void:
 	$NinePatchRect_Quest.visible = false
 	$NinePatchRect_Options.visible = false
 
+
 func _on_quest_button_pressed() -> void:
 	inv_btn.texture = load("res://assets/UI/tab.png")
 	quest_btn.texture = load("res://assets/UI/selected_tab.png")
@@ -139,6 +151,7 @@ func _on_quest_button_pressed() -> void:
 	$NinePatchRect.visible = false
 	$NinePatchRect_Quest.visible = true
 	$NinePatchRect_Options.visible = false
+
 
 func _on_option_button_pressed() -> void:
 	inv_btn.texture = load("res://assets/UI/tab.png")
@@ -150,7 +163,8 @@ func _on_option_button_pressed() -> void:
 
 
 func _on_quit_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	visible = false
+
 
 func update_buttons():
 	if Globle.explore_dungeon:
@@ -161,4 +175,7 @@ func update_buttons():
 		$NinePatchRect_Quest/ScrollContainer/VBoxContainer/find_secret/TickIcon.visible = true
 	if Globle.free_curse:
 		$NinePatchRect_Quest/ScrollContainer/VBoxContainer/free_curse/TickIcon.visible = true
-		# not assigned yet
+
+
+func _on_exit_game_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

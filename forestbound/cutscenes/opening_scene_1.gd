@@ -24,16 +24,17 @@ var dialogue_ending = [
 ]
 
 func change_text():
-	if get_tree().current_scene.name == "opening_scene1":
-		if index < len(dialogue_elder) - 2:
-			index += 1
-			label.text = dialogue_elder[index]
-		else:
-			trigger_dialogue = false
-			dialogue_complete = true
-			dialogue_box.visible = false
-			$Efffects.play("fade")
-			$Timer.start()
+	#if get_tree().current_scene.name == "opening_scene1":
+	if index < len(dialogue_elder) - 2:
+		index += 1
+		label.text = dialogue_elder[index]
+	else:
+		trigger_dialogue = false
+		dialogue_complete = true
+		dialogue_box.visible = false
+		$Efffects.play("fade")
+		$Timer.start()
+	"""
 	if get_tree().current_scene.name == "closing_scene1":
 		if index < len(dialogue_ending) - 2:
 			index += 1
@@ -44,6 +45,8 @@ func change_text():
 			dialogue_box.visible = false
 			$Efffects.play("fade")
 			$Timer.start()
+	"""
+
 
 func _on_texture_button_pressed() -> void:
 	change_text()
@@ -55,4 +58,14 @@ func _process(_delta):
 
 
 func _on_timer_timeout() -> void:
+	change_scene()
+
+
+func _on_skip_btn_pressed() -> void:
+	print("skip")
+	change_scene()
+
+func change_scene():
+	if get_tree().current_scene.name == "opening_scene1":
+		Globle.finished_first_cutscene = true
 	get_tree().change_scene_to_file("res://scenes/town.tscn")

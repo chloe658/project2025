@@ -82,9 +82,7 @@ func _process(_delta):
 		else:
 			change_text_other()
 		Globle.next_dialogue = false
-		if label.text == "":
-			# or label.text == "empty":
-			# if at end of dialogue, make dialogue box invisible
+		if label.text == "": # if at end of dialogue, make dialogue box invisible
 			dialogue_box.visible = false
 		else:
 			dialogue_box.visible = true
@@ -135,5 +133,7 @@ func change_text_other():
 			dialogue_box.visible = false
 			index = 0
 		else:
+			# remove sisps from inventory
+			Globle.free_curse = true
 			get_tree().change_scene_to_file("res://cutscenes/closing_scene_1.tscn")
 	label.text = current_character_dialogue[index]

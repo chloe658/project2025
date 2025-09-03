@@ -339,6 +339,7 @@ z_index = 3
 position = Vector2(96, -73)
 
 [node name="held_item" parent="." instance=ExtResource("11_eus45")]
+visible = false
 position = Vector2(12, 3)
 
 [node name="hurtTimer" type="Timer" parent="."]

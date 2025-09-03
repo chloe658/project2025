@@ -255,6 +255,20 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 2
 
+[node name="TextureButton" type="TextureButton" parent="NinePatchRect_Options/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_jua13")
+
+[node name="Label" type="Label" parent="NinePatchRect_Options/ScrollContainer/VBoxContainer/TextureButton"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 3.0
+offset_right = 89.0
+offset_bottom = 11.0
+theme_override_fonts/font = ExtResource("12_ju76p")
+theme_override_font_sizes/font_size = 8
+text = "Quit Game"
+
 [node name="Label" type="Label" parent="NinePatchRect_Options/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
@@ -351,6 +365,7 @@ stretch_mode = 2
 position = Vector2(9, 10)
 texture = ExtResource("7_jua13")
 
+[connection signal="pressed" from="NinePatchRect_Options/ScrollContainer/VBoxContainer/TextureButton" to="." method="_on_exit_game_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/inventory_button" to="." method="_on_inventory_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/quest_button" to="." method="_on_quest_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/options_button" to="." method="_on_option_button_pressed"]
