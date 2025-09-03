@@ -54,7 +54,6 @@ func updateAnimation():
 func disable() -> void:
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
 
-
 func _on_follow_area_body_entered(body: Node2D) -> void:
 	# follow player if they are in range
 	if body is Player:

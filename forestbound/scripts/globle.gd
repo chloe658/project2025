@@ -9,6 +9,7 @@ var transition
 var hurting = false
 var next_dialogue = false
 #var held_item_changed = false
+var hotbarIndex: int = 0
 
 # Only spawn in quest items once
 var collected_cinder_fern_spore = false

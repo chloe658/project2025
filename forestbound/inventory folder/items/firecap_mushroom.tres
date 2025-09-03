@@ -9,4 +9,5 @@ health_increase = -5
 name = "Firecap Mushroom"
 texture = ExtResource("2_o1ji4")
 maxAmountPrStack = 13
+consumamble = true
 metadata/_custom_type_script = "uid://cgfq11jofeno6"

@@ -9,6 +9,7 @@ extends Panel
 var currently_selected: int = 0
 
 func _ready():
+	Globle.hotbarIndex = currently_selected
 	update()
 	inventory.updated.connect(update)
 		

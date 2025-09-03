@@ -3,7 +3,7 @@ class_name Player extends CharacterBody2D
 signal healthChanged
 
 @export var maxHealth = 100
-@export var knockbackPower: int = 500
+@export var knockbackPower: int = 50
 @export var speed: int = 150
 @export var inventory: Inventory
 
@@ -13,12 +13,17 @@ signal healthChanged
 @onready var effects = $Effects
 @onready var hurtTimer = $hurtTimer
 @onready var dialogue_box = $dialogue_box
-@onready var held_item = $held_item
+@onready var weapon = $weapon
+@onready var lastAnimDirection: String = "Down"
+@onready var animations = $AnimationPlayer
+#@onready var held_item = $held_item
+@onready var slots = $InventoryGui.slots
 
 # Get the gravity from the project settings to be synced with RigidBody nodes
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var isHurt: bool = false
 var enemyCollisions = []
+var isAttacking: bool = false
 
 
 func _on_ready() -> void:
@@ -27,46 +32,59 @@ func _on_ready() -> void:
 	effects.play("RESET")
 
 func _physics_process(_delta):
-	"""
-	if !Globle.held_item == "sword":
-		held_item.visible = false
-	else: 
-		held_item.visible == true
-	"""
-	
+	move_and_slide()
+	handleInput()
+	updateAnimation()
+	#handleCollision()
+	if !isHurt:
+		for enemyArea in enemyCollisions:
+			hurtByEnemy(enemyArea)
+
+func handleInput():
+	if Input.is_action_just_pressed("use_item"):
+		var currently_holding = slots[Globle.hotbarIndex].itemStackGui.inventorySlot.item.name
+		if currently_holding == "Sword":
+			animations.play("attack" + lastAnimDirection)
+			isAttacking = true
+			weapon.visible = true
+			await animations.animation_finished
+			weapon.visible = false
+			isAttacking = false
+		else:
+			print(currently_holding)
+		
 	if Input.is_action_just_pressed("escape"):
 		if inventory_gui.visible == true:
 			inventory_gui.visible = false
 		if get_tree().current_scene.name == "house_interior":
 			$shopMenu.visible = false
+
+
+func updateAnimation():
+	if isAttacking: return
 	if inventory_gui.visible == false and dialogue_box.visible == false:
 		if get_tree().current_scene.name == "house_interior":
 			if $shopMenu.visible == true: return
 		# Get the input direction and handle the movement/deceleration.
 		var horizontal_direction = Input.get_axis("move_left", "move_right")
 		var vertical_direction = Input.get_axis("move_up", "move_down")
-		
-		# Play aminations
 		if vertical_direction == 0 and horizontal_direction == 0:
 			animated_sprite_2d.play("idle")
-			held_item.position = Vector2(11, 4)
-			held_item.flip_h = false
+			lastAnimDirection = "Down"
+
 		else:
 			if horizontal_direction > 0:
 				animated_sprite_2d.play("walk_right")
-				held_item.flip_h = false
-				held_item.position = Vector2(4, 3)
+				lastAnimDirection = "Right"
 			elif horizontal_direction < 0:
 				animated_sprite_2d.play("walk_left")
-				held_item.position = Vector2(-4, 3)
-				held_item.flip_h = true
+				lastAnimDirection = "Left"
 			elif vertical_direction > 0:
 				animated_sprite_2d.play("walk_down")
-				held_item.flip_h = false
+				lastAnimDirection = "Down"
 			elif vertical_direction < 0:
 				animated_sprite_2d.play("walk_up")
-				held_item.flip_h = true
-				held_item.position = Vector2(-11, 4)
+				lastAnimDirection = "Up"
 		
 		# Move player
 		if horizontal_direction:
@@ -79,11 +97,6 @@ func _physics_process(_delta):
 		else:
 			velocity.y = move_toward(velocity.y, 0, speed)
 		
-		move_and_slide()
-		#handleCollision()
-		if !isHurt:
-			for enemyArea in enemyCollisions:
-				hurtByEnemy(enemyArea)
 	"""
 	else:
 		get_tree().paused = true
@@ -111,7 +124,8 @@ func increase_health(amount):
 func use_item(item: InventoryItem) -> void:
 	if not item.can_be_used(self): return
 	item.use(self)
-	inventory.remove_last_used_item()
+	if item.consumamble:
+		inventory.remove_last_used_item()
 
 func attack_enemy(amount):
 	Globle.attack_damage = amount

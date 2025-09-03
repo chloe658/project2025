@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cwf4gniyqd0tx" path="res://assets/Characters/enemy1 spritesheet.png" id="1_wa0eo"]
 [ext_resource type="Texture2D" uid="uid://bavbtyvmsxfan" path="res://assets/UI/tiny_healthbar.png" id="3_ggbst"]
 [ext_resource type="Texture2D" uid="uid://db4gpu3jgtbvf" path="res://assets/UI/tiny_healthfill.png" id="4_toq4n"]
-[ext_resource type="Script" uid="uid://cc8uqtdxl4iwc" path="res://inventory folder/follow_movement.gd" id="5_toq4n"]
+[ext_resource type="Script" uid="uid://cc8uqtdxl4iwc" path="res://scripts/follow_movement.gd" id="5_toq4n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_55xej"]
 atlas = ExtResource("1_wa0eo")
@@ -245,6 +245,7 @@ script = ExtResource("1_nhupr")
 clip_children = 2
 sprite_frames = SubResource("SpriteFrames_m6k2t")
 animation = &"idle"
+frame_progress = 0.857583
 
 [node name="ColorRect" type="ColorRect" parent="AnimatedSprite2D"]
 offset_left = -20.0
@@ -301,3 +302,4 @@ wait_time = 0.3
 [connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]
 [connection signal="body_entered" from="FollowArea" to="FollowMovementC" method="_on_follow_area_body_entered"]
 [connection signal="body_exited" from="FollowArea" to="FollowMovementC" method="_on_follow_area_body_exited"]
+[connection signal="timeout" from="hurtTimer" to="." method="_on_hurt_timer_timeout"]

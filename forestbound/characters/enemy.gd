@@ -11,7 +11,7 @@ class_name Enemy
 @onready var hurtTimer = $hurtTimer
 
 var max_health = 100
-var health = 50
+var health = 100
 var player_in_range = false
 
 var startPosition
@@ -39,8 +39,8 @@ func take_damage(damage):
 		# play death animation
 		queue_free()
 		$FollowMovementC.disable()
-	await hurtTimer.timeout
-	effects.play("RESET")
+	hurtTimer.start()
+	print(health)
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
@@ -51,3 +51,7 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 func _on_hitbox_body_exited(body: Node2D) -> void:
 	if body.name == "CharacterBody2D":
 		player_in_range = false
+
+
+func _on_hurt_timer_timeout() -> void:
+		effects.play("RESET")

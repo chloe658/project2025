@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm841mpwyqe4u"]
+
+[ext_resource type="Texture2D" uid="uid://p585wrubwfl2" path="res://assets/Items/Sword.png" id="1_74bdg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ycbs3"]
+size = Vector2(2.82986, 8.49686)
+
+[node name="sword" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(-0.0119915, -3.49867)
+rotation = -0.785398
+texture = ExtResource("1_74bdg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.0112178, -6.30626)
+shape = SubResource("RectangleShape2D_ycbs3")

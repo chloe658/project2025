@@ -9,4 +9,5 @@ health_increase = 15
 name = "Oakshade Seed"
 texture = ExtResource("2_3x2x2")
 maxAmountPrStack = 13
+consumamble = true
 metadata/_custom_type_script = "uid://cgfq11jofeno6"

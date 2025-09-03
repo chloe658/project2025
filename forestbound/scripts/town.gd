@@ -28,8 +28,9 @@ func _ready():
 
 
 func _on_collectable_timer_timeout() -> void:
+	collectables = $collectables.get_children() #get new list each time
 	if collectables.size() > 0:
 		var random_index = randi() % collectables.size()
 		var chosen_item = collectables[random_index]
-		chosen_item.visible = true  # or whatever you want to do
+		chosen_item.visible = true
 	timer.start(randf_range(min_respawn_time, max_respawn_time))

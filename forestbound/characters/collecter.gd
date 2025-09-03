@@ -65,6 +65,7 @@ func _process(_delta):
 
 
 func collect_item():
+	# will need to fix this
 	if Globle.held_item == items[item_index]:
 		current_quest_complete = true
 		inventory.use_item_at_index(hotbar.currently_selected)

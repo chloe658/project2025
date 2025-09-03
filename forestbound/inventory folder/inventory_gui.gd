@@ -8,6 +8,7 @@ extends Control
 @onready var quest_btn = $HBoxContainer/quest_button/TextureRect
 @onready var quit_btn = $HBoxContainer/quit_button/TextureRect
 @onready var options_btn = $HBoxContainer/options_button/TextureRect
+@onready var player: Player = $".."
 
 var itemInHand: ItemStackGui
 var oldIndex: int = -1
@@ -132,7 +133,11 @@ func _input(event):
 	if event.is_action_pressed("toggle_inventory"):
 		if itemInHand:
 			putItemBack()
-		visible = !visible
+		player.velocity = Vector2(0, 0)
+		if get_tree().current_scene.name == "house_interior":
+			if $"../shopMenu".visible == true: return
+			else: visible = !visible
+		else: visible = !visible
 
 
 func _on_inventory_button_pressed() -> void:

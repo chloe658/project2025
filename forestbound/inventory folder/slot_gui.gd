@@ -16,11 +16,12 @@ func insert(isg: ItemStackGui):
 		return
 	inventory.insertSlot(index, itemStackGui.inventorySlot)
 
+
 func takeItem():
 	var item = itemStackGui
 	inventory.removeSlot(itemStackGui.inventorySlot)
-	#clear()
 	return item
+
 
 func isEmpty():
 	return !itemStackGui
