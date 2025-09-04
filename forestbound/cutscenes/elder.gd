@@ -6,6 +6,7 @@ extends CharacterBody2D
 var startPosition
 var endPosition
 
+
 func _ready():
 	var endPoint
 	if get_parent().name == "closing_scene1":
@@ -15,12 +16,14 @@ func _ready():
 	startPosition = position
 	endPosition = startPosition + endPoint
 
+
 func updateVelocity():
 	var moveDirection = endPosition - position
 	if moveDirection.length() < limit:
 		position = endPosition
 		moveDirection = Vector2(0, 0)
 	velocity = moveDirection.normalized() * speed
+
 
 func updateAnimation():
 	var animationString = "idle"
@@ -29,6 +32,7 @@ func updateAnimation():
 	elif velocity.y > 0:
 		animationString = "walk_down"
 	$"AnimatedSprite2D".play(animationString)
+
 
 func _process(_delta):
 	updateVelocity()

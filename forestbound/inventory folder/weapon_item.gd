@@ -4,6 +4,7 @@ class_name WeaponItem extends InventoryItem
 var weapon
 @export var attack_damage: int = 1
 
+
 func _init() -> void:
 	weapon = weapon_class.instantiate()
 

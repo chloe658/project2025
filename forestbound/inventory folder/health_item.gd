@@ -8,4 +8,4 @@ func use(player: Player) -> void:
 
 
 func can_be_used(_player: Player):
-	return Globle.currentHealth + health_increase <= Globle.maxHealth
+	return Global.currentHealth + health_increase <= Global.maxHealth

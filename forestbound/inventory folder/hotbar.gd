@@ -8,14 +8,14 @@ extends Panel
 
 var currently_selected: int = 0
 
+
 func _ready():
-	#Globle.hotbarIndex = currently_selected
 	update()
 	inventory.updated.connect(update)
 
 
 func _process(_delta):
-	Globle.hotbarIndex = currently_selected
+	Global.hotbarIndex = currently_selected
 
 
 func update() -> void:
@@ -38,4 +38,3 @@ func _unhandled_input(event):
 	
 	if event.is_action_pressed("move_selector"):
 		move_selector()
-	

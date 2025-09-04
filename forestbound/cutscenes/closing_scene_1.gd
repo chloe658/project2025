@@ -22,9 +22,9 @@ func _on_pause_timer_timeout() -> void:
 
 func _on_effects_timer_timeout() -> void:
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
-	Globle.finished_last_cutscene = true
+	Global.finished_last_cutscene = true
 
 
 func _on_skip_btn_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
-	Globle.finished_last_cutscene = true
+	Global.finished_last_cutscene = true

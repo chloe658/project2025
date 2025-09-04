@@ -18,6 +18,7 @@ func _ready():
 	startPosition = position
 	endPosition = startPosition + endPoint
 
+
 func updateVelocity():
 	var moveDirection = endPosition - position
 	if moveDirection.length() < limit:
@@ -27,6 +28,7 @@ func updateVelocity():
 			if opening_scene.dialogue_complete == false: #only make box visible the first time
 				opening_scene.trigger_dialogue = true
 	velocity = moveDirection.normalized() * speed
+
 
 func updateAnimation():
 	var animationString = "idle"
@@ -39,6 +41,7 @@ func updateAnimation():
 	elif velocity.y > 0:
 		animationString = "walk_down"
 	$"AnimatedSprite2D".play(animationString)
+
 
 func _process(_delta):
 	updateVelocity()

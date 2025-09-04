@@ -16,7 +16,6 @@ signal healthChanged
 @onready var weapon = $weapon
 @onready var lastAnimDirection: String = "Down"
 @onready var animations = $AnimationPlayer
-#@onready var held_item = $held_item
 @onready var slots = $InventoryGui.slots
 
 # Get the gravity from the project settings to be synced with RigidBody nodes
@@ -31,6 +30,7 @@ func _on_ready() -> void:
 	inventory.use_item.connect(use_item)
 	effects.play("RESET")
 
+
 func _physics_process(_delta):
 	move_and_slide()
 	handleInput()
@@ -38,14 +38,16 @@ func _physics_process(_delta):
 	if !isHurt:
 		for enemyArea in enemyCollisions:
 			hurtByEnemy(enemyArea)
+	if dialogue_box.visible == true:
+		velocity = Vector2(0, 0)
+
 
 func handleInput():
 	if Input.is_action_just_pressed("use_item"):
-		
-		var slot = slots[Globle.hotbarIndex]
+		var slot = slots[Global.hotbarIndex]
 		if slot == null or slot.itemStackGui == null or slot.itemStackGui.inventorySlot == null: return
-		var currently_holding = slots[Globle.hotbarIndex].itemStackGui.inventorySlot.item.name
-		Globle.held_item = currently_holding
+		var currently_holding = slots[Global.hotbarIndex].itemStackGui.inventorySlot.item.name
+		Global.held_item = currently_holding
 		if currently_holding == "Sword":
 			animations.play("attack" + lastAnimDirection)
 			isAttacking = true
@@ -108,7 +110,8 @@ func _on_area_2d_area_entered(area):
 		
 
 func increase_health(amount):
-	Globle.increase_health(amount)
+	Global.increase_health(amount)
+
 
 func use_item(item: InventoryItem) -> void:
 	if not item.can_be_used(self): return
@@ -116,14 +119,17 @@ func use_item(item: InventoryItem) -> void:
 	if item.consumamble:
 		inventory.remove_last_used_item()
 
+
 func attack_enemy(amount):
-	Globle.attack_damage = amount
+	Global.attack_damage = amount
+
 
 func die():
-	#play death animation
+	# Play death animation
 	get_tree().change_scene_to_file("res://scenes/town.tscn")
-	Globle.transition = get_parent().name
-	Globle.currentHealth = Globle.maxHealth
+	Global.transition = get_parent().name
+	Global.currentHealth = Global.maxHealth
+
 
 func knockback(enemyVelocity):
 	var knockbackDirection = (enemyVelocity - velocity).normalized() * knockbackPower
@@ -136,8 +142,8 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 
 
 func hurtByEnemy(area):
-	Globle.take_damage()
-	if Globle.currentHealth <= 0:
+	Global.take_damage()
+	if Global.currentHealth <= 0:
 		die()
 	isHurt = true
 	knockback(area.get_parent().velocity)
@@ -149,4 +155,4 @@ func hurtByEnemy(area):
 
 
 func _on_next_pressed() -> void:
-	Globle.next_dialogue = true
+	Global.next_dialogue = true

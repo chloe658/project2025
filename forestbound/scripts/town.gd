@@ -8,17 +8,16 @@ extends Node2D
 @export var max_respawn_time: float = 15.0
 @onready var timer = $collectable_timer
 
-
 @onready var collectables: Array = $collectables.get_children()
+
 
 func _on_tree_entered() -> void:
 	await get_tree().process_frame
-	if Globle.transition == "dungeon_room":
+	if Global.transition == "dungeon_room":
 		player.global_position = dungeon_respawn.global_position
 	
-	if Globle.transition == "house_interior":
+	if Global.transition == "house_interior":
 		player.global_position = house_respawn.global_position
-
 
 
 func _ready():

@@ -11,11 +11,11 @@ var index = 0
 
 
 var dialogue_elder = [
-	"Who goes there? ...Ah—wait. It's you.",
-	"We’ve been expecting you.",
-	"For a moment, I thought you were… someone else. Like the last time.",
-	"Those poor souls still linger in the wisps. Be glad you are not among them… yet.",
-	"Ill take you to the village.",
+	"Elder: Who goes there? ...Ah—wait. It's you.",
+	"Elder: We’ve been expecting you.",
+	"Elder: For a moment, I thought you were… someone else. Like the last time.",
+	"Elder: Those poor souls still linger in the wisps. Be glad you are not among them… yet.",
+	"Elder: Ill take you to the village.",
 	""
 	]
 var dialogue_ending = [
@@ -55,5 +55,5 @@ func _on_skip_btn_pressed() -> void:
 
 func change_scene():
 	if get_tree().current_scene.name == "opening_scene1":
-		Globle.finished_first_cutscene = true
+		Global.finished_first_cutscene = true
 	get_tree().change_scene_to_file("res://scenes/town.tscn")

@@ -26,9 +26,9 @@ func _ready():
 
 func _process(_delta) -> void:
 	if player_in_range == true:
-		if Input.is_action_just_pressed("use_item") and Globle.held_item == "Sword":
+		if Input.is_action_just_pressed("use_item") and Global.held_item == "Sword":
 			#  Only attack player if currently holding the sword
-			var attack_damage = Globle.attack_damage
+			var attack_damage = Global.attack_damage
 			take_damage(attack_damage)
 
 

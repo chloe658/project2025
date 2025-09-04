@@ -1,4 +1,3 @@
-"""The globle script holds varibles for quest and other features that should only be repeated once or need to be used throughout the project."""
 extends Node
 
 var CoinCount = 1500
@@ -40,6 +39,7 @@ func take_damage():
 func increase_health(amount):
 	currentHealth += amount
 	healthChanged.emit()
+
 
 func earn_coins(amount):
 	CoinCount += amount

@@ -2,8 +2,9 @@ extends Node2D
 
 
 func _ready():
-	Globle.coinChanged.connect(update)
+	Global.coinChanged.connect(update)
 	update()
 
+
 func update():
-	$Label.text = str(Globle.CoinCount)
+	$Label.text = str(Global.CoinCount)

@@ -8,6 +8,7 @@ extends Button
 var itemStackGui: ItemStackGui
 var index: int
 
+
 func insert(isg: ItemStackGui):
 	itemStackGui = isg
 	container.add_child(itemStackGui)

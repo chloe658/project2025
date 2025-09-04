@@ -5,7 +5,9 @@ class_name ItemStackGui
 @onready var itemSprite: Sprite2D = $item
 @onready var amount_label: Label = $Label
 
+
 var inventorySlot: InventorySlot
+
 
 func update():
 	if !inventorySlot || !inventorySlot.item: return

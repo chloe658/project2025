@@ -5,9 +5,9 @@ extends Button
 @onready var hotbar = $"../../.."
 signal held_item_updated
 
-
 @onready var inventory: Inventory = preload("res://inventory folder/player_inventory.tres")
 @onready var slots: Array = $"..".get_children()
+
 
 func update_to_slot(slot: InventorySlot) -> void:
 	if !slot.item:
@@ -21,7 +21,7 @@ func update_to_slot(slot: InventorySlot) -> void:
 func get_held_slot(_slot: InventorySlot) -> void:
 	var held_item_slot: InventorySlot = inventory.slots[hotbar.currently_selected]
 	if held_item_slot.item:
-		Globle.held_item = held_item_slot.item.name
+		Global.held_item = held_item_slot.item.name
 		held_item_updated.emit()
 	else:
-		Globle.held_item = ""
+		Global.held_item = ""

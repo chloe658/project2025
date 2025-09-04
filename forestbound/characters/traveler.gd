@@ -26,7 +26,7 @@ var dialogue_traveler = [
 ]
 
 var traveler_quest_dialogue = [
-	"Bring coin, then we’ll talk.",
+	"Traveler: Bring coin, then we’ll talk.",
 	"empty",
 ]
 
@@ -50,7 +50,7 @@ var dialogue_elder = [
 ]
 
 var final_dialogue = [
-	"bye",
+	"At last… all the wisps are collected. They — I mean, the curse — can finally be freed. Come with me I have something to show you...",
 ]
 
 
@@ -72,20 +72,21 @@ func _process(_delta):
 		dialogue_box.visible = true
 		get_current_character()
 		label.text = current_character_dialogue[index]
-		if Globle.traveler_quest_complete:
+		if Global.traveler_quest_complete:
 			index = 0 #when opening for the second time the index will be the last dialogue so now it will be the first
 			label.text = current_character_dialogue[index]
-	if player_near == true and Globle.next_dialogue == true:
+	if player_near == true and Global.next_dialogue == true:
 		get_current_character()
 		if character_name == "traveler":
 			change_text_traveler()
 		else:
 			change_text_other()
-		Globle.next_dialogue = false
+		Global.next_dialogue = false
 		if label.text == "": # if at end of dialogue, make dialogue box invisible
 			dialogue_box.visible = false
 		else:
 			dialogue_box.visible = true
+
 
 func get_current_character():
 	if character_name == "traveler":
@@ -93,18 +94,19 @@ func get_current_character():
 	elif character_name == "wanderer":
 		current_character_dialogue = dialogue_wanderer
 	elif character_name == "elder":
-		if Globle.explore_dungeon == false or Globle.collector_quest_complete == false or Globle.traveler_quest_complete == false or Globle.finished_last_cutscene == true:
+		if Global.explore_dungeon == false or Global.collector_quest_complete == false or Global.traveler_quest_complete == false or Global.finished_last_cutscene == true:
 			current_character_dialogue = dialogue_elder
 		else:
 			current_character_dialogue = final_dialogue
 			final_dialogue_bool = true
 
+
 func change_text_traveler():
-	if !Globle.traveler_quest_complete:
+	if !Global.traveler_quest_complete:
 		# only take coins and give item if the player has not completed the quest before
 		if index == 1:
-			if Globle.CoinCount >= BRIBE:
-				Globle.spend_coins(BRIBE)
+			if Global.CoinCount >= BRIBE:
+				Global.spend_coins(BRIBE)
 				paid_traveler = true
 			else: 
 				if label.text != traveler_quest_dialogue[0]:
@@ -114,17 +116,19 @@ func change_text_traveler():
 				
 		if index == 3 and paid_traveler:
 			inventory.insert(load("res://inventory folder/items/willow_wisps.tres"))
-			Globle.traveler_quest_complete = true
+			Global.traveler_quest_complete = true
 	if index < len(current_character_dialogue) - 1:
 		index += 1
 	else:
 		dialogue_box.visible = false
 		index = 0
-	if Globle.traveler_quest_complete:
+	if Global.traveler_quest_complete:
+		# Add dialogue for when quest is complete.
 		pass
 
 	label.text = current_character_dialogue[index]
-	
+
+
 func change_text_other():
 	if index < len(current_character_dialogue) - 1:
 		index += 1
@@ -133,7 +137,6 @@ func change_text_other():
 			dialogue_box.visible = false
 			index = 0
 		else:
-			# remove sisps from inventory
-			Globle.free_curse = true
+			Global.free_curse = true
 			get_tree().change_scene_to_file("res://cutscenes/closing_scene_1.tscn")
 	label.text = current_character_dialogue[index]

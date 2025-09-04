@@ -9,17 +9,21 @@ extends Control
 @onready var quit_btn = $HBoxContainer/quit_button/TextureRect
 @onready var options_btn = $HBoxContainer/options_button/TextureRect
 @onready var player: Player = $".."
+@onready var dialogue_box = $"../dialogue_box"
 
 var itemInHand: ItemStackGui
 var oldIndex: int = -1
+
 
 func _ready():
 	connectSlots()
 	inventory.updated.connect(update)
 	update()
 
+
 func _process(_delta):
 	update_buttons()
+
 
 func connectSlots():
 	for i in range(slots.size()):
@@ -47,7 +51,7 @@ func update():
 		itemStackGui.inventorySlot = inventorySlot
 		itemStackGui.update()
 
-		if Globle.free_curse == true:
+		if Global.free_curse == true:
 			remove_all_instances_of_item("Willow Wisps")
 
 
@@ -57,8 +61,7 @@ func remove_all_instances_of_item(item_name):
 		if itemStackGui == null: continue
 		if itemStackGui.inventorySlot and itemStackGui.inventorySlot.item.name == item_name:
 			inventory.removeSlot(slots[i].itemStackGui.inventorySlot)
-		
-	
+
 
 func onSlotClicked(slot):
 	if slot.isEmpty():
@@ -105,16 +108,19 @@ func stackItems(slot):
 	var maxAmount = slotItem.inventorySlot.item.maxAmountPrStack
 	var totalAmount = slotItem.inventorySlot.amount + itemInHand.inventorySlot.amount
 	
-	if slotItem.inventorySlot.amount == maxAmount: # if slot already at max amount swap items
+	if slotItem.inventorySlot.amount == maxAmount: 
+		# If slot already at max amount swap items
 		swapItems(slot)
 		return
-	if totalAmount <= maxAmount: # if total is less than max amound add stacks
+	if totalAmount <= maxAmount: 
+		# If total is less than max amound add stacks
 		slotItem.inventorySlot.amount = totalAmount
 		remove_child(itemInHand)
 		itemInHand = null
 		oldIndex = -1
 
-	else: # if holding greater than allowed to add, add some, holder rest
+	else: 
+		# If holding greater than allowed to add, add some, holder rest
 		slotItem.inventorySlot.amount = maxAmount
 		itemInHand.inventorySlot.amount = totalAmount - maxAmount
 	
@@ -146,7 +152,9 @@ func _input(event):
 		if get_tree().current_scene.name == "house_interior":
 			if $"../shopMenu".visible == true: return
 			else: visible = !visible
-		else: visible = !visible
+		else: 
+			if dialogue_box.visible == true: return
+			visible = !visible
 
 
 func _on_inventory_button_pressed() -> void:
@@ -181,13 +189,13 @@ func _on_quit_button_pressed() -> void:
 
 
 func update_buttons():
-	if Globle.explore_dungeon:
+	if Global.explore_dungeon:
 		$NinePatchRect_Quest/ScrollContainer/VBoxContainer/explore_dungeon/TickIcon.visible = true
-	if Globle.collector_quest_complete: # "Collect Ingredients"
+	if Global.collector_quest_complete: # "Collect Ingredients"
 		$NinePatchRect_Quest/ScrollContainer/VBoxContainer/collect_ingredients/TickIcon.visible = true
-	if Globle.traveler_quest_complete: # "Find Secret"
+	if Global.traveler_quest_complete: # "Find Secret"
 		$NinePatchRect_Quest/ScrollContainer/VBoxContainer/find_secret/TickIcon.visible = true
-	if Globle.free_curse:
+	if Global.free_curse:
 		$NinePatchRect_Quest/ScrollContainer/VBoxContainer/free_curse/TickIcon.visible = true
 
 

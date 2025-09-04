@@ -2,6 +2,7 @@ extends Node2D
 
 var weapon: Area2D
 
+
 func _ready():
 	if get_children().is_empty(): return
 	

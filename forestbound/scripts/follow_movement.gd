@@ -1,5 +1,3 @@
-"""The follow component script is reusuable for enemies or similar."""
-
 class_name FollowMovementC extends Node
 
 @export var speed = 20
@@ -9,8 +7,10 @@ class_name FollowMovementC extends Node
 var start_position
 var target: Player
 
+
 func _ready():
 	start_position = parent.position
+
 
 func update_velocity():
 	if !target:
@@ -26,10 +26,12 @@ func update_velocity():
 	var new_velocity = direction.normalized() * speed
 	parent.velocity = new_velocity
 
+
 func _physics_process(_delta) -> void:
 	update_velocity()
 	parent.move_and_slide()
 	updateAnimation()
+
 
 func updateAnimation():
 	var animationString = "idle"
@@ -47,6 +49,7 @@ func updateAnimation():
 
 func disable() -> void:
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
+
 
 func _on_follow_area_body_entered(body: Node2D) -> void:
 	# follow player if they are in range
