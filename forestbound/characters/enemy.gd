@@ -26,7 +26,8 @@ func _ready():
 
 func _process(_delta) -> void:
 	if player_in_range == true:
-		if Input.is_action_just_pressed("use_item"):
+		if Input.is_action_just_pressed("use_item") and Globle.held_item == "Sword":
+			#  Only attack player if currently holding the sword
 			var attack_damage = Globle.attack_damage
 			take_damage(attack_damage)
 
@@ -36,7 +37,7 @@ func take_damage(damage):
 	health -= int(damage)
 	health_bar.value = float(health) * 100 / max_health
 	if health < 1:
-		# play death animation
+		# Play death animation
 		queue_free()
 		$FollowMovementC.disable()
 	hurtTimer.start()
@@ -54,3 +55,13 @@ func _on_hitbox_body_exited(body: Node2D) -> void:
 
 func _on_hurt_timer_timeout() -> void:
 		effects.play("RESET")
+
+"""
+func _on_hurt_box_area_entered(area: Area2D) -> void:
+	
+	if area == $hitbox: return
+	if area.get_parent() is Player:
+		# use sword hitbox instead
+		print("true")
+	
+"""

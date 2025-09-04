@@ -1,10 +1,14 @@
-[gd_scene load_steps=28 format=3 uid="uid://b382gc4kok2al"]
+[gd_scene load_steps=29 format=3 uid="uid://b382gc4kok2al"]
 
 [ext_resource type="Script" uid="uid://dld052qhw80dd" path="res://characters/enemy.gd" id="1_nhupr"]
 [ext_resource type="Texture2D" uid="uid://cwf4gniyqd0tx" path="res://assets/Characters/enemy1 spritesheet.png" id="1_wa0eo"]
 [ext_resource type="Texture2D" uid="uid://bavbtyvmsxfan" path="res://assets/UI/tiny_healthbar.png" id="3_ggbst"]
 [ext_resource type="Texture2D" uid="uid://db4gpu3jgtbvf" path="res://assets/UI/tiny_healthfill.png" id="4_toq4n"]
 [ext_resource type="Script" uid="uid://cc8uqtdxl4iwc" path="res://scripts/follow_movement.gd" id="5_toq4n"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_1ohc2"]
+a = Vector2(-10, 13)
+b = Vector2(0, 13)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_55xej"]
 atlas = ExtResource("1_wa0eo")
@@ -187,10 +191,6 @@ animations = [{
 "speed": 3.0
 }]
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_1ohc2"]
-a = Vector2(-10, 13)
-b = Vector2(0, 13)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_wa0eo"]
 radius = 20.8806
 
@@ -235,11 +235,19 @@ _data = {
 &"hurtBlink": SubResource("Animation_toq4n")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_toq4n"]
+radius = 11.0
+height = 32.0
+
 [node name="EnemyBody2D" type="CharacterBody2D"]
 z_index = 1
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_nhupr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5, 2)
+shape = SubResource("SegmentShape2D_1ohc2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 clip_children = 2
@@ -253,10 +261,6 @@ offset_top = -15.0
 offset_right = 20.0
 offset_bottom = 25.0
 color = Color(1, 0, 0, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(5, 2)
-shape = SubResource("SegmentShape2D_1ohc2")
 
 [node name="hitbox" type="Area2D" parent="."]
 
@@ -297,9 +301,16 @@ libraries = {
 [node name="hurtTimer" type="Timer" parent="."]
 wait_time = 0.3
 
+[node name="hurtBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtBox"]
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_toq4n")
+
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]
 [connection signal="body_entered" from="FollowArea" to="FollowMovementC" method="_on_follow_area_body_entered"]
 [connection signal="body_exited" from="FollowArea" to="FollowMovementC" method="_on_follow_area_body_exited"]
 [connection signal="timeout" from="hurtTimer" to="." method="_on_hurt_timer_timeout"]
+[connection signal="area_entered" from="hurtBox" to="." method="_on_hurt_box_area_entered"]

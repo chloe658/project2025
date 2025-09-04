@@ -9,10 +9,14 @@ extends Panel
 var currently_selected: int = 0
 
 func _ready():
-	Globle.hotbarIndex = currently_selected
+	#Globle.hotbarIndex = currently_selected
 	update()
 	inventory.updated.connect(update)
-		
+
+
+func _process(_delta):
+	Globle.hotbarIndex = currently_selected
+
 
 func update() -> void:
 	for i in range(slots.size()):

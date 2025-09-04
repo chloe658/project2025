@@ -41,7 +41,11 @@ func _physics_process(_delta):
 
 func handleInput():
 	if Input.is_action_just_pressed("use_item"):
+		
+		var slot = slots[Globle.hotbarIndex]
+		if slot == null or slot.itemStackGui == null or slot.itemStackGui.inventorySlot == null: return
 		var currently_holding = slots[Globle.hotbarIndex].itemStackGui.inventorySlot.item.name
+		Globle.held_item = currently_holding
 		if currently_holding == "Sword":
 			animations.play("attack" + lastAnimDirection)
 			isAttacking = true
@@ -49,9 +53,6 @@ func handleInput():
 			await animations.animation_finished
 			weapon.visible = false
 			isAttacking = false
-		else:
-			print(currently_holding)
-			#currently player is always holdig a sword.
 		
 	if Input.is_action_just_pressed("escape"):
 		if inventory_gui.visible == true:

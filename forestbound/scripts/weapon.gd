@@ -1,15 +1,12 @@
 extends Node2D
 
-#https://www.youtube.com/watch?v=hVsID4Td-Os&list=PLMQtM2GgbPEWKQuyv9sXHwGWDXLY3Zjpw&index=26
-#use tutorial 
-
 var weapon: Area2D
 
 func _ready():
 	if get_children().is_empty(): return
 	
 	weapon = get_children()[0]
-	#weapon.disable()
+	weapon.disable()
 
 
 func enable():
